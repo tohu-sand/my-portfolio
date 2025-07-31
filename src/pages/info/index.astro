@@ -1,0 +1,15 @@
+---
+import { getCollection } from "astro:content";
+import InfoCard from "../../components/InfoCard.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const infos = await getCollection("info", ({ data }) => true);
+---
+<BaseLayout title="豆腐さんど: お知らせ一覧">
+  <h2 class="text-2xl font-bold mb-6">Information</h2>
+  <div class="grid md:grid-cols-2 gap-6">
+    {infos
+      .sort((a, b) => b.data.date - a.data.date)
+      .map((e) => <InfoCard entry={e} />)}
+  </div>
+</BaseLayout>
+

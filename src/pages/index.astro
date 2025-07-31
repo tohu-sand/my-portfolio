@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import InfoCard from "../components/InfoCard.astro";
+import PostCard from "../components/PostCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+/* 過去30日以内／未来分も含む最新情報 */
+const infos = await getCollection("info", ({ data }) =>
+  data.date >= new Date(new Date().setDate(new Date().getDate() - 30))
+);
+/* 最新ブログ記事（1 件） */
+const posts = await getCollection("posts", () => true);
+const latestPost = posts.sort((a, b) => b.data.date - a.data.date)[0];
+---
+
+<BaseLayout title="豆腐さんどのホームページ">
+  <div class="flex justify-center mb-8">
+    <img
+      src="/assets/illust/2025-02-12.png"
+      alt="トップ画像"
+      class="w-full max-w-md rounded-lg shadow-lg aspect-[3/4] object-cover"
+      loading="eager"
+    />
+  </div>
+
+  <h2 class="text-2xl font-bold mb-4">About</h2>
+  <p class="text-stone-700 mb-6 ">
+    <strong>豆腐さんど(@tohu_sand)</strong><br />
+    趣味でイラスト・漫画を描いています。コミティアにて同人サークル「ロボット技術研究会」を主宰しています。
+  </p>
+
+  <h2 class="text-2xl font-bold mt-10 mb-4">Upcoming Info</h2>
+  <div class="space-y-4">
+    {infos.length
+      ? infos.map((e) => <InfoCard entry={e} />)
+      : <p>現在お知らせはありません。</p>}
+  </div>
+
+  <h2 class="text-2xl font-bold mt-10 mb-4">Recent Post</h2>
+  {latestPost
+    ? <PostCard entry={latestPost} />
+    : <p>まだブログ記事がありません。</p>}
+</BaseLayout>

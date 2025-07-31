@@ -1,0 +1,45 @@
+---
+/**
+ * 汎用インフォカード
+ * 変更点:
+ *  - 「#カテゴリー」を 1 行目に表示
+ *  - 2 行目に「YYYY/M/D ロケーション」をスペース区切りで表示
+ **/
+const { entry } = Astro.props;
+const { data } = entry;
+
+const categoryLabel = data.category ? `#${data.category}` : "#Info";
+const dateStr = data.date.toLocaleDateString("ja-JP", {
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+});
+---
+<article class="border rounded-xl p-4 shadow hover:shadow-lg transition">
+  <!-- タイトル -->
+  <h3 class="text-lg font-semibold">{data.title}</h3>
+
+  <!-- #カテゴリー -->
+  <p class="mt-1 font-medium text-black-600">{categoryLabel}</p>
+
+  <!-- 日付 ロケーション -->
+  <p class="text-sm text-stone-600">
+    {dateStr}
+    {data.location && ` ${data.location}`}
+  </p>
+
+  <!-- 説明文（任意） -->
+  {data.description && <p class="mt-2 text-sm">{data.description}</p>}
+
+  <!-- 関連リンク（任意） -->
+  {data.url && (
+    <a
+      href={data.url}
+      class="text-blue-600 hover:underline mt-2 inline-block"
+      target="_blank"
+      rel="noopener"
+    >
+      関連リンク
+    </a>
+  )}
+</article>

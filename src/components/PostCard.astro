@@ -1,0 +1,21 @@
+---
+const { entry } = Astro.props;
+const { data, slug } = entry;
+---
+<article class="border rounded-xl overflow-hidden shadow hover:shadow-lg transition">
+  <a href={`/blog/${slug}/`}>
+    <img
+      src={data.thumbnail}
+      alt={data.title}
+      class="w-full h-40 object-cover"
+      loading="lazy"
+    />
+    <div class="p-4">
+      <h3 class="text-lg font-semibold line-clamp-2">{data.title}</h3>
+      <p class="mt-1 text-sm text-stone-600">
+        {data.date.toLocaleDateString("ja-JP")}
+      </p>
+      {data.excerpt && <p class="mt-2 text-sm line-clamp-2">{data.excerpt}</p>}
+    </div>
+  </a>
+</article>

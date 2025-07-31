@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const artworks = await getCollection("gallery");
+  return artworks.map((art) => ({
+    params: { slug: art.slug },
+    props:  { entry: art },
+  }));
+}
+export const prerender = true;
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const { data } = entry;
+---
+<BaseLayout title={data.title}>
+  <article class="prose mx-auto">
+    <h1 class="text-3xl font-bold mb-4">{data.title}</h1>
+    <img
+      src={data.image}
+      alt={data.title}
+      class="w-full rounded-lg mb-6"
+    />
+    {data.description && (
+    <p class="mb-4 text-stone-700">{data.description}</p>
+    )}
+    <Content />
+
+    <p class="mt-8 text-sm text-stone-500">
+      公開日:
+      <time datetime={data.date.toISOString()}>
+        {data.date.toLocaleDateString("ja-JP")}
+      </time>
+      {data.tags && (
+        <>
+          &nbsp;|&nbsp;タグ:
+          {data.tags.map((t) => (
+            <span class="inline-block ml-1 px-2 py-0.5 bg-stone-200 rounded">{t}</span>
+          ))}
+        </>
+      )}
+    </p>
+  </article>
+</BaseLayout>

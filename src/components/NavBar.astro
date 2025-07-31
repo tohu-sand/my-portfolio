@@ -1,0 +1,31 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const links = [
+  { href: "/", label: "HOME" },
+  { href: "/info", label: "INFO" },
+  { href: "/gallery", label: "GALLERY" },
+  { href: "/blog", label: "BLOG" },
+  { href: "/link", label: "LINK" },
+];
+const socials = [
+  { href: "https://bsky.app/profile/tohu-sand.bsky.social", icon: "simple-icons:bluesky" },
+  { href: "https://twitter.com/tohu_sand", icon: "simple-icons:twitter" },
+];
+---
+<header class="bg-white shadow-md">
+  <div class="container mx-auto flex items-center justify-between p-4">
+    <nav class="space-x-6 hidden md:block">
+      {links.map(({ href, label }) => (
+        <a href={href} class="hover:underline">{label}</a>
+      ))}
+    </nav>
+    <div class="flex space-x-4">
+      {socials.map(({ href, icon }) => (
+        <a href={href} aria-label="social" target="_blank" rel="noopener">
+          <Icon name={icon} size="1.5rem" />
+        </a>
+      ))}
+    </div>
+  </div>
+</header>
