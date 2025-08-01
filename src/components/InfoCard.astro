@@ -9,22 +9,22 @@ const dateStr = data.date.toLocaleDateString("ja-JP", {
   day: "numeric",
 });
 ---
-<article class="border rounded-xl p-4 shadow hover:shadow-lg transition">
-  <h3 class="text-lg font-semibold">{data.title}</h3>
+<article class="border border-stone-200 dark:border-stone-700 rounded-xl p-4 shadow hover:shadow-lg dark:shadow-stone-900/50 dark:hover:shadow-stone-900/70 transition bg-white dark:bg-stone-800">
+  <h3 class="text-lg font-semibold text-stone-900 dark:text-stone-100">{data.title}</h3>
 
-  <p class="mt-1 font-medium text-black-600">{categoryLabel}</p>
+  <p class="mt-1 font-medium text-stone-600 dark:text-stone-400">{categoryLabel}</p>
 
-  <p class="text-sm text-stone-600">
+  <p class="text-sm text-stone-600 dark:text-stone-400">
     {dateStr}
     {data.location && ` ${data.location}`}
   </p>
 
-  {data.description && <p class="mt-2 text-sm">{data.description}</p>}
+  {data.description && <p class="mt-2 text-sm text-stone-700 dark:text-stone-300">{data.description}</p>}
 
   {data.url && (
     <a
       href={data.url}
-      class="text-blue-600 hover:underline mt-2 inline-block"
+      class="text-blue-600 dark:text-blue-400 hover:underline mt-2 inline-block"
       target="_blank"
       rel="noopener"
     >

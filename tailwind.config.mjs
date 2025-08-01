@@ -3,6 +3,7 @@ export default {
   content: [
     "./src/**/*.{astro,md,mdx,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {

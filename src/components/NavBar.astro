@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import DarkModeToggle from './DarkModeToggle.astro';
 
 const links = [
   { href: "/", label: "HOME" },
@@ -13,16 +14,17 @@ const socials = [
   { href: "https://twitter.com/tohu_sand", icon: "simple-icons:twitter" },
 ];
 ---
-<header class="bg-white shadow-md">
+<header class="bg-white dark:bg-stone-900 shadow-md border-b border-stone-200 dark:border-stone-700">
   <div class="container mx-auto flex items-center justify-between p-4">
     <nav class="space-x-6 hidden md:block">
       {links.map(({ href, label }) => (
-        <a href={href} class="hover:underline">{label}</a>
+        <a href={href} class="hover:underline text-stone-900 dark:text-stone-100 transition-colors">{label}</a>
       ))}
     </nav>
-    <div class="flex space-x-4">
+    <div class="flex items-center space-x-4">
+      <DarkModeToggle />
       {socials.map(({ href, icon }) => (
-        <a href={href} aria-label="social" target="_blank" rel="noopener">
+        <a href={href} aria-label="social" target="_blank" rel="noopener" class="text-stone-900 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-400 transition-colors">
           <Icon name={icon} size="1.5rem" />
         </a>
       ))}

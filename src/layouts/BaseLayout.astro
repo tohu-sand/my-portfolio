@@ -10,8 +10,15 @@ const { title = "Site Title" } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content="豆腐さんどのホームページ" />
+    <script is:inline>
+      const theme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (theme === 'dark' || (!theme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
   </head>
-  <body class="min-h-screen flex flex-col font-display bg-stone-50 text-stone-900">
+  <body class="min-h-screen flex flex-col font-display bg-stone-50 dark:bg-stone-900 text-stone-900 dark:text-stone-100 transition-colors">
     <NavBar />
     <main class="flex-1 container mx-auto p-4">
       <slot />

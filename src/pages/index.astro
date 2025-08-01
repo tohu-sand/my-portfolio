@@ -27,21 +27,21 @@ type InfoEntry = typeof infos[0];
     />
   </div>
 
-  <h2 class="text-2xl font-bold mb-4">About</h2>
-  <p class="text-stone-700 mb-6 ">
+  <h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">About</h2>
+  <p class="text-stone-700 dark:text-stone-300 mb-6 ">
     <strong>豆腐さんど(@tohu_sand)</strong><br />
     趣味でイラスト・漫画を描いています。コミティアにて同人サークル「ロボット技術研究会」を主宰しています。
   </p>
 
-  <h2 class="text-2xl font-bold mt-10 mb-4">Upcoming Info</h2>
+  <h2 class="text-2xl font-bold mt-10 mb-4 text-stone-900 dark:text-stone-100">Upcoming Info</h2>
   <div class="space-y-4">
     {infos.length
       ? infos.map((e: InfoEntry) => <InfoCard entry={e} />)
-      : <p>現在お知らせはありません。</p>}
+      : <p class="text-stone-600 dark:text-stone-400">現在お知らせはありません。</p>}
   </div>
 
-  <h2 class="text-2xl font-bold mt-10 mb-4">Recent Post</h2>
+  <h2 class="text-2xl font-bold mt-10 mb-4 text-stone-900 dark:text-stone-100">Recent Post</h2>
   {latestPost
     ? <PostCard entry={latestPost} />
-    : <p>まだブログ記事がありません。</p>}
+    : <p class="text-stone-600 dark:text-stone-400">まだブログ記事がありません。</p>}
 </BaseLayout>

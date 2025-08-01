@@ -2,13 +2,11 @@
 import { getCollection, getEntryBySlug, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-/* 動的ルート用 */
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
   return posts.map((p: CollectionEntry<"posts">) => ({ params: { slug: p.slug } }));
 }
 
-/* 記事取得 */
 const { slug } = Astro.params;
 const entry = await getEntryBySlug("posts", slug);
 if (!entry) throw new Error("Post not found");
@@ -17,9 +15,9 @@ const { data } = entry;
 const { Content } = await entry.render();
 ---
 <BaseLayout title={data.title}>
-  <article class="prose mx-auto">
+  <article class="prose dark:prose-invert mx-auto">
     <h1>{data.title}</h1>
-    <p class="text-sm text-stone-600">
+    <p class="text-sm text-stone-600 dark:text-stone-400">
       {data.date.toLocaleDateString("ja-JP")}
     </p>
 
@@ -32,6 +30,6 @@ const { Content } = await entry.render();
 
     {data.excerpt && <p class="italic">{data.excerpt}</p>}
 
-    <Content />   <!-- Markdown 本文 -->
+    <Content />
   </article>
 </BaseLayout>

@@ -13,8 +13,8 @@ const { slug, data } = entry;
     <span class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition" />
   </a>
   <figcaption class="mt-2 text-center text-sm leading-tight">
-    <span class="font-medium">{data.title}</span><br />
-    <time datetime={data.date.toISOString()} class="text-xs text-stone-500">
+    <span class="font-medium text-stone-900 dark:text-stone-100">{data.title}</span><br />
+    <time datetime={data.date.toISOString()} class="text-xs text-stone-500 dark:text-stone-400">
       {data.date.toLocaleDateString("ja-JP")}
     </time><br />
   </figcaption>

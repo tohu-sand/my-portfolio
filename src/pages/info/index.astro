@@ -5,7 +5,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const infos = await getCollection("info", ({ data }: any) => true);
 ---
 <BaseLayout title="豆腐さんど: お知らせ一覧">
-  <h2 class="text-2xl font-bold mb-6">Information</h2>
+  <h2 class="text-2xl font-bold mb-6 text-stone-900 dark:text-stone-100">Information</h2>
   <div class="grid md:grid-cols-2 gap-6">
     {infos
       .sort((a: any, b: any) => b.data.date - a.data.date)

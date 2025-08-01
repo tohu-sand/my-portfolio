@@ -18,19 +18,19 @@ const { Content } = await entry.render();
 const { data } = entry;
 ---
 <BaseLayout title={data.title}>
-  <article class="prose mx-auto">
-    <h1 class="text-3xl font-bold mb-4">{data.title}</h1>
+  <article class="prose dark:prose-invert mx-auto">
+    <h1 class="text-3xl font-bold mb-4 text-stone-900 dark:text-stone-100">{data.title}</h1>
     <img
       src={data.image}
       alt={data.title}
       class="w-full rounded-lg mb-6"
     />
     {data.description && (
-    <p class="mb-4 text-stone-700">{data.description}</p>
+    <p class="mb-4 text-stone-700 dark:text-stone-300">{data.description}</p>
     )}
     <Content />
 
-    <p class="mt-8 text-sm text-stone-500">
+    <p class="mt-8 text-sm text-stone-500 dark:text-stone-400">
       公開日:
       <time datetime={data.date.toISOString()}>
         {data.date.toLocaleDateString("ja-JP")}
@@ -39,7 +39,7 @@ const { data } = entry;
         <>
           &nbsp;|&nbsp;タグ:
           {data.tags.map((t: string) => (
-            <span class="inline-block ml-1 px-2 py-0.5 bg-stone-200 rounded">{t}</span>
+            <span class="inline-block ml-1 px-2 py-0.5 bg-stone-200 dark:bg-stone-700 text-stone-800 dark:text-stone-200 rounded">{t}</span>
           ))}
         </>
       )}
