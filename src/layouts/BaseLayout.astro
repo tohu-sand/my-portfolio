@@ -17,6 +17,11 @@ const { title = "Site Title" } = Astro.props;
         document.documentElement.classList.add('dark');
       }
     </script>
+    <style>
+      html {
+        overflow-y: scroll;
+      }
+    </style>
   </head>
   <body class="min-h-screen flex flex-col font-display bg-stone-50 dark:bg-stone-900 text-stone-900 dark:text-stone-100 transition-colors">
     <NavBar />

@@ -23,24 +23,115 @@ const isActive = (href: string) => {
 };
 ---
 <header class="bg-white dark:bg-stone-900 shadow-md border-b border-stone-200 dark:border-stone-700">
-  <div class="container mx-auto flex items-center justify-between p-4">
-    <nav class="space-x-6 hidden md:block">
-      {links.map(({ href, label }) => (
-        <a 
-          href={href} 
-          class={`hover:underline text-stone-900 dark:text-stone-100 transition-colors ${isActive(href) ? 'font-bold' : ''}`}
+  <div class="container mx-auto p-4">
+    <div class="flex items-center justify-between">
+      <a href="/" class="md:hidden">
+        <img 
+          src="/favicon.svg" 
+          alt="豆腐さんど" 
+          class="w-8 h-8"
+        />
+      </a>
+      
+      <nav class="space-x-6 hidden md:flex md:items-center">
+        <img 
+          src="/favicon.svg" 
+          alt="豆腐さんど" 
+          class="w-8 h-8"
+        />
+        {links.map(({ href, label }) => (
+          <a 
+            href={href} 
+            class={`hover:underline text-stone-900 dark:text-stone-100 transition-colors ${isActive(href) ? 'font-bold' : ''}`}
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+      
+      <div class="flex items-center space-x-4">
+        <DarkModeToggle />
+        <div class="hidden md:flex items-center space-x-4">
+          {socials.map(({ href, icon }) => (
+            <a href={href} aria-label="social" target="_blank" rel="noopener" class="text-stone-900 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-400 transition-colors">
+              <Icon name={icon} size="1.5rem" />
+            </a>
+          ))}
+        </div>
+        
+        <button 
+          id="mobile-menu-button"
+          class="md:hidden p-2 text-stone-900 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-400 transition-colors"
+          aria-label="メニューを開く"
         >
-          {label}
-        </a>
-      ))}
-    </nav>
-    <div class="flex items-center space-x-4">
-      <DarkModeToggle />
-      {socials.map(({ href, icon }) => (
-        <a href={href} aria-label="social" target="_blank" rel="noopener" class="text-stone-900 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-400 transition-colors">
-          <Icon name={icon} size="1.5rem" />
-        </a>
-      ))}
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-stone-200 dark:border-stone-700">
+      <nav class="flex flex-col space-y-3 mt-4">
+        {links.map(({ href, label }) => (
+          <a 
+            href={href} 
+            class={`block py-2 px-4 text-stone-900 dark:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded transition-colors ${isActive(href) ? 'font-bold bg-stone-100 dark:bg-stone-800' : ''}`}
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+      
+      <div class="flex items-center space-x-4 mt-6 pt-4 border-t border-stone-200 dark:border-stone-700">
+        {socials.map(({ href, icon }) => (
+          <a href={href} aria-label="social" target="_blank" rel="noopener" class="text-stone-900 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-400 transition-colors">
+            <Icon name={icon} size="1.5rem" />
+          </a>
+        ))}
+      </div>
     </div>
   </div>
 </header>
+
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      
+      if (isHidden) {
+        mobileMenu.classList.remove('hidden');
+        mobileMenuButton.setAttribute('aria-label', 'メニューを閉じる');
+        mobileMenuButton.innerHTML = `
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        `;
+      } else {
+        mobileMenu.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-label', 'メニューを開く');
+        mobileMenuButton.innerHTML = `
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        `;
+      }
+    });
+    
+    const menuLinks = mobileMenu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-label', 'メニューを開く');
+        mobileMenuButton.innerHTML = `
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        `;
+      });
+    });
+  }
+</script>
