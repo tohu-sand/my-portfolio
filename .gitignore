@@ -28,6 +28,3 @@ pnpm-debug.log*
 
 # assets
 /public/assets/
-
-# environment file
-.env

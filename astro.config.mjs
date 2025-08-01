@@ -14,7 +14,6 @@ export default defineConfig({
       },
     }
   )],
-  // Content Collections を有効化
   content: {
     collections: {
       info: {
@@ -23,32 +22,33 @@ export default defineConfig({
           z.object({
             title: z.string(),
             date: z.date(),
-            category: z.string().optional(),   // 例: Event / Press / Publication
-            location: z.string().optional(),   // 会場・出版社など
-            url: z.string().url().optional(),  // 関連リンク
+            category: z.string().optional(),
+            location: z.string().optional(),
+            url: z.string().url().optional(),
             description: z.string().optional(),
           }),
       },
       gallery: {
         type: "content",
-        schema: ({ z }) => z.object({
-          title: z.string(),
-          date: z.date(),
-          tags: z.array(z.string()).optional(),
-          thumbnail: z.string(),
-          description: z.string().optional(),
-        }),
+        schema: ({ z }) => 
+          z.object({
+            title: z.string(),
+            date: z.date(),
+            tags: z.array(z.string()).optional(),
+            thumbnail: z.string(),
+            image: z.string().optional(),
+            description: z.string().optional(),
+          }),
       },
-      /* ▼ 新規: ブログ記事 */
       posts: {
         type: "content",
         schema: ({ z }) =>
           z.object({
             title: z.string(),
             date: z.date(),
-            thumbnail: z.string(),          // /public/assets/〜
             tags: z.array(z.string()).optional(),
-            excerpt: z.string().optional(), // 一覧・OGP 用
+            thumbnail: z.string(),
+            excerpt: z.string().optional(),
           }),
       },
     },

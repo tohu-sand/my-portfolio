@@ -3,22 +3,26 @@ import { getCollection } from "astro:content";
 import InfoCard from "../components/InfoCard.astro";
 import PostCard from "../components/PostCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import type { CollectionEntry } from "astro:content";
 
-/* 過去30日以内／未来分も含む最新情報 */
-const infos = await getCollection("info", ({ data }) =>
+const infos = await getCollection("info", ({ data }: CollectionEntry<"info">) =>
   data.date >= new Date(new Date().setDate(new Date().getDate() - 30))
 );
-/* 最新ブログ記事（1 件） */
+
 const posts = await getCollection("posts", () => true);
-const latestPost = posts.sort((a, b) => b.data.date - a.data.date)[0];
+const latestPost = posts.sort((a: CollectionEntry<"posts">, b: CollectionEntry<"posts">) => 
+  b.data.date.getTime() - a.data.date.getTime()
+)[0];
+
+type InfoEntry = typeof infos[0];
 ---
 
 <BaseLayout title="豆腐さんどのホームページ">
   <div class="flex justify-center mb-8">
     <img
-      src="/assets/illust/2025-02-12.png"
+      src="https://cdn.tohu-sand.com/illust/2025-02-12.png"
       alt="トップ画像"
-      class="w-full max-w-md rounded-lg shadow-lg aspect-[3/4] object-cover"
+      class="w-full max-w-md rounded-lg shadow-lg object-cover"
       loading="eager"
     />
   </div>
@@ -32,7 +36,7 @@ const latestPost = posts.sort((a, b) => b.data.date - a.data.date)[0];
   <h2 class="text-2xl font-bold mt-10 mb-4">Upcoming Info</h2>
   <div class="space-y-4">
     {infos.length
-      ? infos.map((e) => <InfoCard entry={e} />)
+      ? infos.map((e: InfoEntry) => <InfoCard entry={e} />)
       : <p>現在お知らせはありません。</p>}
   </div>
 

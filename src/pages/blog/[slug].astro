@@ -1,11 +1,11 @@
 ---
-import { getCollection, getEntryBySlug } from "astro:content";
+import { getCollection, getEntryBySlug, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 /* 動的ルート用 */
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
-  return posts.map((p) => ({ params: { slug: p.slug } }));
+  return posts.map((p: CollectionEntry<"posts">) => ({ params: { slug: p.slug } }));
 }
 
 /* 記事取得 */
@@ -14,7 +14,7 @@ const entry = await getEntryBySlug("posts", slug);
 if (!entry) throw new Error("Post not found");
 
 const { data } = entry;
-const { Content } = await entry.render();   /* ★ ここがポイント */
+const { Content } = await entry.render();
 ---
 <BaseLayout title={data.title}>
   <article class="prose mx-auto">

@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostCard from "../../components/PostCard.astro";
 
@@ -9,7 +9,7 @@ const posts = await getCollection("posts", () => true);
   <h2 class="text-2xl font-bold mb-6">Blog</h2>
   <div class="grid md:grid-cols-2 gap-6">
     {posts
-      .sort((a, b) => b.data.date - a.data.date)
-      .map((p) => <PostCard entry={p} />)}
+      .sort((a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.date - a.data.date)
+      .map((p: CollectionEntry<'posts'>) => <PostCard entry={p} />)}
   </div>
 </BaseLayout>

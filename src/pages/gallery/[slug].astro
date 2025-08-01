@@ -1,17 +1,19 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+type ArtworkEntry = CollectionEntry<"gallery">;
 
 export async function getStaticPaths() {
   const artworks = await getCollection("gallery");
-  return artworks.map((art) => ({
+  return artworks.map((art: ArtworkEntry) => ({
     params: { slug: art.slug },
     props:  { entry: art },
   }));
 }
 export const prerender = true;
 
-const { entry } = Astro.props;
+const { entry } = Astro.props as { entry: ArtworkEntry };
 const { Content } = await entry.render();
 const { data } = entry;
 ---
@@ -36,7 +38,7 @@ const { data } = entry;
       {data.tags && (
         <>
           &nbsp;|&nbsp;タグ:
-          {data.tags.map((t) => (
+          {data.tags.map((t: string) => (
             <span class="inline-block ml-1 px-2 py-0.5 bg-stone-200 rounded">{t}</span>
           ))}
         </>
