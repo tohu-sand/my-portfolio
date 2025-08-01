@@ -1,18 +1,21 @@
 ---
-import { getCollection, getEntryBySlug, type CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+type PostEntry = CollectionEntry<"posts">;
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
-  return posts.map((p: CollectionEntry<"posts">) => ({ params: { slug: p.slug } }));
+  return posts.map((post: PostEntry) => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { entry: post },
+  }));
 }
+export const prerender = true;
 
-const { slug } = Astro.params;
-const entry = await getEntryBySlug("posts", slug);
-if (!entry) throw new Error("Post not found");
-
+const { entry } = Astro.props as { entry: PostEntry };
+const { Content } = await render(entry);
 const { data } = entry;
-const { Content } = await entry.render();
 ---
 <BaseLayout title={data.title}>
   <article class="prose dark:prose-invert mx-auto">
