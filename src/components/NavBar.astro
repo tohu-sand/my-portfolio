@@ -13,12 +13,25 @@ const socials = [
   { href: "https://bsky.app/profile/tohu-sand.bsky.social", icon: "simple-icons:bluesky" },
   { href: "https://twitter.com/tohu_sand", icon: "simple-icons:twitter" },
 ];
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => {
+  if (href === "/") {
+    return currentPath === "/";
+  }
+  return currentPath.startsWith(href);
+};
 ---
 <header class="bg-white dark:bg-stone-900 shadow-md border-b border-stone-200 dark:border-stone-700">
   <div class="container mx-auto flex items-center justify-between p-4">
     <nav class="space-x-6 hidden md:block">
       {links.map(({ href, label }) => (
-        <a href={href} class="hover:underline text-stone-900 dark:text-stone-100 transition-colors">{label}</a>
+        <a 
+          href={href} 
+          class={`hover:underline text-stone-900 dark:text-stone-100 transition-colors ${isActive(href) ? 'font-bold' : ''}`}
+        >
+          {label}
+        </a>
       ))}
     </nav>
     <div class="flex items-center space-x-4">
