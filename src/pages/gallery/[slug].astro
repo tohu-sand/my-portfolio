@@ -20,11 +20,15 @@ const { data } = entry;
 <BaseLayout title={data.title}>
   <article class="prose dark:prose-invert mx-auto">
     <h1 class="text-3xl font-bold mb-4 text-stone-900 dark:text-stone-100">{data.title}</h1>
-    <img
-      src={data.image}
-      alt={data.title}
-      class="w-full rounded-lg mb-6"
-    />
+    <div class="mb-6">
+      <a href={data.image} target="_blank" rel="noopener noreferrer" class="block cursor-zoom-in">
+        <img
+          src={data.mediumImage || data.image}
+          alt={data.title}
+          class="w-full rounded-lg hover:opacity-90 transition-opacity duration-200"
+        />
+      </a>
+    </div>
     {data.description && (
     <p class="mb-4 text-stone-700 dark:text-stone-300">{data.description}</p>
     )}
