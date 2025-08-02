@@ -88,4 +88,4 @@ This site is automatically deployed to Cloudflare Pages. Any commits to the main
 ##  License & Copyright
 
 - Favicon icons located in `public/` directory are © tohu_sand. All rights reserved.
-- All other content and code are subject to the project's license terms.
+- All other content and code are subject to the project's [LICENSE](LICENSE) terms.
