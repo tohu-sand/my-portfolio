@@ -2,15 +2,18 @@
 
 A personal portfolio website built with Astro, featuring a gallery, blog, and information pages. The site is deployed on Cloudflare Pages.
 
-## 🌟 Features
+## Features
 
-- **Gallery**: Showcase of artwork and illustrations
-- **Blog**: Personal blog posts and articles
+- **Gallery**: Showcase of artwork and illustrations with image optimization
+- **Blog**: Personal blog posts and articles with content collections
 - **Info**: Event information and announcements
+- **Links Page**: Social media and external links
+- **Dark Mode Toggle**: Automatic and manual theme switching
 - **Responsive Design**: Built with Tailwind CSS for mobile-first design
 - **Static Site Generation**: Fast loading times with Astro's SSG approach
+- **SEO Optimized**: Automatic sitemap generation
 
-## 🚀 Project Structure
+## Project Structure
 
 ```text
 /
@@ -21,11 +24,16 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 │       └── illust/
 ├── src/
 │   ├── components/
+│   │   ├── DarkModeToggle.astro
 │   │   ├── Footer.astro
 │   │   ├── GalleryGrid.astro
+│   │   ├── GalleryItem.astro
+│   │   ├── InfoCard.astro
 │   │   ├── NavBar.astro
+│   │   ├── PostCard.astro
 │   │   └── ...
 │   ├── content/
+│   │   ├── config.ts
 │   │   ├── gallery/
 │   │   ├── info/
 │   │   └── posts/
@@ -33,32 +41,47 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 │   │   └── BaseLayout.astro
 │   └── pages/
 │       ├── index.astro
+│       ├── link.astro
 │       ├── gallery/
 │       ├── blog/
 │       └── info/
 └── package.json
 ```
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-- **Framework**: [Astro](https://astro.build/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Icons**: [Astro Icon](https://github.com/natemoo-re/astro-icon)
+- **Framework**: [Astro](https://astro.build/) v5.x with Static Site Generation
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with Typography plugin
+- **Icons**: [Astro Icon](https://github.com/natemoo-re/astro-icon) with Lucide and Simple Icons
+- **Content Management**: Astro Content Collections with TypeScript validation
+- **SEO**: Automatic sitemap generation with @astrojs/sitemap
 - **Package Manager**: pnpm
 - **Deployment**: Cloudflare Pages
 
-## 🧞 Commands
+## Development
 
-All commands are run from the root of the project, from a terminal:
+### Prerequisites
+- Node.js (recommended: latest LTS version)
+- pnpm (package manager)
 
-| Command        | Action                                      |
-| :------------- | :------------------------------------------ |
-| `pnpm install` | Installs dependencies                       |
-| `pnpm dev`     | Starts local dev server at `localhost:4321` |
-| `pnpm build`   | Build your production site to `./dist/`    |
-| `pnpm preview` | Preview your build locally, before deploying |
+### Local Development
+```bash
+# Install dependencies
+pnpm install
 
-## 🚀 Deployment
+# Start development server
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Preview production build
+pnpm preview
+```
+
+The development server will be available at `http://localhost:4321`.
+
+## Deployment
 
 This site is automatically deployed to Cloudflare Pages. Any commits to the main branch will trigger a new deployment.
 
