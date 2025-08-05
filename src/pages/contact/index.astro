@@ -5,9 +5,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 <BaseLayout title="Contact - 豆腐さんど">
   <div class="max-w-2xl mx-auto">
     <h1 class="text-3xl font-bold text-center mb-8">Contact</h1>
-    <p class="text-center text-stone-600 dark:text-stone-400 mb-8">
-      お仕事のご依頼やお問い合わせは下記フォームよりお気軽にご連絡ください。
-    </p>
 
     <div class="bg-white dark:bg-stone-800 rounded-lg shadow-md p-6 border border-stone-200 dark:border-stone-700">
       <form action="https://ssgform.com/s/EUaMBbxRYZGb" method="post" class="space-y-6">
@@ -21,7 +18,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             name="お名前" 
             required 
             class="w-full px-3 py-2 border border-stone-300 dark:border-stone-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-stone-700 dark:text-stone-100 transition-colors"
-            placeholder="山田 太郎"
           />
         </div>
 
@@ -35,7 +31,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             name="メールアドレス" 
             required 
             class="w-full px-3 py-2 border border-stone-300 dark:border-stone-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-stone-700 dark:text-stone-100 transition-colors"
-            placeholder="example@email.com"
           />
         </div>
 
@@ -48,7 +43,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             id="subject"
             name="件名" 
             class="w-full px-3 py-2 border border-stone-300 dark:border-stone-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-stone-700 dark:text-stone-100 transition-colors"
-            placeholder="お仕事のご依頼について"
           />
         </div>
 
@@ -62,14 +56,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             required 
             rows="6"
             class="w-full px-3 py-2 border border-stone-300 dark:border-stone-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-stone-700 dark:text-stone-100 transition-colors resize-vertical"
-            placeholder="お問い合わせ内容をご記入ください。"
           ></textarea>
         </div>
 
         <div class="text-center">
           <button 
             type="submit"
-            class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-stone-800"
+            class="bg-gray-600 hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600 text-white font-medium py-3 px-8 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-stone-800"
           >
             送信する
           </button>
@@ -77,8 +70,5 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       </form>
     </div>
 
-    <div class="mt-8 text-sm text-stone-600 dark:text-stone-400 text-center">
-      <p>※ お返事まで数日いただく場合がございます。お急ぎの場合は SNS でのご連絡もお待ちしております。</p>
-    </div>
   </div>
 </BaseLayout>
