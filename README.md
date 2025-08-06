@@ -7,11 +7,12 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 - **Gallery**: Showcase of artwork and illustrations with image optimization
 - **Blog**: Personal blog posts and articles with content collections
 - **Info**: Event information and announcements
+- **Contact**: Contact form with thank-you page
 - **Links Page**: Social media and external links
 - **Dark Mode Toggle**: Automatic and manual theme switching
 - **Responsive Design**: Built with Tailwind CSS for mobile-first design
 - **Static Site Generation**: Fast loading times with Astro's SSG approach
-- **SEO Optimized**: Automatic sitemap generation
+- **SEO Optimized**: Automatic sitemap generation and meta tags
 
 ## Project Structure
 
@@ -19,9 +20,10 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 /
 ├── public/
 │   ├── favicon.ico
-│   └── assets/
-│       ├── blog/
-│       └── illust/
+│   ├── favicon.svg
+│   ├── favicon-192.png
+│   ├── favicon-512.png
+│   └── apple-touch-icon.png
 ├── src/
 │   ├── components/
 │   │   ├── DarkModeToggle.astro
@@ -30,8 +32,7 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 │   │   ├── GalleryItem.astro
 │   │   ├── InfoCard.astro
 │   │   ├── NavBar.astro
-│   │   ├── PostCard.astro
-│   │   └── ...
+│   │   └── PostCard.astro
 │   ├── content/
 │   │   ├── config.ts
 │   │   ├── gallery/
@@ -42,9 +43,20 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 │   └── pages/
 │       ├── index.astro
 │       ├── link.astro
-│       ├── gallery/
 │       ├── blog/
+│       │   ├── index.astro
+│       │   └── [slug].astro
+│       ├── contact/
+│       │   ├── index.astro
+│       │   └── thank-you.astro
+│       ├── gallery/
+│       │   ├── index.astro
+│       │   └── [slug].astro
 │       └── info/
+│           └── index.astro
+├── astro.config.mjs
+├── tailwind.config.mjs
+├── tsconfig.json
 └── package.json
 ```
 
