@@ -1,9 +1,13 @@
 ---
+import { idToSlug } from "../utils/slug";
+import { formatDateJP } from "../utils/date";
 const { entry } = Astro.props;
 const { data, slug } = entry;
+const resolvedSlug = slug || idToSlug(entry.id);
+const dateStr = formatDateJP(data.date);
 ---
 <article class="border border-stone-200 dark:border-stone-700 rounded-xl overflow-hidden shadow hover:shadow-lg dark:shadow-stone-900/50 dark:hover:shadow-stone-900/70 transition bg-white dark:bg-stone-800">
-  <a href={`/blog/${slug}/`}>
+  <a href={`/blog/${resolvedSlug}/`}>
     <img
       src={data.thumbnail}
       alt={data.title}
@@ -12,9 +16,7 @@ const { data, slug } = entry;
     />
     <div class="p-4">
       <h3 class="text-lg font-semibold line-clamp-2 text-stone-900 dark:text-stone-100">{data.title}</h3>
-      <p class="mt-1 text-sm text-stone-600 dark:text-stone-400">
-        {data.date.toLocaleDateString("ja-JP")}
-      </p>
+  <p class="mt-1 text-sm text-stone-600 dark:text-stone-400">{dateStr}</p>
       {data.excerpt && <p class="mt-2 text-sm line-clamp-2 text-stone-700 dark:text-stone-300">{data.excerpt}</p>}
     </div>
   </a>

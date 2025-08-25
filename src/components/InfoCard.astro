@@ -1,13 +1,9 @@
 ---
+import { formatDateJP } from "../utils/date";
 const { entry } = Astro.props;
 const { data } = entry;
-
 const categoryLabel = data.category ? `#${data.category}` : "#Info";
-const dateStr = data.date.toLocaleDateString("ja-JP", {
-  year: "numeric",
-  month: "numeric",
-  day: "numeric",
-});
+const dateStr = formatDateJP(data.date);
 ---
 <article class="border border-stone-200 dark:border-stone-700 rounded-xl p-4 shadow hover:shadow-lg dark:shadow-stone-900/50 dark:hover:shadow-stone-900/70 transition bg-white dark:bg-stone-800">
   <h3 class="text-lg font-semibold text-stone-900 dark:text-stone-100">{data.title}</h3>

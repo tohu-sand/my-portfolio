@@ -2,13 +2,15 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import InfoCard from "../../components/InfoCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { compareByDateDesc } from "../../utils/date";
 const infos = await getCollection("info", () => true);
 ---
 <BaseLayout title="豆腐さんど: お知らせ一覧">
   <h2 class="text-2xl font-bold mb-6 text-stone-900 dark:text-stone-100">Information</h2>
   <div class="grid md:grid-cols-2 gap-6">
     {infos
-      .sort((a: CollectionEntry<'info'>, b: CollectionEntry<'info'>) => b.data.date.getTime() - a.data.date.getTime())
+  .slice()
+  .sort(compareByDateDesc)
       .map((e: CollectionEntry<'info'>) => <InfoCard entry={e} />)}
   </div>
 </BaseLayout>

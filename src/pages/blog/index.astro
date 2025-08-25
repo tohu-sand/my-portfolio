@@ -2,6 +2,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostCard from "../../components/PostCard.astro";
+import { compareByDateDesc } from "../../utils/date";
 
 const posts = await getCollection("posts", () => true);
 ---
@@ -9,7 +10,8 @@ const posts = await getCollection("posts", () => true);
   <h2 class="text-2xl font-bold mb-6 text-stone-900 dark:text-stone-100">Blog</h2>
   <div class="grid md:grid-cols-2 gap-6">
     {posts
-      .sort((a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.date.getTime() - a.data.date.getTime())
+      .slice()
+      .sort(compareByDateDesc)
       .map((p: CollectionEntry<'posts'>) => <PostCard entry={p} />)}
   </div>
 </BaseLayout>

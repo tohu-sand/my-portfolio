@@ -1,11 +1,11 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import GalleryItem from "./GalleryItem.astro";
+import { compareByDateDesc } from "../utils/date";
 
-const artworks = await getCollection("gallery", () => true);
-artworks.sort((a: CollectionEntry<"gallery">, b: CollectionEntry<"gallery">) => 
-  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-);
+const artworks = (await getCollection("gallery", () => true))
+  .slice()
+  .sort(compareByDateDesc);
 ---
 <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
   {artworks.map((art: CollectionEntry<"gallery">) => (

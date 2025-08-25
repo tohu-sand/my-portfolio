@@ -1,9 +1,13 @@
 ---
+import { idToSlug } from "../utils/slug";
+import { formatDateJP } from "../utils/date";
 const { entry } = Astro.props;
 const { slug, data } = entry;
+const resolvedSlug = slug || idToSlug(entry.id);
+const dateStr = formatDateJP(data.date);
 ---
 <figure class="group">
-  <a href={`/gallery/${slug}/`} class="block">
+  <a href={`/gallery/${resolvedSlug}/`} class="block">
     <div class="rounded-lg overflow-hidden shadow relative">
       <img
         src={data.thumbnail}
@@ -14,10 +18,8 @@ const { slug, data } = entry;
       <span class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition" />
     </div>
     <figcaption class="mt-2 text-center text-sm leading-tight">
-      <span class="font-medium text-stone-900 dark:text-stone-100">{data.title}</span><br />
-      <time datetime={data.date.toISOString()} class="text-xs text-stone-500 dark:text-stone-400">
-        {data.date.toLocaleDateString("ja-JP")}
-      </time><br />
+  <span class="font-medium text-stone-900 dark:text-stone-100">{data.title}</span><br />
+  <time datetime={data.date.toISOString()} class="text-xs text-stone-500 dark:text-stone-400">{dateStr}</time><br />
     </figcaption>
   </a>
 </figure>

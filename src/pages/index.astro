@@ -4,15 +4,14 @@ import InfoCard from "../components/InfoCard.astro";
 import PostCard from "../components/PostCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import type { CollectionEntry } from "astro:content";
+import { compareByDateDesc } from "../utils/date";
 
 const infos = await getCollection("info", ({ data }: CollectionEntry<"info">) =>
   data.date >= new Date(new Date().setDate(new Date().getDate() - 30))
 );
 
 const posts = await getCollection("posts", () => true);
-const latestPost = posts.sort((a: CollectionEntry<"posts">, b: CollectionEntry<"posts">) => 
-  b.data.date.getTime() - a.data.date.getTime()
-)[0];
+const latestPost = posts.slice().sort(compareByDateDesc)[0];
 
 type InfoEntry = typeof infos[0];
 ---

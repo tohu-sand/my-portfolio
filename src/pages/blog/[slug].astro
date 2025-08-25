@@ -1,13 +1,15 @@
 ---
 import { getCollection, type CollectionEntry, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { idToSlug } from "../../utils/slug";
+import { formatDateJP } from "../../utils/date";
 
 type PostEntry = CollectionEntry<"posts">;
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
   return posts.map((post: PostEntry) => ({
-    params: { slug: post.id.replace(/\.md$/, '') },
+  params: { slug: idToSlug(post.id) },
     props: { entry: post },
   }));
 }
@@ -16,13 +18,12 @@ export const prerender = true;
 const { entry } = Astro.props as { entry: PostEntry };
 const { Content } = await render(entry);
 const { data } = entry;
+const dateStr = formatDateJP(data.date);
 ---
 <BaseLayout title={data.title}>
   <article class="prose dark:prose-invert mx-auto">
     <h1>{data.title}</h1>
-    <p class="text-sm text-stone-600 dark:text-stone-400">
-      {data.date.toLocaleDateString("ja-JP")}
-    </p>
+  <p class="text-sm text-stone-600 dark:text-stone-400">{dateStr}</p>
 
     <img
       src={data.thumbnail}
