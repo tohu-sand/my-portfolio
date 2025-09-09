@@ -53,6 +53,7 @@ const structuredData = {
   ogUrl={postUrl}
   ogImage={data.thumbnail}
   twitterCard="summary_large_image"
+  twitterTitle={`豆腐さんどのホームページ: ${data.title}`}
   twitterImageAlt={`${data.title} - 豆腐さんどのブログ記事のサムネイル画像`}
 >
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>

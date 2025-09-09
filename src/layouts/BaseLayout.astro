@@ -9,12 +9,14 @@ const {
   ogImage = "https://cdn.tohu-sand.com/illust/card.png",
   ogUrl = "https://tohu-sand.com/",
   twitterCard = "summary",
+  twitterTitle,
   twitterImageAlt = "豆腐さんど (@tohu_sand) - ホームページ画像"
 } = Astro.props;
 
-// デフォルトのOGタイトルとディスクリプションを設定
+// デフォルトのOGタイトルとディスクリプション、Twitterタイトルを設定
 const finalOgTitle = ogTitle || title;
 const finalOgDescription = ogDescription || description;
+const finalTwitterTitle = twitterTitle || finalOgTitle;
 ---
 <!DOCTYPE html>
 <html lang="ja" class="scroll-smooth">
@@ -38,7 +40,7 @@ const finalOgDescription = ogDescription || description;
     <meta name="twitter:card" content={twitterCard}>
     <meta name="twitter:site" content="@tohu_sand">
     <meta name="twitter:creator" content="@tohu_sand">
-    <meta name="twitter:title" content={finalOgTitle}>
+    <meta name="twitter:title" content={finalTwitterTitle}>
     <meta name="twitter:description" content={finalOgDescription}>
     <meta name="twitter:image" content={ogImage}>
     <meta name="twitter:image:alt" content={twitterImageAlt}>
