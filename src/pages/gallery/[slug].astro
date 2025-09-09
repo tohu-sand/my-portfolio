@@ -28,8 +28,42 @@ const sortedArtworks = allArtworks.sort((a, b) =>
 const currentIndex = sortedArtworks.findIndex(art => art.id === entry.id);
 const prevArtwork = currentIndex > 0 ? sortedArtworks[currentIndex - 1] : null;
 const nextArtwork = currentIndex < sortedArtworks.length - 1 ? sortedArtworks[currentIndex + 1] : null;
+
+const description = data.description || `豆腐さんどのイラスト作品「${data.title}」`;
+const artworkUrl = `https://tohu-sand.com/gallery/${idToSlug(entry.id)}/`;
+
+// 構造化データの準備
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "name": data.title,
+  "description": description,
+  "url": data.image,
+  "thumbnailUrl": data.thumbnail,
+  "contentUrl": artworkUrl,
+  "dateCreated": data.date.toISOString().split('T')[0],
+  "creator": {
+    "@type": "Person",
+    "name": "豆腐さんど",
+    "url": "https://tohu-sand.com/"
+  },
+  "license": "https://tohu-sand.com/",
+  "acquireLicensePage": "https://tohu-sand.com/contact/",
+  "keywords": data.tags?.join(", ") || ""
+};
 ---
-<BaseLayout title={data.title}>
+<BaseLayout 
+  title={data.title}
+  description={description}
+  ogTitle={data.title}
+  ogDescription={description}
+  ogUrl={artworkUrl}
+  ogImage={data.mediumImage || data.image}
+  twitterCard="summary_large_image"
+  twitterImageAlt={`${data.title} - 豆腐さんどのイラスト作品`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+  
   <article class="prose dark:prose-invert mx-auto">
     <h1 class="text-3xl font-bold mb-4 text-stone-900 dark:text-stone-100">{data.title}</h1>
     <div class="mb-6">

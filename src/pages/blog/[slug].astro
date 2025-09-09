@@ -19,8 +19,44 @@ const { entry } = Astro.props as { entry: PostEntry };
 const { Content } = await render(entry);
 const { data } = entry;
 const dateStr = formatDateJP(data.date);
+const description = data.excerpt || `豆腐さんどのブログ「${data.title}」`;
+const postUrl = `https://tohu-sand.com/blog/${idToSlug(entry.id)}/`;
+
+// 構造化データの準備
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": data.title,
+  "description": description,
+  "image": data.thumbnail,
+  "datePublished": data.date.toISOString().split('T')[0],
+  "dateModified": data.date.toISOString().split('T')[0],
+  "author": {
+    "@type": "Person",
+    "name": "豆腐さんど",
+    "url": "https://tohu-sand.com/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "豆腐さんど",
+    "url": "https://tohu-sand.com/"
+  },
+  "url": postUrl,
+  "mainEntityOfPage": postUrl
+};
 ---
-<BaseLayout title={data.title}>
+<BaseLayout 
+  title={data.title}
+  description={description}
+  ogTitle={data.title}
+  ogDescription={description}
+  ogUrl={postUrl}
+  ogImage={data.thumbnail}
+  twitterCard="summary_large_image"
+  twitterImageAlt={`${data.title} - 豆腐さんどのブログ記事のサムネイル画像`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+  
   <article class="prose dark:prose-invert mx-auto">
     <h1>{data.title}</h1>
   <p class="text-sm text-stone-600 dark:text-stone-400">{dateStr}</p>

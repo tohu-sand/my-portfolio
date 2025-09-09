@@ -1,9 +1,43 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import GalleryGrid from "../../components/GalleryGrid.astro";
+import { getCollection } from "astro:content";
+
+const artworks = await getCollection("gallery");
+
+// 構造化データの準備
+const galleryStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  "name": "豆腐さんど: ギャラリー",
+  "description": "豆腐さんどのイラストギャラリー。",
+  "url": "https://tohu-sand.com/gallery/",
+  "author": {
+    "@type": "Person",
+    "name": "豆腐さんど",
+    "url": "https://tohu-sand.com/"
+  },
+  "image": artworks.map((artwork) => ({
+    "@type": "ImageObject",
+    "name": artwork.data.title,
+    "url": artwork.data.image,
+    "thumbnailUrl": artwork.data.thumbnail,
+    "dateCreated": artwork.data.date.toISOString().split('T')[0],
+    "description": artwork.data.description || artwork.data.title,
+    "contentUrl": `https://tohu-sand.com/gallery/${artwork.slug}/`
+  }))
+};
 ---
 
-<BaseLayout title="豆腐さんど: ギャラリー">
+<BaseLayout 
+  title="豆腐さんど: ギャラリー"
+  description="豆腐さんどのイラストギャラリー。"
+  ogTitle="豆腐さんど: ギャラリー"
+  ogDescription="豆腐さんどのイラストギャラリー。"
+  ogUrl="https://tohu-sand.com/gallery/"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(galleryStructuredData)}></script>
+  
   <h2 class="text-2xl font-bold mb-6 text-stone-900 dark:text-stone-100">Gallery</h2>
   <GalleryGrid />
 </BaseLayout>

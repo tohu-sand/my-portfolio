@@ -5,8 +5,40 @@ import PostCard from "../../components/PostCard.astro";
 import { compareByDateDesc } from "../../utils/date";
 
 const posts = await getCollection("posts", () => true);
+
+// 構造化データの準備
+const blogPostsStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "豆腐さんど: ブログ",
+  "description": "豆腐さんどのブログページ。イラストや創作に関する記事、日常の出来事などを投稿しています。",
+  "url": "https://tohu-sand.com/blog/",
+  "author": {
+    "@type": "Person",
+    "name": "豆腐さんど",
+    "url": "https://tohu-sand.com/"
+  },
+  "blogPost": posts.slice().sort(compareByDateDesc).map((post: CollectionEntry<'posts'>) => ({
+    "@type": "BlogPosting",
+    "headline": post.data.title,
+    "datePublished": post.data.date.toISOString().split('T')[0],
+    "author": {
+      "@type": "Person",
+      "name": "豆腐さんど"
+    },
+    "url": `https://tohu-sand.com/blog/${post.slug}/`
+  }))
+};
 ---
-<BaseLayout title="豆腐さんど: ブログ">
+<BaseLayout 
+  title="豆腐さんど: ブログ"
+  description="豆腐さんどのブログです。"
+  ogTitle="豆腐さんど: ブログ"
+  ogDescription="豆腐さんどのブログです。"
+  ogUrl="https://tohu-sand.com/blog/"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(blogPostsStructuredData)}></script>
+  
   <h2 class="text-2xl font-bold mb-6 text-stone-900 dark:text-stone-100">Blog</h2>
   <div class="grid md:grid-cols-2 gap-6">
     {posts

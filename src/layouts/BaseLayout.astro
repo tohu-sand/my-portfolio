@@ -1,7 +1,20 @@
 ---
 import NavBar from "../components/NavBar.astro";
 import Footer from "../components/Footer.astro";
-const { title = "Site Title" } = Astro.props;
+const { 
+  title = "Site Title", 
+  description = "豆腐さんどのホームページ",
+  ogTitle,
+  ogDescription,
+  ogImage = "https://cdn.tohu-sand.com/illust/card.png",
+  ogUrl = "https://tohu-sand.com/",
+  twitterCard = "summary",
+  twitterImageAlt = "豆腐さんど (@tohu_sand) - ホームページ画像"
+} = Astro.props;
+
+// デフォルトのOGタイトルとディスクリプションを設定
+const finalOgTitle = ogTitle || title;
+const finalOgDescription = ogDescription || description;
 ---
 <!DOCTYPE html>
 <html lang="ja" class="scroll-smooth">
@@ -9,25 +22,26 @@ const { title = "Site Title" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <meta name="description" content="豆腐さんどのホームページ" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={ogUrl} />
     
     <!-- Begin Social Card Metadata -->
     <!-- Open Graph (used by Bluesky, Facebook, LINE etc.) -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tohu-sand.com/">
-    <meta property="og:title" content="豆腐さんど (@tohu_sand) - ホームページ">
-    <meta property="og:description" content="豆腐さんどのホームページです。イラストや最新情報を掲載しています。">
-    <meta property="og:image" content="https://cdn.tohu-sand.com/illust/card.png">
+    <meta property="og:url" content={ogUrl}>
+    <meta property="og:title" content={finalOgTitle}>
+    <meta property="og:description" content={finalOgDescription}>
+    <meta property="og:image" content={ogImage}>
     <meta property="og:locale" content="ja_JP">
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content={twitterCard}>
     <meta name="twitter:site" content="@tohu_sand">
     <meta name="twitter:creator" content="@tohu_sand">
-    <meta name="twitter:title" content="豆腐さんど (@tohu_sand) - ホームページ">
-    <meta name="twitter:description" content="豆腐さんどのホームページです。イラストや最新情報を掲載しています。">
-    <meta name="twitter:image" content="https://cdn.tohu-sand.com/illust/card.png">
-    <meta name="twitter:image:alt" content="豆腐さんど (@tohu_sand) - ホームページ画像">
+    <meta name="twitter:title" content={finalOgTitle}>
+    <meta name="twitter:description" content={finalOgDescription}>
+    <meta name="twitter:image" content={ogImage}>
+    <meta name="twitter:image:alt" content={twitterImageAlt}>
     <!-- End Social Card Metadata -->
 
     <script is:inline>
