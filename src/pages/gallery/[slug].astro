@@ -26,8 +26,8 @@ const sortedArtworks = allArtworks.sort((a, b) =>
 );
 
 const currentIndex = sortedArtworks.findIndex(art => art.id === entry.id);
-const prevArtwork = currentIndex > 0 ? sortedArtworks[currentIndex - 1] : null;
-const nextArtwork = currentIndex < sortedArtworks.length - 1 ? sortedArtworks[currentIndex + 1] : null;
+const prevArtwork = currentIndex < sortedArtworks.length - 1 ? sortedArtworks[currentIndex + 1] : null;
+const nextArtwork = currentIndex > 0 ? sortedArtworks[currentIndex - 1] : null;
 
 const description = data.description || `豆腐さんどのイラスト作品「${data.title}」`;
 const artworkUrl = `https://tohu-sand.com/gallery/${idToSlug(entry.id)}/`;
@@ -95,26 +95,26 @@ const structuredData = {
 
         <nav class="mt-12 pt-8 mb-5 border-t border-stone-200 dark:border-stone-700">
       <div class="flex justify-between items-center">
-    {nextArtwork ? (
-          <a 
-      href={`/gallery/${idToSlug(nextArtwork.id)}`}
-            class="group flex items-center space-x-3 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-          >
-            <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-            </svg>
-            <span class="text-sm">次の作品</span>
-          </a>
-        ) : (
-          <div></div>
-        )}
-
     {prevArtwork ? (
           <a 
       href={`/gallery/${idToSlug(prevArtwork.id)}`}
             class="group flex items-center space-x-3 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
           >
+            <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
             <span class="text-sm">前の作品</span>
+          </a>
+        ) : (
+          <div></div>
+        )}
+
+    {nextArtwork ? (
+          <a 
+      href={`/gallery/${idToSlug(nextArtwork.id)}`}
+            class="group flex items-center space-x-3 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+          >
+            <span class="text-sm">次の作品</span>
             <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
