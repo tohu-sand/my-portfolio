@@ -46,6 +46,11 @@ const finalTwitterTitle = twitterTitle || finalOgTitle;
     <meta name="twitter:image:alt" content={twitterImageAlt}>
     <!-- End Social Card Metadata -->
 
+    <!-- RSS Feeds -->
+    <link rel="alternate" type="application/rss+xml" title="豆腐さんど: ブログ" href={`${Astro.site}rss.xml`} />
+    <link rel="alternate" type="application/rss+xml" title="豆腐さんど: お知らせ" href={`${Astro.site}info/rss.xml`} />
+    <link rel="alternate" type="application/rss+xml" title="豆腐さんど: ギャラリー" href={`${Astro.site}gallery/rss.xml`} />
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4367665159115458"
       crossorigin="anonymous"></script>
     <script is:inline>
