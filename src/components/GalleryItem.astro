@@ -1,6 +1,12 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import { idToSlug } from "../utils/slug";
 import { formatDateJP } from "../utils/date";
+
+interface Props {
+  entry: CollectionEntry<"gallery">;
+}
+
 const { entry } = Astro.props;
 const { slug, data } = entry;
 const resolvedSlug = slug || idToSlug(entry.id);

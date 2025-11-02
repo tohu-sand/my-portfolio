@@ -1,5 +1,11 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import { formatDateJP } from "../utils/date";
+
+interface Props {
+  entry: CollectionEntry<"info">;
+}
+
 const { entry } = Astro.props;
 const { data } = entry;
 const categoryLabel = data.category ? `#${data.category}` : "#Info";
