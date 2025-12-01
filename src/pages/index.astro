@@ -35,7 +35,7 @@ type InfoEntry = typeof infos[0];
   <h2 class="text-2xl font-bold mt-10 mb-4 text-stone-900 dark:text-stone-100">Upcoming Info</h2>
   <div class="space-y-4">
     {infos.length
-      ? infos.map((e: InfoEntry) => <InfoCard entry={e} />)
+      ? infos.slice().sort(compareByDateDesc).map((e: InfoEntry) => <InfoCard entry={e} />)
       : <p class="text-stone-600 dark:text-stone-400">現在お知らせはありません。</p>}
   </div>
 

@@ -5,12 +5,15 @@ import { getCollection } from "astro:content";
 
 const artworks = await getCollection("gallery");
 
+// ページ説明文
+const pageDescription = "豆腐さんどのイラストギャラリーページです。オリジナルイラストや創作キャラクターの作品を公開しています。";
+
 // 構造化データの準備
 const galleryStructuredData = {
   "@context": "https://schema.org",
   "@type": "ImageGallery",
-  "name": "豆腐さんど: ギャラリー",
-  "description": "豆腐さんどのイラストギャラリー。",
+  "name": "ギャラリー - 豆腐さんど",
+  "description": pageDescription,
   "url": "https://tohu-sand.com/gallery/",
   "author": {
     "@type": "Person",
@@ -30,10 +33,10 @@ const galleryStructuredData = {
 ---
 
 <BaseLayout 
-  title="豆腐さんど: ギャラリー"
-  description="豆腐さんどのイラストギャラリー。"
-  ogTitle="豆腐さんど: ギャラリー"
-  ogDescription="豆腐さんどのイラストギャラリー。"
+  title="ギャラリー - 豆腐さんど"
+  description={pageDescription}
+  ogTitle="ギャラリー - 豆腐さんど"
+  ogDescription={pageDescription}
   ogUrl="https://tohu-sand.com/gallery/"
 >
   <script type="application/ld+json" set:html={JSON.stringify(galleryStructuredData)}></script>
