@@ -14,12 +14,30 @@ const posts = await getCollection("posts", () => true);
 const latestPost = posts.slice().sort(compareByDateDesc)[0];
 
 type InfoEntry = typeof infos[0];
+
+const heroImageUrl = "https://cdn.tohu-sand.com/illust/2025-12-16_medium.png";
+const heroImageStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "name": "トップ画像",
+  "description": "豆腐さんどのホームページのトップ画像",
+  "url": heroImageUrl,
+  "contentUrl": "https://tohu-sand.com/",
+  "creditText": "豆腐さんど",
+  "copyrightNotice": "© 2025 豆腐さんど",
+  "creator": {
+    "@type": "Person",
+    "name": "豆腐さんど",
+    "url": "https://tohu-sand.com/"
+  }
+};
 ---
 
 <BaseLayout title="豆腐さんどのホームページ">
+  <script type="application/ld+json" set:html={JSON.stringify(heroImageStructuredData)}></script>
   <div class="flex justify-center mb-8">
     <img
-      src="https://cdn.tohu-sand.com/illust/2025-12-16_medium.png"
+      src={heroImageUrl}
       alt="トップ画像"
       class="w-full max-w-xl rounded-lg shadow-lg object-cover"
       loading="eager"
@@ -29,7 +47,7 @@ type InfoEntry = typeof infos[0];
   <h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">About</h2>
   <p class="text-stone-700 dark:text-stone-300 mb-6 ">
     <strong>豆腐さんど(@tohu_sand)</strong><br />
-    趣味でイラスト・漫画を描いています。コミティアにて同人サークル「ロボット技術研究会」を主宰しています。
+    趣味でイラスト・漫画を描いています。自主制作漫画誌展示即売会 <b>コミティア</b>にて同人サークル「ロボット技術研究会」を主宰しています。
   </p>
 
   <h2 class="text-2xl font-bold mt-10 mb-4 text-stone-900 dark:text-stone-100">Upcoming Info</h2>

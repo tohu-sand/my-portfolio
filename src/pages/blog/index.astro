@@ -26,7 +26,14 @@ const blogPostsStructuredData = {
       "@type": "Person",
       "name": "豆腐さんど"
     },
-    "url": `https://tohu-sand.com/blog/${post.slug}/`
+    "url": `https://tohu-sand.com/blog/${post.slug}/`,
+    "image": {
+      "@type": "ImageObject",
+      "url": post.data.thumbnail,
+      "contentUrl": `https://tohu-sand.com/blog/${post.slug}/`,
+      "creditText": "豆腐さんど",
+      "copyrightNotice": `© ${post.data.date.getFullYear()} 豆腐さんど`
+    }
   }))
 };
 ---

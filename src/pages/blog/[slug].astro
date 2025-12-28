@@ -23,12 +23,20 @@ const description = data.excerpt || `豆腐さんどのブログ「${data.title}
 const postUrl = `https://tohu-sand.com/blog/${idToSlug(entry.id)}/`;
 
 // 構造化データの準備
+const imageStructuredData = {
+  "@type": "ImageObject",
+  "url": data.thumbnail,
+  "contentUrl": postUrl,
+  "creditText": "豆腐さんど",
+  "copyrightNotice": `© ${data.date.getFullYear()} 豆腐さんど`
+};
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": data.title,
   "description": description,
-  "image": data.thumbnail,
+  "image": imageStructuredData,
   "datePublished": data.date.toISOString().split('T')[0],
   "dateModified": data.date.toISOString().split('T')[0],
   "author": {
