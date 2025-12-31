@@ -28,6 +28,8 @@ const galleryStructuredData = {
     "dateCreated": artwork.data.date.toISOString().split('T')[0],
     "creditText": "豆腐さんど",
     "copyrightNotice": `© ${artwork.data.date.getFullYear()} 豆腐さんど`,
+    "license": "https://tohu-sand.com/",
+    "acquireLicensePage": "https://tohu-sand.com/contact/",
     "description": artwork.data.description || artwork.data.title,
     "contentUrl": `https://tohu-sand.com/gallery/${artwork.slug}/`
   }))
