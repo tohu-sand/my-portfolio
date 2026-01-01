@@ -99,5 +99,6 @@ This site is automatically deployed to Cloudflare Pages. Any commits to the main
 
 ##  License & Copyright
 
-- Favicon icons located in `public/` directory are © tohu_sand. All rights reserved.
-- All other content and code are subject to the project's [LICENSE](LICENSE) terms.
+- Source code is licensed under the MIT License. See [LICENSE](LICENSE).
+- Content assets (artwork, images, and text in `public/` and `src/content/`) are © tohu_sand. All rights reserved unless otherwise noted.
+- Third-party dependency licenses are listed in [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md).

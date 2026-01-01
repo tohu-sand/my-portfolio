@@ -4,6 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "licenses": "node scripts/generate-third-party-licenses.cjs",
+    "prebuild": "node scripts/generate-third-party-licenses.cjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
