@@ -8,7 +8,9 @@ export default defineConfig({
   site: "https://tohu-sand.com",
   integrations: [tailwind({
     config: "./tailwind.config.mjs",
-  }), sitemap(), icon(
+  }), sitemap({
+    filter: (page) => !page.endsWith("/contact/thank-you/"),
+  }), icon(
     {
       include: {
         "simple-icons": ["twitter", "bluesky"],

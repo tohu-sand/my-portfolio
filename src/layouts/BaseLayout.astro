@@ -10,7 +10,8 @@ const {
   ogUrl = "https://tohu-sand.com/",
   twitterCard = "summary",
   twitterTitle,
-  twitterImageAlt = "豆腐さんど (@tohu_sand) - ホームページ画像"
+  twitterImageAlt = "豆腐さんど (@tohu_sand) - ホームページ画像",
+  robots
 } = Astro.props;
 
 // デフォルトのOGタイトルとディスクリプション、Twitterタイトルを設定
@@ -26,6 +27,7 @@ const finalTwitterTitle = twitterTitle || finalOgTitle;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={ogUrl} />
+    {robots && <meta name="robots" content={robots} />}
     
     <!-- Begin Social Card Metadata -->
     <!-- Open Graph (used by Bluesky, Facebook, LINE etc.) -->
