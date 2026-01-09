@@ -11,7 +11,9 @@ const infos = await getCollection("info", ({ data }: CollectionEntry<"info">) =>
 );
 
 const posts = await getCollection("posts", () => true);
-const latestPost = posts.slice().sort(compareByDateDesc)[0];
+const gallery = await getCollection("gallery", () => true);
+const allPosts = [...posts, ...gallery];
+const latestPost = allPosts.slice().sort(compareByDateDesc)[0];
 
 type InfoEntry = typeof infos[0];
 
