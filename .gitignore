@@ -28,3 +28,8 @@ pnpm-debug.log*
 
 # assets
 /public/assets/
+
+# python & virtual environment
+venv/
+__pycache__/
+*.py
