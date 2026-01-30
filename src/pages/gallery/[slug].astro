@@ -18,7 +18,12 @@ export const prerender = true;
 const { entry } = Astro.props as { entry: ArtworkEntry };
 const { Content } = await render(entry);
 const { data } = entry;
+const kind = data.kind ?? "illustration";
+const imageUrl = data.image || data.thumbnail;
+const mediumImageUrl = data.mediumImage || imageUrl;
+const ogImage = data.mediumImage || data.image || data.thumbnail;
 const dateStr = formatDateJP(data.date);
+const readerBase = data.reader?.src ?? "";
 
 const allArtworks = await getCollection("gallery");
 const sortedArtworks = allArtworks.sort((a, b) => 
@@ -29,30 +34,53 @@ const currentIndex = sortedArtworks.findIndex(art => art.id === entry.id);
 const prevArtwork = currentIndex < sortedArtworks.length - 1 ? sortedArtworks[currentIndex + 1] : null;
 const nextArtwork = currentIndex > 0 ? sortedArtworks[currentIndex - 1] : null;
 
-const description = data.description || `豆腐さんどのイラスト作品「${data.title}」`;
+const defaultDescription = kind === "comic"
+  ? `豆腐さんどの漫画「${data.title}」`
+  : `豆腐さんどのイラスト作品「${data.title}」`;
+const description = data.description || defaultDescription;
 const artworkUrl = `https://tohu-sand.com/gallery/${idToSlug(entry.id)}/`;
 
 // 構造化データの準備
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "ImageObject",
-  "name": data.title,
-  "description": description,
-  "url": data.image,
-  "thumbnailUrl": data.thumbnail,
-  "contentUrl": artworkUrl,
-  "dateCreated": data.date.toISOString().split('T')[0],
-  "creditText": "豆腐さんど",
-  "copyrightNotice": `© ${data.date.getFullYear()} 豆腐さんど`,
-  "creator": {
-    "@type": "Person",
-    "name": "豆腐さんど",
-    "url": "https://tohu-sand.com/"
-  },
-  "license": "https://tohu-sand.com/",
-  "acquireLicensePage": "https://tohu-sand.com/contact/",
-  "keywords": data.tags?.join(", ") || ""
-};
+const structuredData = kind === "comic"
+  ? {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": data.title,
+      "description": description,
+      "url": artworkUrl,
+      "thumbnailUrl": data.thumbnail,
+      "dateCreated": data.date.toISOString().split("T")[0],
+      "creditText": "豆腐さんど",
+      "copyrightNotice": `© ${data.date.getFullYear()} 豆腐さんど`,
+      "creator": {
+        "@type": "Person",
+        "name": "豆腐さんど",
+        "url": "https://tohu-sand.com/"
+      },
+      "license": "https://tohu-sand.com/",
+      "acquireLicensePage": "https://tohu-sand.com/contact/",
+      "keywords": data.tags?.join(", ") || ""
+    }
+  : {
+      "@context": "https://schema.org",
+      "@type": "ImageObject",
+      "name": data.title,
+      "description": description,
+      "url": imageUrl,
+      "thumbnailUrl": data.thumbnail,
+      "contentUrl": artworkUrl,
+      "dateCreated": data.date.toISOString().split("T")[0],
+      "creditText": "豆腐さんど",
+      "copyrightNotice": `© ${data.date.getFullYear()} 豆腐さんど`,
+      "creator": {
+        "@type": "Person",
+        "name": "豆腐さんど",
+        "url": "https://tohu-sand.com/"
+      },
+      "license": "https://tohu-sand.com/",
+      "acquireLicensePage": "https://tohu-sand.com/contact/",
+      "keywords": data.tags?.join(", ") || ""
+    };
 ---
 <BaseLayout 
   title={data.title}
@@ -60,23 +88,48 @@ const structuredData = {
   ogTitle={data.title}
   ogDescription={description}
   ogUrl={artworkUrl}
-  ogImage={data.mediumImage || data.image}
+  ogImage={ogImage}
   twitterCard="summary_large_image"
-  twitterImageAlt={`${data.title} - 豆腐さんどのイラスト作品`}
+  twitterImageAlt={`${data.title} - 豆腐さんどの${kind === "comic" ? "漫画" : "イラスト"}作品`}
 >
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
   
   <article class="prose dark:prose-invert mx-auto">
     <h1 class="text-3xl font-bold mb-4 text-stone-900 dark:text-stone-100">{data.title}</h1>
-    <div class="mb-6">
-      <a href={data.image} target="_blank" rel="noopener noreferrer" class="block cursor-zoom-in">
-        <img
-          src={data.mediumImage || data.image}
-          alt={data.title}
-          class="w-full rounded-lg hover:opacity-90 transition-opacity duration-200"
-        />
-      </a>
-    </div>
+    {kind === "comic" ? (
+      <>
+        <div class="mb-6 not-prose md:hidden">
+          <iframe
+            src={`${readerBase}?layout=single`}
+            title={data.reader?.title ?? "SkyBind reader"}
+            loading="lazy"
+            style="width: 100%; height: 70vh; min-height: 420px; border: 0;"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="mb-6 not-prose hidden md:block relative left-1/2 right-1/2 w-screen -ml-[50vw] -mr-[50vw] px-4 sm:px-6 lg:px-8">
+          <div class="mx-auto w-full max-w-[50rem]">
+            <iframe
+              src={`${readerBase}?layout=spread`}
+              title={data.reader?.title ?? "SkyBind reader"}
+              loading="lazy"
+              style="width: 100%; height: 70vh; min-height: 420px; border: 0;"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </>
+    ) : (
+      <div class="mb-6">
+        <a href={imageUrl} target="_blank" rel="noopener noreferrer" class="block cursor-zoom-in">
+          <img
+            src={mediumImageUrl}
+            alt={data.title}
+            class="w-full rounded-lg hover:opacity-90 transition-opacity duration-200"
+          />
+        </a>
+      </div>
+    )}
     {data.description && (
     <p class="mb-4 text-stone-700 dark:text-stone-300">{data.description}</p>
     )}

@@ -11,7 +11,7 @@ export async function GET(context) {
 
   return rss({
     title: '豆腐さんど: ギャラリー',
-    description: '豆腐さんどのイラストギャラリーです。新作イラストを配信しています。',
+    description: '豆腐さんどのイラスト・漫画ギャラリーです。新作を配信しています。',
     site: context.site,
     items: sortedGallery.map((item) => ({
       title: item.data.title,

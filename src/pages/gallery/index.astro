@@ -6,7 +6,12 @@ import { getCollection } from "astro:content";
 const artworks = await getCollection("gallery");
 
 // ページ説明文
-const pageDescription = "豆腐さんどのイラストギャラリーページです。オリジナルイラストや創作キャラクターの作品を公開しています。";
+const pageDescription = "豆腐さんどのイラスト・漫画ギャラリーページです。オリジナル作品を公開しています。";
+
+const galleryImages = artworks.filter((artwork) => {
+  const kind = artwork.data.kind ?? "illustration";
+  return kind === "illustration";
+});
 
 // 構造化データの準備
 const galleryStructuredData = {
@@ -20,10 +25,10 @@ const galleryStructuredData = {
     "name": "豆腐さんど",
     "url": "https://tohu-sand.com/"
   },
-  "image": artworks.map((artwork) => ({
+  "image": galleryImages.map((artwork) => ({
     "@type": "ImageObject",
     "name": artwork.data.title,
-    "url": artwork.data.image,
+    "url": artwork.data.image || artwork.data.thumbnail,
     "thumbnailUrl": artwork.data.thumbnail,
     "dateCreated": artwork.data.date.toISOString().split('T')[0],
     "creditText": "豆腐さんど",

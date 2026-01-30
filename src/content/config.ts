@@ -5,11 +5,35 @@ const gallery = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.date(),
-    image: z.string(),
+    image: z.string().optional(),
     mediumImage: z.string().optional(),
     thumbnail: z.string(),
     tags: z.array(z.string()).optional(),
     description: z.string().optional(),
+    kind: z.enum(['illustration', 'comic']).optional(),
+    reader: z
+      .object({
+        src: z.string(),
+        title: z.string().optional(),
+      })
+      .optional(),
+  }).superRefine((data, ctx) => {
+    const kind = data.kind ?? 'illustration';
+    if (kind === 'comic') {
+      if (!data.reader?.src) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'reader.src is required for comics',
+          path: ['reader', 'src'],
+        });
+      }
+    } else if (!data.image) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'image is required for illustrations',
+        path: ['image'],
+      });
+    }
   }),
 });
 
