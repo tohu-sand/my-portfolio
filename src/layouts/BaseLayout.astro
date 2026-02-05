@@ -11,7 +11,9 @@ const {
   twitterCard = "summary",
   twitterTitle,
   twitterImageAlt = "豆腐さんど (@tohu_sand) - ホームページ画像",
-  robots
+  robots,
+  adsense = false,
+  recaptcha = false
 } = Astro.props;
 
 // デフォルトのOGタイトルとディスクリプション、Twitterタイトルを設定
@@ -27,6 +29,7 @@ const finalTwitterTitle = twitterTitle || finalOgTitle;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={ogUrl} />
+    <link rel="preconnect" href="https://cdn.tohu-sand.com" crossorigin />
     {robots && <meta name="robots" content={robots} />}
     <meta name="Hatena::Bookmark" content="nocomment" />
     
@@ -54,8 +57,13 @@ const finalTwitterTitle = twitterTitle || finalOgTitle;
     <link rel="alternate" type="application/rss+xml" title="豆腐さんど: お知らせ" href={`${Astro.site}info/rss.xml`} />
     <link rel="alternate" type="application/rss+xml" title="豆腐さんど: ギャラリー" href={`${Astro.site}gallery/rss.xml`} />
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4367665159115458"
-      crossorigin="anonymous"></script>
+    {adsense && (
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4367665159115458"
+        crossorigin="anonymous"
+      ></script>
+    )}
     <script is:inline>
       const theme = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -63,7 +71,7 @@ const finalTwitterTitle = twitterTitle || finalOgTitle;
         document.documentElement.classList.add('dark');
       }
     </script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    {recaptcha && <script src="https://www.google.com/recaptcha/api.js" async defer></script>}
     <style>
       html {
         overflow-y: scroll;
