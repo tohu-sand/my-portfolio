@@ -94,7 +94,7 @@ const structuredData = kind === "comic"
 >
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
   
-  <article class="prose dark:prose-invert mx-auto">
+  <article class="prose dark:prose-invert mx-auto prose-a:text-[color:var(--accent)] prose-a:hover:text-[color:var(--accent-hover)]">
     <h1 class="text-3xl font-bold mb-4 text-stone-900 dark:text-stone-100">{data.title}</h1>
     {kind === "comic" ? (
       <>
@@ -153,7 +153,7 @@ const structuredData = kind === "comic"
     {prevArtwork ? (
           <a 
       href={`/gallery/${idToSlug(prevArtwork.id)}`}
-            class="group flex items-center space-x-3 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+            class="group flex items-center space-x-3 text-stone-600 dark:text-stone-400 hover:text-[color:var(--accent)] transition-colors"
           >
             <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -167,7 +167,7 @@ const structuredData = kind === "comic"
     {nextArtwork ? (
           <a 
       href={`/gallery/${idToSlug(nextArtwork.id)}`}
-            class="group flex items-center space-x-3 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+            class="group flex items-center space-x-3 text-stone-600 dark:text-stone-400 hover:text-[color:var(--accent)] transition-colors"
           >
             <span class="text-sm">次の作品</span>
             <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

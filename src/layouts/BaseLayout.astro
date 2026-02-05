@@ -68,6 +68,16 @@ const finalTwitterTitle = twitterTitle || finalOgTitle;
       html {
         overflow-y: scroll;
       }
+      :root {
+        --accent: #f97316;
+        --accent-hover: #ea580c;
+        --accent-contrast: #ffffff;
+      }
+      :root.dark {
+        --accent: #fb923c;
+        --accent-hover: #fdba74;
+        --accent-contrast: #1a0f05;
+      }
     </style>
   </head>
   <body class="min-h-screen flex flex-col font-display bg-stone-50 dark:bg-stone-900 text-stone-900 dark:text-stone-100 transition-colors">
