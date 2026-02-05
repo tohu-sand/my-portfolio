@@ -30,7 +30,9 @@ const baseUrl = isGallery ? "/gallery/" : "/blog/";
     </div>
     <div class="flex flex-1 flex-col p-4">
       <h3 class="text-lg font-semibold line-clamp-2 text-stone-900 dark:text-stone-100">{data.title}</h3>
-      <p class="mt-1 text-sm text-stone-600 dark:text-stone-400">{dateStr} · {typeLabel}</p>
+      <p class="mt-1 text-sm text-stone-600 dark:text-stone-400">
+        {dateStr}{isGallery ? ` · ${typeLabel}` : ""}
+      </p>
       {"excerpt" in data && data.excerpt && <p class="mt-2 text-sm line-clamp-2 text-stone-700 dark:text-stone-300">{data.excerpt}</p>}
     </div>
   </a>

@@ -6,9 +6,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import type { CollectionEntry } from "astro:content";
 import { compareByDateDesc } from "../utils/date";
 
-const infos = await getCollection("info", ({ data }: CollectionEntry<"info">) =>
-  data.date >= new Date(new Date().setDate(new Date().getDate() - 30))
-);
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+const thirtyDaysAgo = new Date();
+thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+const infos = await getCollection("info", ({ data }: CollectionEntry<"info">) => {
+  if (data.category === "Event" && data.date < today) {
+    return false;
+  }
+  return data.date >= thirtyDaysAgo;
+});
 
 const posts = await getCollection("posts", () => true);
 const gallery = await getCollection("gallery", () => true);
@@ -51,7 +59,7 @@ const heroImageStructuredData = {
   <h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">About</h2>
   <p class="text-stone-700 dark:text-stone-300 mb-6 ">
     <strong>豆腐さんど(@tohu_sand)</strong><br />
-    趣味でイラスト・漫画を描いています。自主制作漫画誌展示即売会 <b>コミティア</b>にて同人サークル「ロボット技術研究会」を主宰しています。
+    趣味で漫画・イラストを描いています。自主制作漫画誌展示即売会 コミティアにて同人サークル「ロボット技術研究会」を主宰しています。
   </p>
 
   <h2 class="text-2xl font-bold mt-10 mb-4 text-stone-900 dark:text-stone-100">Upcoming Info</h2>

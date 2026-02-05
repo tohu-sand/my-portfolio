@@ -11,6 +11,7 @@ const { entry } = Astro.props;
 const { slug, data } = entry;
 const resolvedSlug = slug || idToSlug(entry.id);
 const dateStr = formatDateJP(data.date);
+const kindLabel = data.kind === "comic" ? "漫画" : "イラスト";
 ---
 <figure class="group h-full">
   <a href={`/gallery/${resolvedSlug}/`} class="flex h-full flex-col rounded-xl border border-stone-200 dark:border-stone-700 overflow-hidden bg-white dark:bg-stone-800 shadow transition-shadow hover:shadow-lg dark:shadow-stone-900/50 dark:hover:shadow-stone-900/70">
@@ -25,7 +26,9 @@ const dateStr = formatDateJP(data.date);
     </div>
     <figcaption class="flex flex-col p-4 text-sm leading-tight">
       <span class="line-clamp-2 font-medium text-stone-900 dark:text-stone-100">{data.title}</span>
-      <time datetime={data.date.toISOString()} class="mt-1 text-xs text-stone-500 dark:text-stone-400">{dateStr}</time>
+      <time datetime={data.date.toISOString()} class="mt-1 text-xs text-stone-500 dark:text-stone-400">
+        {dateStr}・{kindLabel}
+      </time>
     </figcaption>
   </a>
 </figure>
