@@ -66,9 +66,13 @@ const finalTwitterTitle = twitterTitle || finalOgTitle;
     )}
     <script is:inline>
       const theme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (theme === 'dark' || (!theme && prefersDark)) {
+      if (!theme) {
+        localStorage.setItem('theme', 'dark');
         document.documentElement.classList.add('dark');
+      } else if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
       }
     </script>
     {recaptcha && <script src="https://www.google.com/recaptcha/api.js" async defer></script>}

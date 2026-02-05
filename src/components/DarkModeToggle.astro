@@ -33,9 +33,11 @@ import { Icon } from 'astro-icon/components';
     const html = document.documentElement;
     
     const currentTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
+    if (!currentTheme) {
+      localStorage.setItem('theme', 'dark');
+      html.classList.add('dark');
+    } else if (currentTheme === 'dark') {
       html.classList.add('dark');
     } else {
       html.classList.remove('dark');
