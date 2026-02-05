@@ -11,26 +11,28 @@ const { data } = entry;
 const categoryLabel = data.category ? `#${data.category}` : "#Info";
 const dateStr = formatDateJP(data.date);
 ---
-<article class="border border-stone-200 dark:border-stone-700 rounded-xl p-4 shadow hover:shadow-lg dark:shadow-stone-900/50 dark:hover:shadow-stone-900/70 transition bg-white dark:bg-stone-800">
-  <h3 class="text-lg font-semibold text-stone-900 dark:text-stone-100">{data.title}</h3>
+<article class="group h-full rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 shadow transition-shadow hover:shadow-lg dark:shadow-stone-900/50 dark:hover:shadow-stone-900/70">
+  <div class="flex h-full flex-col p-4">
+    <h3 class="text-lg font-semibold text-stone-900 dark:text-stone-100">{data.title}</h3>
 
-  <p class="mt-1 font-medium text-stone-600 dark:text-stone-400">{categoryLabel}</p>
+    <p class="mt-1 text-sm font-medium text-stone-600 dark:text-stone-400">{categoryLabel}</p>
 
-  <p class="text-sm text-stone-600 dark:text-stone-400">
-    {dateStr}
-    {data.location && ` ${data.location}`}
-  </p>
+    <p class="mt-1 text-sm text-stone-600 dark:text-stone-400">
+      {dateStr}
+      {data.location && ` ${data.location}`}
+    </p>
 
-  {data.description && <p class="mt-2 text-sm text-stone-700 dark:text-stone-300">{data.description}</p>}
+    {data.description && <p class="mt-3 text-sm text-stone-700 dark:text-stone-300">{data.description}</p>}
 
-  {data.url && (
-    <a
-      href={data.url}
-      class="text-blue-600 dark:text-blue-400 hover:underline mt-2 inline-block"
-      target="_blank"
-      rel="noopener"
-    >
-      関連リンク
-    </a>
-  )}
+    {data.url && (
+      <a
+        href={data.url}
+        class="mt-auto pt-3 text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+        target="_blank"
+        rel="noopener"
+      >
+        関連リンク
+      </a>
+    )}
+  </div>
 </article>
