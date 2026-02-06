@@ -1,7 +1,7 @@
 ---
 import { getCollection, type CollectionEntry, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { idToSlug } from "../../utils/slug";
+import { entryToSlug } from "../../utils/slug";
 import { formatDateJP } from "../../utils/date";
 
 type PostEntry = CollectionEntry<"posts">;
@@ -9,7 +9,7 @@ type PostEntry = CollectionEntry<"posts">;
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
   return posts.map((post: PostEntry) => ({
-  params: { slug: idToSlug(post.id) },
+    params: { slug: entryToSlug(post) },
     props: { entry: post },
   }));
 }
@@ -18,9 +18,10 @@ export const prerender = true;
 const { entry } = Astro.props as { entry: PostEntry };
 const { Content } = await render(entry);
 const { data } = entry;
+const slug = entryToSlug(entry);
 const dateStr = formatDateJP(data.date);
 const description = data.excerpt || `豆腐さんどのブログ「${data.title}」`;
-const postUrl = `https://tohu-sand.com/blog/${idToSlug(entry.id)}/`;
+const postUrl = `https://tohu-sand.com/blog/${slug}/`;
 
 // 構造化データの準備
 const imageStructuredData = {

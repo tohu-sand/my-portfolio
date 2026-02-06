@@ -4,14 +4,15 @@ import { formatDateJP } from "../utils/date";
 
 interface Props {
   entry: CollectionEntry<"info">;
+  id?: string;
 }
 
-const { entry } = Astro.props;
+const { entry, id } = Astro.props;
 const { data } = entry;
 const categoryLabel = data.category ? `#${data.category}` : "#Info";
 const dateStr = formatDateJP(data.date);
 ---
-<article class="group h-full rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 shadow transition-shadow hover:shadow-lg dark:shadow-stone-900/50 dark:hover:shadow-stone-900/70">
+<article id={id} class="group h-full scroll-mt-24 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 shadow transition-shadow hover:shadow-lg dark:shadow-stone-900/50 dark:hover:shadow-stone-900/70">
   <div class="flex h-full flex-col p-4">
     <h3 class="text-lg font-semibold text-stone-900 dark:text-stone-100">{data.title}</h3>
 

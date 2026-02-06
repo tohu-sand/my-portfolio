@@ -1,16 +1,16 @@
 ---
 import { getCollection, type CollectionEntry, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { idToSlug } from "../../utils/slug";
-import { formatDateJP } from "../../utils/date";
+import { entryToSlug } from "../../utils/slug";
+import { compareByDateAsc, formatDateJP } from "../../utils/date";
 
 type ArtworkEntry = CollectionEntry<"gallery">;
 
 export async function getStaticPaths() {
   const artworks = await getCollection("gallery");
   return artworks.map((art: ArtworkEntry) => ({
-  params: { slug: idToSlug(art.id) },
-    props:  { entry: art },
+    params: { slug: entryToSlug(art) },
+    props: { entry: art },
   }));
 }
 export const prerender = true;
@@ -18,6 +18,7 @@ export const prerender = true;
 const { entry } = Astro.props as { entry: ArtworkEntry };
 const { Content } = await render(entry);
 const { data } = entry;
+const slug = entryToSlug(entry);
 const kind = data.kind ?? "illustration";
 const imageUrl = data.image || data.thumbnail;
 const mediumImageUrl = data.mediumImage || imageUrl;
@@ -26,9 +27,7 @@ const dateStr = formatDateJP(data.date);
 const readerBase = data.reader?.src ?? "";
 
 const allArtworks = await getCollection("gallery");
-const sortedArtworks = allArtworks.sort((a, b) => 
-  new Date(a.data.date).getTime() - new Date(b.data.date).getTime()
-);
+const sortedArtworks = allArtworks.slice().sort(compareByDateAsc);
 
 const currentIndex = sortedArtworks.findIndex(art => art.id === entry.id);
 const prevArtwork = currentIndex < sortedArtworks.length - 1 ? sortedArtworks[currentIndex + 1] : null;
@@ -38,7 +37,7 @@ const defaultDescription = kind === "comic"
   ? `豆腐さんどの漫画「${data.title}」`
   : `豆腐さんどのイラスト作品「${data.title}」`;
 const description = data.description || defaultDescription;
-const artworkUrl = `https://tohu-sand.com/gallery/${idToSlug(entry.id)}/`;
+const artworkUrl = `https://tohu-sand.com/gallery/${slug}/`;
 
 // 構造化データの準備
 const structuredData = kind === "comic"
@@ -152,7 +151,7 @@ const structuredData = kind === "comic"
       <div class="flex justify-between items-center">
     {prevArtwork ? (
           <a 
-      href={`/gallery/${idToSlug(prevArtwork.id)}`}
+      href={`/gallery/${entryToSlug(prevArtwork)}`}
             class="group flex items-center space-x-3 text-stone-600 dark:text-stone-400 hover:text-[color:var(--accent)] transition-colors"
           >
             <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -166,7 +165,7 @@ const structuredData = kind === "comic"
 
     {nextArtwork ? (
           <a 
-      href={`/gallery/${idToSlug(nextArtwork.id)}`}
+      href={`/gallery/${entryToSlug(nextArtwork)}`}
             class="group flex items-center space-x-3 text-stone-600 dark:text-stone-400 hover:text-[color:var(--accent)] transition-colors"
           >
             <span class="text-sm">次の作品</span>

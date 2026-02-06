@@ -17,13 +17,14 @@ const infos = await getCollection("info", ({ data }: CollectionEntry<"info">) =>
   }
   return data.date >= thirtyDaysAgo;
 });
+const sortedInfos = infos.slice().sort(compareByDateDesc);
 
 const posts = await getCollection("posts", () => true);
 const gallery = await getCollection("gallery", () => true);
 const allPosts = [...posts, ...gallery];
 const latestPost = allPosts.slice().sort(compareByDateDesc)[0];
 
-type InfoEntry = typeof infos[0];
+type InfoEntry = typeof sortedInfos[0];
 
 const heroImageUrl = "https://cdn.tohu-sand.com/illust/2025-12-16_medium.png";
 const heroImageStructuredData = {
@@ -68,8 +69,8 @@ const heroImageStructuredData = {
 
   <h2 class="text-2xl font-bold mt-10 mb-4 text-stone-900 dark:text-stone-100">Upcoming Info</h2>
   <div class="space-y-4">
-    {infos.length
-      ? infos.slice().sort(compareByDateDesc).map((e: InfoEntry) => <InfoCard entry={e} />)
+    {sortedInfos.length
+      ? sortedInfos.map((e: InfoEntry) => <InfoCard entry={e} />)
       : <p class="text-stone-600 dark:text-stone-400">現在お知らせはありません。</p>}
   </div>
 

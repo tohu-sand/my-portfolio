@@ -1,11 +1,12 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import GalleryItem from "./GalleryItem.astro";
-import { compareByDateDesc } from "../utils/date";
 
-const artworks = (await getCollection("gallery", () => true))
-  .slice()
-  .sort(compareByDateDesc);
+interface Props {
+  artworks: CollectionEntry<"gallery">[];
+}
+
+const { artworks } = Astro.props as Props;
 ---
 <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
   {artworks.map((art: CollectionEntry<"gallery">) => (

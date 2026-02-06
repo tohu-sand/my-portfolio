@@ -28,22 +28,20 @@ import { Icon } from 'astro-icon/components';
 </style>
 
 <script>
-  function initDarkMode() {
+  function bindDarkModeToggle() {
     const toggle = document.getElementById('dark-mode-toggle');
-    const html = document.documentElement;
-    
-    const currentTheme = localStorage.getItem('theme');
-    
-    if (!currentTheme) {
-      localStorage.setItem('theme', 'dark');
-      html.classList.add('dark');
-    } else if (currentTheme === 'dark') {
-      html.classList.add('dark');
-    } else {
-      html.classList.remove('dark');
+
+    if (!toggle || !(toggle instanceof HTMLButtonElement)) {
+      return;
     }
-    
-    toggle?.addEventListener('click', () => {
+
+    if (toggle.dataset.bound === 'true') {
+      return;
+    }
+    toggle.dataset.bound = 'true';
+
+    toggle.addEventListener('click', () => {
+      const html = document.documentElement;
       html.classList.toggle('dark');
       const isDark = html.classList.contains('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
@@ -51,10 +49,10 @@ import { Icon } from 'astro-icon/components';
   }
   
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initDarkMode);
+    document.addEventListener('DOMContentLoaded', bindDarkModeToggle);
   } else {
-    initDarkMode();
+    bindDarkModeToggle();
   }
   
-  document.addEventListener('astro:page-load', initDarkMode);
+  document.addEventListener('astro:page-load', bindDarkModeToggle);
 </script>

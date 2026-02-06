@@ -1,11 +1,12 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
+import { entryToSlug } from '../utils/slug';
 
 export async function GET(context) {
   const posts = await getCollection('posts');
   
   // 日付順にソート（新しい順）
-  const sortedPosts = posts.sort((a, b) => 
+  const sortedPosts = posts.slice().sort((a, b) => 
     b.data.date.valueOf() - a.data.date.valueOf()
   );
 
@@ -17,7 +18,7 @@ export async function GET(context) {
       title: post.data.title,
       pubDate: post.data.date,
       description: post.data.excerpt || '',
-      link: `/blog/${post.slug}/`,
+      link: `/blog/${entryToSlug(post)}/`,
       categories: post.data.tags || [],
     })),
     customData: `<language>ja</language>`,

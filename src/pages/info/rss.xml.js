@@ -1,11 +1,12 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
+import { entryToSlug } from '../../utils/slug';
 
 export async function GET(context) {
   const infos = await getCollection('info');
   
   // 日付順にソート（新しい順）
-  const sortedInfos = infos.sort((a, b) => 
+  const sortedInfos = infos.slice().sort((a, b) => 
     b.data.date.valueOf() - a.data.date.valueOf()
   );
 
@@ -17,7 +18,7 @@ export async function GET(context) {
       title: info.data.title,
       pubDate: info.data.date,
       description: info.data.description || `${info.data.category}の情報です。${info.data.location ? `場所: ${info.data.location}` : ''}`,
-      link: `/info/#${info.slug}`,
+      link: new URL(`/info/#${entryToSlug(info)}`, context.site).toString(),
       categories: [info.data.category],
     })),
     customData: `<language>ja</language>`,

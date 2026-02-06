@@ -2,8 +2,10 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import GalleryGrid from "../../components/GalleryGrid.astro";
 import { getCollection } from "astro:content";
+import { compareByDateDesc } from "../../utils/date";
+import { entryToSlug } from "../../utils/slug";
 
-const artworks = await getCollection("gallery");
+const artworks = (await getCollection("gallery")).slice().sort(compareByDateDesc);
 
 // ページ説明文
 const pageDescription = "豆腐さんどのイラスト・漫画ギャラリーページです。オリジナル作品を公開しています。";
@@ -41,7 +43,7 @@ const galleryStructuredData = {
       "url": "https://tohu-sand.com/"
     },
     "description": artwork.data.description || artwork.data.title,
-    "contentUrl": `https://tohu-sand.com/gallery/${artwork.slug}/`
+    "contentUrl": `https://tohu-sand.com/gallery/${entryToSlug(artwork)}/`
   }))
 };
 ---
@@ -56,5 +58,5 @@ const galleryStructuredData = {
   <script type="application/ld+json" set:html={JSON.stringify(galleryStructuredData)}></script>
   
   <h2 class="text-2xl font-bold mb-6 text-stone-900 dark:text-stone-100">Gallery</h2>
-  <GalleryGrid />
+  <GalleryGrid artworks={artworks} />
 </BaseLayout>

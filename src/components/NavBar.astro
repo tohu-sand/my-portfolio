@@ -13,6 +13,7 @@ const links = [
 const socials = [
   { href: "https://bsky.app/profile/tohu-sand.com", icon: "simple-icons:bluesky" },
 ];
+const socialLinkClass = "text-stone-900 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-400 transition-colors";
 
 const currentPath = Astro.url.pathname;
 const isActive = (href: string) => {
@@ -25,10 +26,13 @@ const isActive = (href: string) => {
 <header class="bg-white dark:bg-stone-900 shadow-md border-b border-[color:var(--accent)]">
   <div class="container mx-auto p-4">
     <div class="flex items-center justify-between">
-      <a href="/" class="md:hidden">
+      <a href="/" class="md:hidden" aria-label="ホームへ戻る">
         <img 
           src="/favicon.svg" 
-          alt="豆腐さんど" 
+          alt=""
+          width="32"
+          height="32"
+          decoding="async"
           class="w-8 h-8"
         />
       </a>
@@ -36,7 +40,11 @@ const isActive = (href: string) => {
       <nav class="space-x-6 hidden md:flex md:items-center">
         <img 
           src="/favicon.svg" 
-          alt="豆腐さんど" 
+          alt=""
+          width="32"
+          height="32"
+          decoding="async"
+          aria-hidden="true"
           class="w-8 h-8"
         />
         {links.map(({ href, label }) => (
@@ -53,7 +61,7 @@ const isActive = (href: string) => {
         <DarkModeToggle />
         <div class="hidden md:flex items-center space-x-4">
           {socials.map(({ href, icon }) => (
-            <a href={href} aria-label="social" target="_blank" rel="noopener" class="text-stone-900 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-400 transition-colors">
+            <a href={href} aria-label="social" target="_blank" rel="noopener" class={socialLinkClass}>
               <Icon name={icon} size="1.5rem" />
             </a>
           ))}
@@ -64,8 +72,11 @@ const isActive = (href: string) => {
           class="md:hidden p-2 text-stone-900 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-400 transition-colors"
           aria-label="メニューを開く"
         >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg id="menu-open-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg id="menu-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
       </div>
@@ -85,7 +96,7 @@ const isActive = (href: string) => {
       
       <div class="flex items-center space-x-4 mt-6 pt-4 border-t border-stone-200 dark:border-stone-700">
         {socials.map(({ href, icon }) => (
-          <a href={href} aria-label="social" target="_blank" rel="noopener" class="text-stone-900 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-400 transition-colors">
+          <a href={href} aria-label="social" target="_blank" rel="noopener" class={socialLinkClass}>
             <Icon name={icon} size="1.5rem" />
           </a>
         ))}
@@ -95,43 +106,45 @@ const isActive = (href: string) => {
 </header>
 
 <script>
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  
-  if (mobileMenuButton && mobileMenu) {
+  function initMobileMenu() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const openIcon = document.getElementById('menu-open-icon');
+    const closeIcon = document.getElementById('menu-close-icon');
+
+    if (!mobileMenuButton || !mobileMenu || !(mobileMenuButton instanceof HTMLButtonElement)) {
+      return;
+    }
+
+    if (mobileMenuButton.dataset.bound === 'true') {
+      return;
+    }
+    mobileMenuButton.dataset.bound = 'true';
+
+    const setMenuOpen = (isOpen: boolean) => {
+      mobileMenu.classList.toggle('hidden', !isOpen);
+      mobileMenuButton.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+      openIcon?.classList.toggle('hidden', isOpen);
+      closeIcon?.classList.toggle('hidden', !isOpen);
+    };
+
+    setMenuOpen(false);
+
     mobileMenuButton.addEventListener('click', () => {
-      const isHidden = mobileMenu.classList.contains('hidden');
-      
-      if (isHidden) {
-        mobileMenu.classList.remove('hidden');
-        mobileMenuButton.setAttribute('aria-label', 'メニューを閉じる');
-        mobileMenuButton.innerHTML = `
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        `;
-      } else {
-        mobileMenu.classList.add('hidden');
-        mobileMenuButton.setAttribute('aria-label', 'メニューを開く');
-        mobileMenuButton.innerHTML = `
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        `;
-      }
+      const isOpen = mobileMenu.classList.contains('hidden');
+      setMenuOpen(isOpen);
     });
-    
+
     const menuLinks = mobileMenu.querySelectorAll('a');
-    menuLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        mobileMenuButton.setAttribute('aria-label', 'メニューを開く');
-        mobileMenuButton.innerHTML = `
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        `;
-      });
+    menuLinks.forEach((link) => {
+      link.addEventListener('click', () => setMenuOpen(false));
     });
   }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+  document.addEventListener('astro:page-load', initMobileMenu);
 </script>

@@ -1,11 +1,12 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
+import { entryToSlug } from '../../utils/slug';
 
 export async function GET(context) {
   const gallery = await getCollection('gallery');
   
   // 日付順にソート（新しい順）
-  const sortedGallery = gallery.sort((a, b) => 
+  const sortedGallery = gallery.slice().sort((a, b) => 
     b.data.date.valueOf() - a.data.date.valueOf()
   );
 
@@ -17,7 +18,7 @@ export async function GET(context) {
       title: item.data.title,
       pubDate: item.data.date,
       description: item.data.description || item.data.title,
-      link: `/gallery/${item.slug}/`,
+      link: `/gallery/${entryToSlug(item)}/`,
       categories: item.data.tags || [],
       // 画像をエンクロージャーとして追加（RSSリーダーで画像が表示される）
       enclosure: item.data.thumbnail ? {

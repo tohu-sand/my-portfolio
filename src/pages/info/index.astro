@@ -3,14 +3,15 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import InfoCard from "../../components/InfoCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { compareByDateDesc } from "../../utils/date";
+import { entryToSlug } from "../../utils/slug";
 const infos = await getCollection("info", () => true);
+const sortedInfos = infos.slice().sort(compareByDateDesc);
 ---
 <BaseLayout title="豆腐さんどのホームページ | お知らせ">
   <h2 class="text-2xl font-bold mb-6 text-stone-900 dark:text-stone-100">Information</h2>
   <div class="grid md:grid-cols-2 gap-6">
-    {infos
-  .slice()
-  .sort(compareByDateDesc)
-      .map((e: CollectionEntry<'info'>) => <InfoCard entry={e} />)}
+    {sortedInfos.map((e: CollectionEntry<'info'>) => (
+      <InfoCard entry={e} id={entryToSlug(e)} />
+    ))}
   </div>
 </BaseLayout>

@@ -3,8 +3,10 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostCard from "../../components/PostCard.astro";
 import { compareByDateDesc } from "../../utils/date";
+import { entryToSlug } from "../../utils/slug";
 
 const posts = await getCollection("posts", () => true);
+const sortedPosts = posts.slice().sort(compareByDateDesc);
 
 // 構造化データの準備
 const blogPostsStructuredData = {
@@ -18,30 +20,33 @@ const blogPostsStructuredData = {
     "name": "豆腐さんど",
     "url": "https://tohu-sand.com/"
   },
-  "blogPost": posts.slice().sort(compareByDateDesc).map((post: CollectionEntry<'posts'>) => ({
-    "@type": "BlogPosting",
-    "headline": post.data.title,
-    "datePublished": post.data.date.toISOString().split('T')[0],
-    "author": {
-      "@type": "Person",
-      "name": "豆腐さんど"
-    },
-    "url": `https://tohu-sand.com/blog/${post.slug}/`,
-    "image": {
-      "@type": "ImageObject",
-      "url": post.data.thumbnail,
-      "contentUrl": `https://tohu-sand.com/blog/${post.slug}/`,
-      "license": "https://tohu-sand.com/",
-      "acquireLicensePage": "https://tohu-sand.com/contact/",
-      "creator": {
+  "blogPost": sortedPosts.map((post: CollectionEntry<'posts'>) => {
+    const slug = entryToSlug(post);
+    return {
+      "@type": "BlogPosting",
+      "headline": post.data.title,
+      "datePublished": post.data.date.toISOString().split('T')[0],
+      "author": {
         "@type": "Person",
-        "name": "豆腐さんど",
-        "url": "https://tohu-sand.com/"
+        "name": "豆腐さんど"
       },
-      "creditText": "豆腐さんど",
-      "copyrightNotice": `© ${post.data.date.getFullYear()} 豆腐さんど`
-    }
-  }))
+      "url": `https://tohu-sand.com/blog/${slug}/`,
+      "image": {
+        "@type": "ImageObject",
+        "url": post.data.thumbnail,
+        "contentUrl": `https://tohu-sand.com/blog/${slug}/`,
+        "license": "https://tohu-sand.com/",
+        "acquireLicensePage": "https://tohu-sand.com/contact/",
+        "creator": {
+          "@type": "Person",
+          "name": "豆腐さんど",
+          "url": "https://tohu-sand.com/"
+        },
+        "creditText": "豆腐さんど",
+        "copyrightNotice": `© ${post.data.date.getFullYear()} 豆腐さんど`
+      }
+    };
+  })
 };
 ---
 <BaseLayout 
@@ -55,9 +60,6 @@ const blogPostsStructuredData = {
   
   <h2 class="text-2xl font-bold mb-6 text-stone-900 dark:text-stone-100">Blog</h2>
   <div class="grid md:grid-cols-2 gap-6">
-    {posts
-      .slice()
-      .sort(compareByDateDesc)
-      .map((p: CollectionEntry<'posts'>) => <PostCard entry={p} />)}
+    {sortedPosts.map((p: CollectionEntry<'posts'>) => <PostCard entry={p} />)}
   </div>
 </BaseLayout>

@@ -7,7 +7,7 @@ const {
   ogTitle,
   ogDescription,
   ogImage = "https://cdn.tohu-sand.com/illust/card.png",
-  ogUrl = "https://tohu-sand.com/",
+  ogUrl,
   twitterCard = "summary",
   twitterTitle,
   twitterImageAlt = "豆腐さんど (@tohu_sand) - ホームページ画像",
@@ -20,6 +20,8 @@ const {
 const finalOgTitle = ogTitle || title;
 const finalOgDescription = ogDescription || description;
 const finalTwitterTitle = twitterTitle || finalOgTitle;
+const fallbackUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
+const finalOgUrl = ogUrl || fallbackUrl;
 ---
 <!DOCTYPE html>
 <html lang="ja" class="scroll-smooth">
@@ -28,7 +30,7 @@ const finalTwitterTitle = twitterTitle || finalOgTitle;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={ogUrl} />
+    <link rel="canonical" href={finalOgUrl} />
     <link rel="preconnect" href="https://cdn.tohu-sand.com" crossorigin />
     {robots && <meta name="robots" content={robots} />}
     <meta name="Hatena::Bookmark" content="nocomment" />
@@ -36,7 +38,7 @@ const finalTwitterTitle = twitterTitle || finalOgTitle;
     <!-- Begin Social Card Metadata -->
     <!-- Open Graph (used by Bluesky, Facebook, LINE etc.) -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content={ogUrl}>
+    <meta property="og:url" content={finalOgUrl}>
     <meta property="og:title" content={finalOgTitle}>
     <meta property="og:description" content={finalOgDescription}>
     <meta property="og:image" content={ogImage}>
