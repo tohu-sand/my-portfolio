@@ -55,7 +55,7 @@ const info = defineCollection({
     date: z.date(),
     category: z.string(),
     location: z.string().optional(),
-    url: z.string().optional(),
+    url: z.string().url().optional(),
     description: z.string().optional(),
   }),
 });
