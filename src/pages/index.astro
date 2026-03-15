@@ -7,9 +7,10 @@ import type { CollectionEntry } from "astro:content";
 import { compareByDateDesc } from "../utils/date";
 
 const today = new Date();
-today.setHours(0, 0, 0, 0);
+today.setUTCHours(0, 0, 0, 0);
 const thirtyDaysAgo = new Date();
-thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+thirtyDaysAgo.setUTCHours(0, 0, 0, 0);
+thirtyDaysAgo.setUTCDate(thirtyDaysAgo.getUTCDate() - 30);
 
 const infos = await getCollection("info", ({ data }: CollectionEntry<"info">) => {
   if (data.category === "Event" && data.date < today) {
