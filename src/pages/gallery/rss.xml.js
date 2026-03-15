@@ -22,8 +22,8 @@ export async function GET(context) {
       categories: item.data.tags || [],
       // 画像をエンクロージャーとして追加（RSSリーダーで画像が表示される）
       enclosure: item.data.thumbnail ? {
-        url: `${context.site}${item.data.thumbnail}`,
-        type: 'image/jpeg',
+        url: new URL(item.data.thumbnail, context.site).toString(),
+        type: 'image/webp',
         length: 0, // 正確なサイズが不明な場合は0を指定可能
       } : undefined,
     })),
