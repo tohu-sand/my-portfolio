@@ -11,7 +11,7 @@ const links = [
   { href: "/contact", label: "CONTACT" },
 ];
 const socials = [
-  { href: "https://bsky.app/profile/tohu-sand.com", icon: "simple-icons:bluesky" },
+  { href: "https://bsky.app/profile/tohu-sand.com", icon: "simple-icons:bluesky", label: "Bluesky" },
 ];
 const socialLinkClass = "text-stone-900 dark:text-stone-100 hover:text-stone-600 dark:hover:text-stone-400 transition-colors";
 
@@ -60,8 +60,8 @@ const isActive = (href: string) => {
       <div class="flex items-center space-x-4">
         <DarkModeToggle />
         <div class="hidden md:flex items-center space-x-4">
-          {socials.map(({ href, icon }) => (
-            <a href={href} aria-label="social" target="_blank" rel="noopener" class={socialLinkClass}>
+          {socials.map(({ href, icon, label }) => (
+            <a href={href} aria-label={label} target="_blank" rel="noopener noreferrer" class={socialLinkClass}>
               <Icon name={icon} size="1.5rem" />
             </a>
           ))}
