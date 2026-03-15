@@ -17,7 +17,7 @@ export async function GET(context) {
     items: sortedPosts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.date,
-      description: post.data.excerpt || '',
+      description: post.data.excerpt || post.data.title,
       link: `/blog/${entryToSlug(post)}/`,
       categories: post.data.tags || [],
     })),
