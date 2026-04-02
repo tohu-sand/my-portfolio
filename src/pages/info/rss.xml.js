@@ -11,7 +11,7 @@ export async function GET(context) {
   );
 
   return rss({
-    title: '豆腐さんど: お知らせ',
+    title: 'hasamiyacco: お知らせ',
     description: '豆腐さんどのお知らせ・イベント情報です。',
     site: context.site,
     items: sortedInfos.map((info) => ({

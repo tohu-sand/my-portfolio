@@ -11,7 +11,7 @@ export async function GET(context) {
   );
 
   return rss({
-    title: '豆腐さんど: ブログ',
+    title: 'hasamiyacco: ブログ',
     description: '豆腐さんどのブログです。イラストや創作に関する記事、日常の出来事などを投稿しています。',
     site: context.site,
     items: sortedPosts.map((post) => ({

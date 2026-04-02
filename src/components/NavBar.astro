@@ -26,27 +26,31 @@ const isActive = (href: string) => {
 <header class="bg-white dark:bg-stone-900 shadow-md border-b border-[color:var(--accent)]">
   <div class="container mx-auto p-4">
     <div class="flex items-center justify-between">
-      <a href="/" class="md:hidden" aria-label="ホームへ戻る">
-        <img 
-          src="/favicon.svg" 
+      <a href="/" class="flex items-center space-x-2 md:hidden" aria-label="ホームへ戻る">
+        <img
+          src="/favicon.svg"
           alt=""
           width="32"
           height="32"
           decoding="async"
           class="w-8 h-8"
         />
+        <span class="font-bold text-stone-900 dark:text-stone-100">hasamiyacco</span>
       </a>
-      
+
       <nav class="space-x-6 hidden md:flex md:items-center">
-        <img 
-          src="/favicon.svg" 
-          alt=""
-          width="32"
-          height="32"
-          decoding="async"
-          aria-hidden="true"
-          class="w-8 h-8"
-        />
+        <a href="/" class="flex items-center space-x-2" aria-label="ホームへ戻る">
+          <img
+            src="/favicon.svg"
+            alt=""
+            width="32"
+            height="32"
+            decoding="async"
+            aria-hidden="true"
+            class="w-8 h-8"
+          />
+          <span class="font-bold text-stone-900 dark:text-stone-100">hasamiyacco</span>
+        </a>
         {links.map(({ href, label }) => (
           <a 
             href={href} 

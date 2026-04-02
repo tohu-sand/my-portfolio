@@ -3,14 +3,14 @@ import NavBar from "../components/NavBar.astro";
 import Footer from "../components/Footer.astro";
 const { 
   title = "Site Title", 
-  description = "豆腐さんどのホームページ",
+  description = "hasamiyacco - 豆腐さんどのホームページ",
   ogTitle,
   ogDescription,
   ogImage = "https://cdn.tohu-sand.com/illust/card.png",
   ogUrl,
   twitterCard = "summary",
   twitterTitle,
-  twitterImageAlt = "豆腐さんど (@tohu_sand) - ホームページ画像",
+  twitterImageAlt = "hasamiyacco - 豆腐さんどのホームページ画像",
   robots,
   adsense = false,
   recaptcha = false
@@ -55,9 +55,9 @@ const finalOgUrl = ogUrl || fallbackUrl;
     <!-- End Social Card Metadata -->
 
     <!-- RSS Feeds -->
-    <link rel="alternate" type="application/rss+xml" title="豆腐さんど: ブログ" href={`${Astro.site}rss.xml`} />
-    <link rel="alternate" type="application/rss+xml" title="豆腐さんど: お知らせ" href={`${Astro.site}info/rss.xml`} />
-    <link rel="alternate" type="application/rss+xml" title="豆腐さんど: ギャラリー" href={`${Astro.site}gallery/rss.xml`} />
+    <link rel="alternate" type="application/rss+xml" title="hasamiyacco: ブログ" href={`${Astro.site}rss.xml`} />
+    <link rel="alternate" type="application/rss+xml" title="hasamiyacco: お知らせ" href={`${Astro.site}info/rss.xml`} />
+    <link rel="alternate" type="application/rss+xml" title="hasamiyacco: ギャラリー" href={`${Astro.site}gallery/rss.xml`} />
 
     {adsense && (
       <script
