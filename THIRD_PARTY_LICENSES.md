@@ -10,62 +10,63 @@ The list is based on the currently installed dependency tree (pnpm).
 - @alloc/quick-lru@5.2.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
 - @antfu/install-pkg@1.1.0 — Copyright (c) 2021 Anthony Fu <https://github.com/antfu>
 - @antfu/utils@8.1.1 — Copyright (c) 2021 Anthony Fu <https://github.com/antfu>
-- @astrojs/compiler@2.12.2 — Copyright (c) 2009 The Go Authors. All rights reserved.; Copyright (c) 2021 [Astro contributors](https://github.com/withastro/compiler/graphs/contributors)
-- @astrojs/internal-helpers@0.7.1 — Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors; Copyright (c) 2020 [these people](https://github.com/sveltejs/kit/graphs/contributors); Copyright (c) 2021 Fred K. Schott
-- @astrojs/markdown-remark@6.3.5 — Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors; Copyright (c) 2020 [these people](https://github.com/sveltejs/kit/graphs/contributors); Copyright (c) 2021 Fred K. Schott
+- @astrojs/compiler@2.13.1 — Copyright (c) 2009 The Go Authors. All rights reserved.; Copyright (c) 2021 [Astro contributors](https://github.com/withastro/compiler/graphs/contributors)
+- @astrojs/internal-helpers@0.7.6 — Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors; Copyright (c) 2020 [these people](https://github.com/sveltejs/kit/graphs/contributors); Copyright (c) 2021 Fred K. Schott
+- @astrojs/markdown-remark@6.3.11 — Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors; Copyright (c) 2020 [these people](https://github.com/sveltejs/kit/graphs/contributors); Copyright (c) 2021 Fred K. Schott
 - @astrojs/prism@3.3.0 — Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors; Copyright (c) 2020 [these people](https://github.com/sveltejs/kit/graphs/contributors); Copyright (c) 2021 Fred K. Schott
-- @astrojs/rss@4.0.13 — Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors; Copyright (c) 2020 [these people](https://github.com/sveltejs/kit/graphs/contributors); Copyright (c) 2021 Fred K. Schott
-- @astrojs/sitemap@3.4.2 — Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors; Copyright (c) 2020 [these people](https://github.com/sveltejs/kit/graphs/contributors); Copyright (c) 2021 Fred K. Schott
+- @astrojs/rss@4.0.18 — Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors; Copyright (c) 2020 [these people](https://github.com/sveltejs/kit/graphs/contributors); Copyright (c) 2021 Fred K. Schott
+- @astrojs/sitemap@3.7.2 — Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors; Copyright (c) 2020 [these people](https://github.com/sveltejs/kit/graphs/contributors); Copyright (c) 2021 Fred K. Schott
 - @astrojs/tailwind@6.0.2 — Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors; Copyright (c) 2020 [these people](https://github.com/sveltejs/kit/graphs/contributors); Copyright (c) 2021 Fred K. Schott
 - @astrojs/telemetry@3.3.0 — Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors; Copyright (c) 2020 [these people](https://github.com/sveltejs/kit/graphs/contributors); Copyright (c) 2021 Fred K. Schott
 - @babel/helper-string-parser@7.27.1 — Copyright (c) 2014-present Sebastian McKenzie and other contributors
-- @babel/helper-validator-identifier@7.27.1 — Copyright (c) 2014-present Sebastian McKenzie and other contributors
-- @babel/parser@7.28.0 — Copyright (C) 2012-2014 by various contributors (see AUTHORS)
-- @babel/types@7.28.2 — Copyright (c) 2014-present Sebastian McKenzie and other contributors
-- @capsizecss/unpack@2.4.0 — Copyright (c) 2021 SEEK
-- @esbuild/linux-x64@0.25.8 — Copyright (c) 2020 Evan Wallace
+- @babel/helper-validator-identifier@7.28.5 — Copyright (c) 2014-present Sebastian McKenzie and other contributors
+- @babel/parser@7.29.3 — Copyright (C) 2012-2014 by various contributors (see AUTHORS)
+- @babel/types@7.29.0 — Copyright (c) 2014-present Sebastian McKenzie and other contributors
+- @capsizecss/unpack@4.0.0 — Copyright (c) 2021 SEEK
+- @esbuild/linux-x64@0.25.12, 0.27.7 — Copyright (c) 2020 Evan Wallace
 - @iconify/tools@4.1.2 — Copyright (c) 2021-PRESENT Vjacheslav Trushkin
 - @iconify/types@2.0.0 — Copyright (c) 2021 - 2022 Vjacheslav Trushkin / Iconify OÜ
 - @iconify/utils@2.3.0 — Copyright (c) 2021-PRESENT Vjacheslav Trushkin
+- @img/colour@1.1.0 — Copyright (c) 2011 Heather Arthur <fayearthur@gmail.com>; Copyright (c) 2011-2016 Heather Arthur <fayearthur@gmail.com>.; Copyright (c) 2012 Heather Arthur; Copyright (c) 2015 Dmitry Ivanov; Copyright (c) 2016-2021 Josh Junon <josh@junon.me>.
 - @jridgewell/gen-mapping@0.3.12 — Copyright 2024 Justin Ridgewell <justin@ridgewell.name>
 - @jridgewell/resolve-uri@3.1.2 — Copyright 2019 Justin Ridgewell <jridgewell@google.com>
-- @jridgewell/sourcemap-codec@1.5.4 — Copyright 2024 Justin Ridgewell <justin@ridgewell.name>
+- @jridgewell/sourcemap-codec@1.5.4, 1.5.5 — Copyright 2024 Justin Ridgewell <justin@ridgewell.name>
 - @jridgewell/trace-mapping@0.3.29 — Copyright 2024 Justin Ridgewell <justin@ridgewell.name>
+- @nodable/entities@2.1.0 — Copyright (c) Amit Gupta
 - @nodelib/fs.scandir@2.1.5 — Copyright (c) Denis Malinochkin
 - @nodelib/fs.stat@2.0.5 — Copyright (c) Denis Malinochkin
 - @nodelib/fs.walk@1.2.8 — Copyright (c) Denis Malinochkin
 - @oslojs/encoding@1.1.0 — Copyright (c) 2024 pilcrowOnPaper
 - @pkgjs/parseargs@0.11.0
-- @rollup/pluginutils@5.2.0 — Copyright (c) 2019 RollupJS Plugin Contributors (https://github.com/rollup/plugins/graphs/contributors)
-- @rollup/rollup-linux-x64-gnu@4.46.2 — Copyright (c) Lukas Taegert-Atkinson
-- @rollup/rollup-linux-x64-musl@4.46.2 — Copyright (c) Lukas Taegert-Atkinson
-- @shikijs/core@3.9.1 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
-- @shikijs/engine-javascript@3.9.1 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
-- @shikijs/engine-oniguruma@3.9.1 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
-- @shikijs/langs@3.9.1 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
-- @shikijs/themes@3.9.1 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
-- @shikijs/types@3.9.1 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
+- @rollup/pluginutils@5.3.0 — Copyright (c) 2019 RollupJS Plugin Contributors (https://github.com/rollup/plugins/graphs/contributors)
+- @rollup/rollup-linux-x64-gnu@4.60.3 — Copyright (c) Lukas Taegert-Atkinson
+- @rollup/rollup-linux-x64-musl@4.60.3 — Copyright (c) Lukas Taegert-Atkinson
+- @shikijs/core@3.23.0 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
+- @shikijs/engine-javascript@3.23.0 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
+- @shikijs/engine-oniguruma@3.23.0 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
+- @shikijs/langs@3.23.0 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
+- @shikijs/themes@3.23.0 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
+- @shikijs/types@3.23.0 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
 - @shikijs/vscode-textmate@10.0.2 — Copyright (c) Microsoft Corporation
-- @tailwindcss/typography@0.5.16 — Copyright (c) Tailwind Labs, Inc.
-- @types/debug@4.1.12 — Copyright (c) Microsoft Corporation.
-- @types/estree@1.0.8 — Copyright (c) Microsoft Corporation.
-- @types/fontkit@2.0.8 — Copyright (c) Microsoft Corporation.
+- @tailwindcss/typography@0.5.19 — Copyright (c) Tailwind Labs, Inc.
+- @types/debug@4.1.13 — Copyright (c) Microsoft Corporation.
+- @types/estree@1.0.8, 1.0.9 — Copyright (c) Microsoft Corporation.
 - @types/hast@3.0.4 — Copyright (c) Microsoft Corporation.
 - @types/mdast@4.0.4 — Copyright (c) Microsoft Corporation.
 - @types/ms@2.1.0 — Copyright (c) Microsoft Corporation.
 - @types/nlcst@2.0.3 — Copyright (c) Microsoft Corporation.
-- @types/node@17.0.45, 24.1.0 — Copyright (c) Microsoft Corporation.
+- @types/node@24.1.0, 24.12.4 — Copyright (c) Microsoft Corporation.
 - @types/sax@1.2.7 — Copyright (c) Microsoft Corporation.
 - @types/tar@6.1.13 — Copyright (c) Microsoft Corporation.
 - @types/unist@3.0.3 — Copyright (c) Microsoft Corporation.
 - @types/yauzl@2.10.3 — Copyright (c) Microsoft Corporation.
 - acorn@8.15.0 — Copyright (C) 2012-2022 by various contributors (see AUTHORS)
-- ansi-regex@5.0.1, 6.1.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com); Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
-- ansi-styles@4.3.0, 6.2.1 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com); Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
+- ansi-regex@5.0.1, 6.1.0, 6.2.2 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com); Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
+- ansi-styles@4.3.0, 6.2.3 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com); Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
 - any-promise@1.3.0 — Copyright (C) 2014-2016 Kevin Beaty
 - arg@5.0.2 — Copyright (c) 2021 Vercel, Inc.
 - array-iterate@2.0.1 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
-- astro@5.12.8 — Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors; Copyright (c) 2020 [these people](https://github.com/sveltejs/kit/graphs/contributors); Copyright (c) 2021 Fred K. Schott
+- astro@5.18.1 — Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors; Copyright (c) 2020 [these people](https://github.com/sveltejs/kit/graphs/contributors); Copyright (c) 2021 Fred K. Schott
 - astro-icon@1.1.5 — Copyright (c) 2013 Jason Miller
 - asynckit@0.4.0 — Copyright (c) 2016 Alex Indigo
 - autoprefixer@10.4.21 — Copyright 2013 Andrey Sitnik <andrey@sitnik.ru>
@@ -73,13 +74,10 @@ The list is based on the currently installed dependency tree (pnpm).
 - bail@2.0.2 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
 - balanced-match@1.0.2 — Copyright (c) 2013 Julian Gruber &lt;julian@juliangruber.com&gt;
 - base-64@1.0.0 — Copyright Mathias Bynens <https://mathiasbynens.be/>
-- base64-js@1.5.1 — Copyright (c) 2014 Jameson Little
 - binary-extensions@2.3.0 — Copyright (c) Paul Miller (https://paulmillr.com); Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
-- blob-to-buffer@1.2.9 — Copyright (c) Feross Aboukhadijeh
 - boxen@8.0.1 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
 - brace-expansion@2.0.2 — Copyright (c) 2013 Julian Gruber <julian@juliangruber.com>
 - braces@3.0.3 — Copyright (c) 2014-present, Jon Schlinkert.
-- brotli@1.3.3 — Copyright (c) Devon Govett
 - browserslist@4.25.1 — Copyright 2014 Andrey Sitnik <andrey@sitnik.ru> and other contributors
 - buffer-crc32@0.2.13 — Copyright (c) 2013 Brian J. Brennan
 - call-bind-apply-helpers@1.0.2 — Copyright (c) 2024 Jordan Harband
@@ -91,43 +89,38 @@ The list is based on the currently installed dependency tree (pnpm).
 - character-entities-html4@2.1.0 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
 - character-entities-legacy@3.0.0 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
 - cheerio@1.0.0 — Copyright (c) 2022 The Cheerio contributors
-- chokidar@3.6.0, 4.0.3 — Copyright (c) 2012 Paul Miller (https://paulmillr.com), Elan Shanker; Copyright (c) 2012-2019 Paul Miller (https://paulmillr.com), Elan Shanker
-- ci-info@4.3.0 — Copyright (c) 2016 Thomas Watson Steen
+- chokidar@3.6.0, 5.0.0 — Copyright (c) 2012 Paul Miller (https://paulmillr.com), Elan Shanker; Copyright (c) 2012-2019 Paul Miller (https://paulmillr.com), Elan Shanker
+- ci-info@4.4.0 — Copyright (c) 2016 Thomas Watson Steen
 - cli-boxes@3.0.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
-- clone@2.1.2 — Copyright © 2011-2015 Paul Vorbach <paul@vorba.ch>
 - clsx@2.1.1 — Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (lukeed.com)
-- color@4.2.3 — Copyright (c) 2012 Heather Arthur
 - color-convert@2.0.1 — Copyright (c) 2011-2016 Heather Arthur <fayearthur@gmail.com>
 - color-name@1.1.4 — Copyright (c) 2015 Dmitry Ivanov
-- color-string@1.9.1 — Copyright (c) 2011 Heather Arthur <fayearthur@gmail.com>
 - combined-stream@1.0.8 — Copyright (c) 2011 Debuggable Limited <felix@debuggable.com>
 - comma-separated-tokens@2.0.3 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
-- commander@4.1.1, 7.2.0 — Copyright (c) 2011 TJ Holowaychuk <tj@vision-media.ca>
+- commander@4.1.1, 7.2.0, 11.1.0 — Copyright (c) 2011 TJ Holowaychuk <tj@vision-media.ca>
 - confbox@0.1.8, 0.2.2 — Copyright (C) 2011-2015 by Vitaly Puzrin; Copyright (c) 2012-2018 Aseem Kishore, and others (https://github.com/json5/json5/graphs/contributors); Copyright (c) Isaac Z. Schlueter and Contributors; Copyright (c) Microsoft; Copyright (c) Pooya Parsa <pooya@pi0.io>; Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com); Copyright (c) Squirrel Chat et al., All rights reserved.
-- cookie@1.0.2 — Copyright (c) 2012-2014 Roman Shtylman <shtylman@gmail.com>; Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>
-- cookie-es@1.2.2 — Copyright (c) 2012-2014 Roman Shtylman <shtylman@gmail.com>; Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>; Copyright (c) 2015 Nathan Friedly <nathan@nfriedly.com> (http://nfriedly.com/)
-- cross-fetch@3.2.0 — Copyright (c) 2017 Leonardo Quixadá
+- cookie@1.1.1 — Copyright (c) 2012-2014 Roman Shtylman <shtylman@gmail.com>; Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+- cookie-es@1.2.3 — Copyright (c) 2012-2014 Roman Shtylman <shtylman@gmail.com>; Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>; Copyright (c) 2015 Nathan Friedly <nathan@nfriedly.com> (http://nfriedly.com/)
 - cross-spawn@7.0.6 — Copyright (c) 2018 Made With MOXY Lda <hello@moxy.studio>
 - crossws@0.3.5 — Copyright (c) 2011 Einar Otto Stangvik <einaros@gmail.com>; Copyright (c) 2013 Arnout Kazemier and contributors; Copyright (c) 2016 Luigi Pinca and contributors; Copyright (c) Pooya Parsa <pooya@pi0.io>
-- css-tree@2.2.1, 2.3.1, 3.1.0 — Copyright (C) 2016-2022 by Roman Dvornov; Copyright (C) 2016-2024 by Roman Dvornov
+- css-tree@2.2.1, 2.3.1, 3.2.1 — Copyright (C) 2016-2022 by Roman Dvornov; Copyright (C) 2016-2026 by Roman Dvornov
 - cssesc@3.0.0 — Copyright Mathias Bynens <https://mathiasbynens.be/>
 - csso@5.0.5 — Copyright (C) 2011-2015 by Sergey Kryzhanovsky; Copyright (C) 2015-2021 by Roman Dvornov
-- debug@4.4.1 — Copyright (c) 2014-2017 TJ Holowaychuk <tj@vision-media.ca>; Copyright (c) 2018-2021 Josh Junon
-- decode-named-character-reference@1.2.0 — Copyright (c) Titus Wormer <tituswormer@gmail.com>
-- defu@6.1.4 — Copyright (c) Pooya Parsa <pooya@pi0.io>
+- debug@4.4.1, 4.4.3 — Copyright (c) 2014-2017 TJ Holowaychuk <tj@vision-media.ca>; Copyright (c) 2018-2021 Josh Junon
+- decode-named-character-reference@1.3.0 — Copyright (c) Titus Wormer <tituswormer@gmail.com>
+- defu@6.1.7 — Copyright (c) Pooya Parsa <pooya@pi0.io>
 - delayed-stream@1.0.0 — Copyright (c) 2011 Debuggable Limited <felix@debuggable.com>
 - dequal@2.0.3 — Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (lukeed.com)
 - destr@2.0.5 — Copyright (c) Pooya Parsa <pooya@pi0.io>
 - deterministic-object-hash@2.0.2 — Copyright (c) 2022 Zane Bauman
-- devalue@5.1.1 — Copyright (c) 2018-19 [these people](https://github.com/rich-harris/devalue/graphs/contributors)
+- devalue@5.8.0 — Copyright (c) 2018-19 [these people](https://github.com/rich-harris/devalue/graphs/contributors)
 - devlop@1.1.0 — Copyright (c) 2023 Titus Wormer <tituswormer@gmail.com>
-- dfa@1.2.0 — Copyright (c) Devon Govett
 - dlv@1.1.3 — Copyright (c) Jason Miller
 - dom-serializer@2.0.0 — Copyright (c) 2014 The cheeriojs contributors
 - dset@3.1.4 — Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (lukeed.com)
 - dunder-proto@1.0.1 — Copyright (c) 2024 ECMAScript Shims
 - eastasianwidth@0.2.0 — Copyright (c) Masaki Komagata
-- emoji-regex@8.0.0, 9.2.2, 10.4.0 — Copyright Mathias Bynens <https://mathiasbynens.be/>
+- emoji-regex@8.0.0, 9.2.2, 10.6.0 — Copyright Mathias Bynens <https://mathiasbynens.be/>
 - encoding-sniffer@0.2.1 — Copyright (c) 2022 Felix Boehm <me@feedic.com>
 - end-of-stream@1.4.5 — Copyright (c) 2014 Mathias Buus
 - es-define-property@1.0.1 — Copyright (c) 2024 Jordan Harband
@@ -135,23 +128,23 @@ The list is based on the currently installed dependency tree (pnpm).
 - es-module-lexer@1.7.0 — Copyright (C) 2018-2022 Guy Bedford
 - es-object-atoms@1.1.1 — Copyright (c) 2024 Jordan Harband
 - es-set-tostringtag@2.1.0 — Copyright (c) 2022 ECMAScript Shims
-- esbuild@0.25.8 — Copyright (c) 2020 Evan Wallace
+- esbuild@0.25.12, 0.27.7 — Copyright (c) 2020 Evan Wallace
 - escalade@3.2.0 — Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (lukeed.com)
 - escape-string-regexp@5.0.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
 - estree-walker@2.0.2, 3.0.3 — Copyright (c) 2015-20 [these people](https://github.com/Rich-Harris/estree-walker/graphs/contributors)
-- eventemitter3@5.0.1 — Copyright (c) 2014 Arnout Kazemier
+- eventemitter3@5.0.4 — Copyright (c) 2014 Arnout Kazemier
 - exsolve@1.0.7 — Copyright (c) 2021 Titus Wormer <mailto:tituswormer@gmail.com>; Copyright (c) Pooya Parsa <pooya@pi0.io>
 - extend@3.0.2 — Copyright (c) 2014 Stefan Thomas
-- fast-deep-equal@3.1.3 — Copyright (c) 2017 Evgeny Poberezkin
 - fast-glob@3.3.3 — Copyright (c) Denis Malinochkin
-- fast-xml-parser@5.3.0 — Copyright (c) 2017 Amit Kumar Gupta
+- fast-xml-builder@1.2.0 — Copyright (c) 2026 Natural Intelligence
+- fast-xml-parser@5.8.0 — Copyright (c) 2017 Amit Kumar Gupta
 - fd-slicer@1.1.0 — Copyright (c) 2014 Andrew Kelley
-- fdir@6.4.6 — Copyright 2023 Abdullah Atta
+- fdir@6.5.0 — Copyright 2023 Abdullah Atta
 - fill-range@7.1.1 — Copyright (c) 2014-present, Jon Schlinkert.
 - flattie@1.1.1 — Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (lukeed.com)
 - follow-redirects@1.15.11 — Copyright 2014–present Olivier Lalonde <olalonde@gmail.com>, James Talmage <james@talmage.io>, Ruben Verborgh
-- fontace@0.3.0 — Copyright (c) 2025 Chris Swithinbank
-- fontkit@2.0.4 — Copyright (c) Devon Govett
+- fontace@0.4.1 — Copyright (c) 2025 Chris Swithinbank
+- fontkitten@1.0.3 — Copyright (c) 2014 Devon Govett; Copyright (c) 2015-present Devon Govett; Copyright (c) Microsoft Corporation.; Copyright © 2025 Chris Swithinbank; Copyright 2017 Google Inc. All Rights Reserved.
 - form-data@4.0.4 — Copyright (c) 2012 Felix Geisendörfer (felix@debuggable.com) and contributors
 - fraction.js@4.3.7 — Copyright (c) 2023 Robert Eisele
 - function-bind@1.1.2 — Copyright (c) 2013 Raynos.
@@ -161,7 +154,7 @@ The list is based on the currently installed dependency tree (pnpm).
 - get-stream@5.2.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
 - globals@15.15.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
 - gopd@1.2.0 — Copyright (c) 2022 Jordan Harband
-- h3@1.15.4 — Copyright (c) Pooya Parsa <pooya@pi0.io>
+- h3@1.15.11 — Copyright (c) Pooya Parsa <pooya@pi0.io>
 - has-symbols@1.1.0 — Copyright (c) 2016 Jordan Harband
 - has-tostringtag@1.0.2 — Copyright (c) 2021 Inspect JS
 - hasown@2.0.2 — Copyright (c) Jordan Harband and contributors
@@ -171,7 +164,7 @@ The list is based on the currently installed dependency tree (pnpm).
 - hast-util-parse-selector@4.0.0 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
 - hast-util-raw@9.1.0 — Copyright (c) Titus Wormer <tituswormer@gmail.com>
 - hast-util-to-html@9.0.5 — Copyright (c) Titus Wormer <tituswormer@gmail.com>
-- hast-util-to-parse5@8.0.0 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
+- hast-util-to-parse5@8.0.1 — Copyright (c) Titus Wormer <tituswormer@gmail.com>
 - hast-util-to-text@4.0.2 — Copyright (c) 2019 Titus Wormer <tituswormer@gmail.com>
 - hast-util-whitespace@3.0.0 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
 - hastscript@9.0.1 — Copyright (c) Titus Wormer <tituswormer@gmail.com>
@@ -179,9 +172,8 @@ The list is based on the currently installed dependency tree (pnpm).
 - html-void-elements@3.0.0 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
 - htmlparser2@9.1.0 — Copyright 2010, 2011, Chris Winberry <chris@winberry.net>. All rights reserved.
 - iconv-lite@0.6.3 — Copyright (c) 2011 Alexander Shtuchkin
-- import-meta-resolve@4.1.0 — Copyright (c) 2021 Titus Wormer <mailto:tituswormer@gmail.com>
+- import-meta-resolve@4.2.0 — Copyright (c) Titus Wormer <mailto:tituswormer@gmail.com>
 - iron-webcrypto@1.2.1 — Copyright (c) 2021 Divyansh Singh
-- is-arrayish@0.3.2 — Copyright (c) 2015 JD Ballard
 - is-binary-path@2.1.0 — Copyright (c) 2019 Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com), Paul Miller (https://paulmillr.com)
 - is-core-module@2.16.1 — Copyright (c) 2014 Dave Justice
 - is-docker@3.0.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
@@ -193,23 +185,20 @@ The list is based on the currently installed dependency tree (pnpm).
 - is-plain-obj@4.1.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
 - is-wsl@3.1.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
 - jiti@1.21.7 — Copyright (c) Pooya Parsa <pooya@pi0.io>
-- js-yaml@4.1.0 — Copyright (C) 2011-2015 by Vitaly Puzrin
-- kleur@3.0.3, 4.1.5 — Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (lukeed.com)
+- js-yaml@4.1.1 — Copyright (C) 2011-2015 by Vitaly Puzrin
+- kleur@3.0.3 — Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (lukeed.com)
 - kolorist@1.8.0 — Copyright (c) 2020-present Marvin Hagemeister
 - lilconfig@3.1.3 — Copyright (c) 2022 Anton Kastritskiy
 - lines-and-columns@1.2.4 — Copyright (c) 2015 Brian Donovan
 - local-pkg@0.5.1, 1.1.1 — Copyright (c) 2021 Anthony Fu <https://github.com/antfu>
-- lodash.castarray@4.4.0 — Copyright 2012-2016 The Dojo Foundation <http://dojofoundation.org/>
-- lodash.isplainobject@4.0.6 — Copyright jQuery Foundation and other contributors <https://jquery.org/>
-- lodash.merge@4.6.2 — Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
 - longest-streak@3.1.0 — Copyright (c) 2015 Titus Wormer <mailto:tituswormer@gmail.com>
-- magic-string@0.30.17 — Copyright 2018 Rich Harris
-- magicast@0.3.5 — Copyright (c) Pooya Parsa <pooya@pi0.io> and Anthony Fu <https://github.com/antfu>
+- magic-string@0.30.21 — Copyright 2018 Rich Harris
+- magicast@0.5.3 — Copyright (c) Pooya Parsa <pooya@pi0.io> and Anthony Fu <https://github.com/antfu>
 - markdown-table@3.0.4 — Copyright (c) Titus Wormer <tituswormer@gmail.com>
 - math-intrinsics@1.1.0 — Copyright (c) 2024 ECMAScript Shims
 - mdast-util-definitions@6.0.0 — Copyright (c) 2015-2016 Titus Wormer <tituswormer@gmail.com>
 - mdast-util-find-and-replace@3.0.2 — Copyright (c) Titus Wormer <tituswormer@gmail.com>
-- mdast-util-from-markdown@2.0.2 — Copyright (c) Titus Wormer <tituswormer@gmail.com>
+- mdast-util-from-markdown@2.0.3 — Copyright (c) Titus Wormer <tituswormer@gmail.com>
 - mdast-util-gfm@3.1.0 — Copyright (c) Titus Wormer <tituswormer@gmail.com>
 - mdast-util-gfm-autolink-literal@2.0.1 — Copyright (c) 2020 Titus Wormer <tituswormer@gmail.com>
 - mdast-util-gfm-footnote@2.1.0 — Copyright (c) Titus Wormer <tituswormer@gmail.com>
@@ -217,7 +206,7 @@ The list is based on the currently installed dependency tree (pnpm).
 - mdast-util-gfm-table@2.0.0 — Copyright (c) 2020 Titus Wormer <tituswormer@gmail.com>
 - mdast-util-gfm-task-list-item@2.0.0 — Copyright (c) 2020 Titus Wormer <tituswormer@gmail.com>
 - mdast-util-phrasing@4.1.0 — Copyright (c) 2017 Titus Wormer <tituswormer@gmail.com>; Copyright (c) 2017 Victor Felder <victor@draft.li>
-- mdast-util-to-hast@13.2.0 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
+- mdast-util-to-hast@13.2.0, 13.2.1 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
 - mdast-util-to-markdown@2.1.2 — Copyright (c) Titus Wormer <tituswormer@gmail.com>
 - mdast-util-to-string@4.0.0 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
 - merge2@1.4.1 — Copyright (c) 2014-2020 Teambition
@@ -258,39 +247,38 @@ The list is based on the currently installed dependency tree (pnpm).
 - mrmime@2.0.1 — Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (https://lukeed.com)
 - ms@2.1.3 — Copyright (c) 2020 Vercel, Inc.
 - mz@2.7.0 — Copyright (c) 2014-2016 Jonathan Ong me@jongleberry.com and Contributors
-- nanoid@3.3.11 — Copyright 2017 Andrey Sitnik <andrey@sitnik.ru>
+- nanoid@3.3.11, 3.3.12 — Copyright 2017 Andrey Sitnik <andrey@sitnik.ru>
 - neotraverse@0.6.18 — Copyright (c) 2010 James Halliday and contributors
 - nlcst-to-string@4.0.0 — Copyright (c) 2014 Titus Wormer <tituswormer@gmail.com>
-- node-fetch@2.7.0 — Copyright (c) 2016 David Frank
 - node-fetch-native@1.6.7 — Copyright (c) 2013 Nathan Rajlich <nathan@tootallnate.net>; Copyright (c) 2016 - 2020 Node Fetch Team; Copyright (c) 2017 Toru Nagashima; Copyright (c) Matteo Collina and Undici contributors; Copyright (c) Pooya Parsa <pooya@pi0.io>
-- node-mock-http@1.0.2 — Copyright (c)
+- node-mock-http@1.0.4 — Copyright (c)
 - node-releases@2.0.19 — Copyright (c) 2017 Sergey Rubanov (https://github.com/chicoxyzzy)
 - normalize-path@3.0.0 — Copyright (c) 2014-2018, Jon Schlinkert.
 - normalize-range@0.1.2 — Copyright (c) James Talmage <james@talmage.io> (github.com/jamestalmage)
 - object-assign@4.1.1 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
 - object-hash@3.0.0 — Copyright (c) 2014 object-hash contributors
-- ofetch@1.4.1 — Copyright (c) Pooya Parsa <pooya@pi0.io>
+- ofetch@1.5.1 — Copyright (c) Pooya Parsa <pooya@pi0.io>
 - ohash@2.0.11 — Copyright (c) Pooya Parsa <pooya@pi0.io>
-- oniguruma-parser@0.12.1 — Copyright (c) 2025 Steven Levithan
-- oniguruma-to-es@4.3.3 — Copyright (c) 2025 Steven Levithan
+- oniguruma-parser@0.12.2 — Copyright (c) 2025-2026 Steven Levithan
+- oniguruma-to-es@4.3.6 — Copyright (c) 2024-2026 Steven Levithan
 - p-limit@6.2.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
-- p-queue@8.1.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
+- p-queue@8.1.1 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
 - p-timeout@6.1.4 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
-- package-manager-detector@1.3.0 — Copyright (c) 2020-PRESENT Anthony Fu <https://github.com/antfu>
-- pako@0.2.9 — Copyright (C) 2014-2016 by Vitaly Puzrin
+- package-manager-detector@1.3.0, 1.6.0 — Copyright (c) 2020-PRESENT Anthony Fu <https://github.com/antfu>
 - parse-latin@7.0.0 — Copyright (c) 2014 Titus Wormer <tituswormer@gmail.com>
 - parse5@7.3.0 — Copyright (c) 2013-2019 Ivan Nikulin (ifaaan@gmail.com, https://github.com/inikulin)
 - parse5-htmlparser2-tree-adapter@7.1.0 — Copyright (c) 2013-2019 Ivan Nikulin (ifaaan@gmail.com, https://github.com/inikulin)
 - parse5-parser-stream@7.1.2 — Copyright (c) 2013-2019 Ivan Nikulin (ifaaan@gmail.com, https://github.com/inikulin)
+- path-expression-matcher@1.5.0 — Copyright (c) 2024
 - path-key@3.1.1 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
 - path-parse@1.0.7 — Copyright (c) 2015 Javier Blanco
 - pathe@1.1.2, 2.0.3 — Copyright (c) 2023-present Fabio Spampinato; Copyright (c) Pooya Parsa <pooya@pi0.io> - Daniel Roe <daniel@roe.dev>
 - pend@1.2.0 — Copyright (c) 2014 Andrew Kelley
-- picomatch@2.3.1, 4.0.3 — Copyright (c) 2017-present, Jon Schlinkert.
+- picomatch@2.3.1, 4.0.3, 4.0.4 — Copyright (c) 2017-present, Jon Schlinkert.
 - pify@2.3.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
 - pirates@4.0.7 — Copyright (c) 2016-2018 Ari Porad
 - pkg-types@1.3.1, 2.2.0 — Copyright (c) Pooya Parsa <pooya@pi0.io> - Daniel Roe <daniel@roe.dev>
-- postcss@8.5.6 — Copyright 2013 Andrey Sitnik <andrey@sitnik.ru>
+- postcss@8.5.6, 8.5.14 — Copyright 2013 Andrey Sitnik <andrey@sitnik.es>; Copyright 2013 Andrey Sitnik <andrey@sitnik.ru>
 - postcss-import@15.1.0 — Copyright (c) 2014 Maxime Thirouin, Jason Campbell & Kevin Mårtensson
 - postcss-js@4.0.1 — Copyright 2015 Andrey Sitnik <andrey@sitnik.ru>
 - postcss-load-config@4.0.2 — Copyright Michael Ciniawsky <michael.ciniawsky@gmail.com>
@@ -299,15 +287,15 @@ The list is based on the currently installed dependency tree (pnpm).
 - postcss-value-parser@4.2.0 — Copyright (c) Bogdan Chadkin <trysound@yandex.ru>
 - prismjs@1.30.0 — Copyright (c) 2012 Lea Verou
 - prompts@2.4.2 — Copyright (c) 2018 Terkel Gjervig Nielsen
-- property-information@6.5.0, 7.1.0 — Copyright (c) 2015 Titus Wormer <mailto:tituswormer@gmail.com>; Copyright (c) Titus Wormer <mailto:tituswormer@gmail.com>
+- property-information@7.1.0 — Copyright (c) Titus Wormer <mailto:tituswormer@gmail.com>
 - proxy-from-env@1.1.0 — Copyright (C) 2016-2018 Rob Wu <rob@robwu.nl>
 - pump@3.0.3 — Copyright (c) 2014 Mathias Buus
 - quansync@0.2.10 — Copyright (c) 2025-PRESENT Anthony Fu <https://github.com/antfu> and Kevin Deng <https://github.com/sxzz>
 - queue-microtask@1.2.3 — Copyright (c) Feross Aboukhadijeh
 - radix3@1.1.2 — Copyright (c) Pooya Parsa <pooya@pi0.io>
 - read-cache@1.0.0 — Copyright 2016 Bogdan Chadkin <trysound@yandex.ru>
-- readdirp@3.6.0, 4.1.2 — Copyright (c) 2012-2019 Thorsten Lorenz, Paul Miller (https://paulmillr.com)
-- regex@6.0.1 — Copyright (c) 2025 Steven Levithan
+- readdirp@3.6.0, 5.0.0 — Copyright (c) 2012-2019 Thorsten Lorenz, Paul Miller (https://paulmillr.com)
+- regex@6.1.0 — Copyright (c) 2025 Steven Levithan
 - regex-recursion@6.0.2 — Copyright (c) 2025 Steven Levithan
 - regex-utilities@2.3.0 — Copyright (c) 2024 Steven Levithan
 - rehype@13.0.2 — Copyright (c) Titus Wormer
@@ -320,102 +308,96 @@ The list is based on the currently installed dependency tree (pnpm).
 - remark-smartypants@3.0.2 — Copyright (c) Matija Marohnić <matija.marohnic@gmail.com> (silvenon.com)
 - remark-stringify@11.0.0 — Copyright (c) 2014 Titus Wormer <tituswormer@gmail.com>
 - resolve@1.22.10 — Copyright (c) 2012 James Halliday
-- restructure@3.0.2 — Copyright (c) 2015-present Devon Govett
 - retext@9.0.0 — Copyright (c) Titus Wormer
 - retext-latin@4.0.0 — Copyright (c) Titus Wormer
 - retext-smartypants@6.2.0 — Copyright (c) Titus Wormer <tituswormer@gmail.com>
 - retext-stringify@4.0.0 — Copyright (c) Titus Wormer
 - reusify@1.1.0 — Copyright (c) 2015-2024 Matteo Collina
-- rollup@4.46.2 — Copyright (c) 2017 [these people](https://github.com/rollup/rollup/graphs/contributors)
+- rollup@4.60.3 — Copyright (c) 2017 [these people](https://github.com/rollup/rollup/graphs/contributors)
 - run-parallel@1.2.0 — Copyright (c) Feross Aboukhadijeh
 - safer-buffer@2.1.2 — Copyright (c) 2018 Nikita Skovoroda <chalkerx@gmail.com>
 - shebang-command@2.0.0 — Copyright (c) Kevin Mårtensson <kevinmartensson@gmail.com> (github.com/kevva)
 - shebang-regex@3.0.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
-- shiki@3.9.1 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
-- simple-swizzle@0.2.2 — Copyright (c) 2015 Josh Junon
+- shiki@3.23.0 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
 - sisteransi@1.0.5 — Copyright (c) 2018 Terkel Gjervig Nielsen
-- sitemap@8.0.0 — Copyright (c) 2011 Eugene Kalinin
+- sitemap@9.0.1 — Copyright (c) 2011 Eugene Kalinin
 - space-separated-tokens@2.0.2 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
 - stream-replace-string@2.0.0 — Copyright (c) 2020 ChocolateLoverRaj
 - string-width@4.2.3, 5.1.2, 7.2.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com); Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
 - stringify-entities@4.0.4 — Copyright (c) 2015 Titus Wormer <mailto:tituswormer@gmail.com>
-- strip-ansi@6.0.1, 7.1.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com); Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
-- strnum@2.1.1 — Copyright (c) 2021 Natural Intelligence
+- strip-ansi@6.0.1, 7.1.0, 7.2.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com); Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
+- strnum@2.3.0 — Copyright (c) 2021 Natural Intelligence
 - sucrase@3.35.0 — Copyright (c) 2012-2018 various contributors (see AUTHORS)
 - supports-preserve-symlinks-flag@1.0.0 — Copyright (c) 2022 Inspect JS
-- svgo@3.3.2 — Copyright (c) Kir Belevich
+- svgo@3.3.2, 4.0.1 — Copyright (c) Kir Belevich
 - tailwindcss@3.4.17 — Copyright (c) Tailwind Labs, Inc.
 - thenify@3.3.1 — Copyright (c) 2014-2016 Jonathan Ong me@jongleberry.com and contributors
 - thenify-all@1.6.0 — Copyright (c) 2014 Jonathan Ong me@jongleberry.com
 - tiny-inflate@1.0.3 — Copyright (c) 2015-present Devon Govett
-- tinyexec@0.3.2, 1.0.1 — Copyright (c) 2024 Tinylibs
-- tinyglobby@0.2.14 — Copyright (c) 2024 Madeline Gurriarán
+- tinyexec@1.0.1, 1.1.2 — Copyright (c) 2024 Tinylibs
+- tinyglobby@0.2.16 — Copyright (c) 2024 Madeline Gurriarán
 - to-regex-range@5.0.1 — Copyright (c) 2015-present, Jon Schlinkert.
-- tr46@0.0.3 — Copyright (c) Sebastian Mayr
 - trim-lines@3.0.1 — Copyright (c) 2015 Titus Wormer <mailto:tituswormer@gmail.com>
 - trough@2.2.0 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
 - tsconfck@3.1.6 — Copyright (c) 2021-present dominikg and [contributors](https://github.com/dominikg/tsconfck/graphs/contributors); Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
-- ufo@1.6.1 — Copyright (c) Pooya Parsa <pooya@pi0.io>
+- ufo@1.6.1, 1.6.4 — Copyright (c) Pooya Parsa <pooya@pi0.io>
 - ultrahtml@1.6.0 — Copyright (c) 2013 Jason Miller
 - uncrypto@0.1.3 — Copyright (c) Pooya Parsa <pooya@pi0.io>
 - undici@6.21.3 — Copyright (c) Matteo Collina and Undici contributors
-- undici-types@7.8.0 — Copyright (c) Matteo Collina and Undici contributors
-- unicode-properties@1.4.1 — Copyright 2018
-- unicode-trie@2.0.0 — Copyright 2018
+- undici-types@7.8.0, 7.16.0 — Copyright (c) Matteo Collina and Undici contributors
 - unified@11.0.5 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
-- unifont@0.5.2 — Copyright (c) 2024 Daniel Roe
+- unifont@0.7.4 — Copyright (c) 2024 Daniel Roe
 - unist-util-find-after@5.0.0 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
-- unist-util-is@6.0.0 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
+- unist-util-is@6.0.0, 6.0.1 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
 - unist-util-modify-children@4.0.0 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
 - unist-util-position@5.0.0 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
 - unist-util-remove-position@5.0.0 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
 - unist-util-stringify-position@4.0.0 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
 - unist-util-visit@5.0.0 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
 - unist-util-visit-children@3.0.0 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
-- unist-util-visit-parents@6.0.1 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
-- unstorage@1.16.1 — Copyright (c) Pooya Parsa <pooya@pi0.io>
+- unist-util-visit-parents@6.0.1, 6.0.2 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
+- unstorage@1.17.5 — Copyright (c) Pooya Parsa <pooya@pi0.io>
 - update-browserslist-db@1.1.3 — Copyright 2022 Andrey Sitnik <andrey@sitnik.ru> and other contributors
 - util-deprecate@1.0.2 — Copyright (c) 2014 Nathan Rajlich <nathan@tootallnate.net>
 - vfile@6.0.3 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
 - vfile-location@5.0.3 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
 - vfile-message@4.0.3 — Copyright (c) Titus Wormer <tituswormer@gmail.com>
-- vite@6.3.5 — Copyright (c) 2019-present, VoidZero Inc. and Vite contributors
+- vite@6.4.2 — Copyright (c) 2019-present, VoidZero Inc. and Vite contributors
 - vitefu@1.1.1 — Copyright (c) 2025 Bjorn and Dominik
 - web-namespaces@2.0.1 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
 - whatwg-encoding@3.1.1 — Copyright © Domenic Denicola <d@domenic.me>
 - whatwg-mimetype@4.0.0 — Copyright © Domenic Denicola <d@domenic.me>
-- whatwg-url@5.0.0 — Copyright (c) 2015–2016 Sebastian Mayr
 - which-pm-runs@1.1.0 — Copyright (c) 2017-2022 Zoltan Kochan <z@kochan.io>
 - widest-line@5.0.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
 - wrap-ansi@7.0.0, 9.0.0 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
+- xml-naming@0.1.0 — Copyright (c) Amit Gupta
 - xxhash-wasm@1.1.0 — Copyright © 2017 Michael Jungo
 - yauzl@2.10.0 — Copyright (c) 2014 Josh Wolfe
 - yocto-queue@1.2.1 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
 - yocto-spinner@0.2.3 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
 - yoctocolors@2.1.1 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
-- zod@3.25.76 — Copyright (c) 2025 Colin McDonnell
+- zod@3.25.76, 4.4.3 — Copyright (c) 2025 Colin McDonnell
 - zod-to-ts@1.2.0 — Copyright (c) 2021 Sachin Raja
 - zwitch@2.0.4 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
 
 ### Apache-2.0
 
-- @img/sharp-linux-x64@0.33.5 — Copyright (c) Lovell Fuller
-- @img/sharp-linuxmusl-x64@0.33.5 — Copyright (c) Lovell Fuller
-- @swc/helpers@0.5.17 — Copyright 2024 SWC contributors.
+- @img/sharp-linux-x64@0.34.5 — Copyright (c) Lovell Fuller
+- @img/sharp-linuxmusl-x64@0.34.5 — Copyright (c) Lovell Fuller
 - aria-query@5.3.2 — Copyright 2020 A11yance
 - axobject-query@4.1.0 — Copyright 2020 A11yance
-- detect-libc@2.0.4 — Copyright (c) Lovell Fuller
+- detect-libc@2.1.2 — Copyright (c) Lovell Fuller
 - didyoumean@1.2.2 — Copyright (c) Dave Porter
-- sharp@0.33.5 — Copyright (c) Lovell Fuller
+- sharp@0.34.5 — Copyright (c) Lovell Fuller
 - ts-interface-checker@0.1.13 — Copyright (c) Dmitry S, Grist Labs
 - typescript@5.9.2 — Copyright (c) Microsoft Corp.
 
 ### ISC
 
-- @iconify-json/lucide@1.2.60 — Author: Lucide Contributors
+- @iconify-json/lucide@1.2.107 — Author: Lucide Contributors
 - @isaacs/cliui@8.0.2 — Copyright (c) 2015, Contributors
 - @trysound/sax@0.2.0 — Copyright (c) Isaac Z. Schlueter and Contributors
-- @ungap/structured-clone@1.3.0 — Copyright (c) 2021, Andrea Giammarchi, @WebReflection
+- @ungap/structured-clone@1.3.0, 1.3.1 — Copyright (c) 2021, Andrea Giammarchi, @WebReflection
 - ansi-align@3.0.1 — Copyright (c) 2016, Contributors
 - anymatch@3.1.3 — Copyright (c) 2019 Elan Shanker, Paul Miller (https://paulmillr.com)
 - boolbase@1.0.0 — Copyright (c) Felix Boehm
@@ -433,9 +415,9 @@ The list is based on the currently installed dependency tree (pnpm).
 - minimatch@9.0.5 — Copyright (c) 2011-2023 Isaac Z. Schlueter and Contributors
 - minipass@3.3.6, 4.2.8, 5.0.0, 7.1.2 — Copyright (c) 2017-2022 npm, Inc., Isaac Z. Schlueter, and Contributors; Copyright (c) 2017-2023 npm, Inc., Isaac Z. Schlueter, and Contributors
 - once@1.4.0 — Copyright (c) Isaac Z. Schlueter and Contributors
+- piccolore@0.1.3
 - picocolors@1.1.1 — Copyright (c) 2021-2024 Oleksii Raspopov, Kostiantyn Denysov, Anton Verinov
-- sax@1.4.1 — Copyright (c) 2010-2024 Isaac Z. Schlueter and Contributors; Copyright (c) 2010-2024 Mathias Bynens <https://mathiasbynens.be/>
-- semver@7.7.2 — Copyright (c) Isaac Z. Schlueter and Contributors
+- semver@7.8.0 — Copyright (c) Isaac Z. Schlueter and Contributors
 - signal-exit@4.1.0 — Copyright (c) 2015-2023 Benjamin Coe, Isaac Z. Schlueter, and Contributors
 - tar@6.2.1 — Copyright (c) Isaac Z. Schlueter and Contributors
 - which@2.0.2 — Copyright (c) Isaac Z. Schlueter and Contributors
@@ -443,7 +425,7 @@ The list is based on the currently installed dependency tree (pnpm).
 - yallist@4.0.0 — Copyright (c) Isaac Z. Schlueter and Contributors
 - yaml@2.8.0 — Copyright Eemeli Aro <eemeli@gmail.com>
 - yargs-parser@21.1.1 — Copyright (c) 2016, Contributors
-- zod-to-json-schema@3.24.6 — Copyright (c) 2020, Stefan Terdell
+- zod-to-json-schema@3.25.2 — Copyright (c) 2020, Stefan Terdell
 
 ### BSD-2-Clause
 
@@ -457,28 +439,25 @@ The list is based on the currently installed dependency tree (pnpm).
 - extract-zip@2.0.1 — Copyright (c) 2014 Max Ogden and other contributors
 - http-cache-semantics@4.2.0 — Copyright 2016-2018 Kornel Lesiński
 - nth-check@2.1.1 — Copyright (c) Felix Böhm
-- webidl-conversions@3.0.1 — Copyright (c) 2014, Domenic Denicola
 
 ### BSD-3-Clause
 
-- diff@5.2.0 — Copyright (c) 2009-2015, Kevin Decker <kpdecker@gmail.com>
-- smol-toml@1.4.1 — Copyright (c) Squirrel Chat et al., All rights reserved.
+- diff@8.0.4 — Copyright (c) 2009-2015, Kevin Decker <kpdecker@gmail.com>
+- smol-toml@1.6.1 — Copyright (c) Squirrel Chat et al., All rights reserved.
 - source-map-js@1.2.1 — Copyright (c) 2009-2011, Mozilla Foundation and contributors
-
-### 0BSD
-
-- tslib@2.8.1 — Copyright (c) Microsoft Corporation.
 
 ### BlueOak-1.0.0
 
 - jackspeak@3.4.3 — Copyright (c) Isaac Z. Schlueter
+- lru-cache@11.3.6 — Copyright (c) Isaac Z. Schlueter
 - package-json-from-dist@1.0.1 — Copyright (c) Isaac Z. Schlueter
 - path-scurry@1.11.1 — Copyright (c) Isaac Z. Schlueter
+- sax@1.6.0 — Copyright (c) Isaac Z. Schlueter
 
 ### CC0-1.0
 
-- @iconify-json/simple-icons@1.2.45 — Author: Simple Icons Collaborators
-- mdn-data@2.0.28, 2.0.30, 2.12.2 — Copyright (c) Mozilla Developer Network
+- @iconify-json/simple-icons@1.2.82 — Author: Simple Icons Collaborators
+- mdn-data@2.0.28, 2.0.30, 2.27.1 — Copyright (c) Mozilla Developer Network
 
 ### CC-BY-4.0
 
@@ -486,8 +465,8 @@ The list is based on the currently installed dependency tree (pnpm).
 
 ### LGPL-3.0-or-later
 
-- @img/sharp-libvips-linux-x64@1.0.4 — Copyright (c) Lovell Fuller
-- @img/sharp-libvips-linuxmusl-x64@1.0.4 — Copyright (c) Lovell Fuller
+- @img/sharp-libvips-linux-x64@1.2.4 — Copyright (c) Lovell Fuller
+- @img/sharp-libvips-linuxmusl-x64@1.2.4 — Copyright (c) Lovell Fuller
 
 ### Python-2.0
 
@@ -527,206 +506,196 @@ SOFTWARE.
 ### Apache-2.0
 ```text
 Apache License
-                        Version 2.0, January 2004
-                     http://www.apache.org/licenses/
+Version 2.0, January 2004
+http://www.apache.org/licenses/
 
 TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
 1. Definitions.
 
-   "License" shall mean the terms and conditions for use, reproduction,
-   and distribution as defined by Sections 1 through 9 of this document.
+"License" shall mean the terms and conditions for use, reproduction, and
+distribution as defined by Sections 1 through 9 of this document.
 
-   "Licensor" shall mean the copyright owner or entity authorized by
-   the copyright owner that is granting the License.
+"Licensor" shall mean the copyright owner or entity authorized by the copyright
+owner that is granting the License.
 
-   "Legal Entity" shall mean the union of the acting entity and all
-   other entities that control, are controlled by, or are under common
-   control with that entity. For the purposes of this definition,
-   "control" means (i) the power, direct or indirect, to cause the
-   direction or management of such entity, whether by contract or
-   otherwise, or (ii) ownership of fifty percent (50%) or more of the
-   outstanding shares, or (iii) beneficial ownership of such entity.
+"Legal Entity" shall mean the union of the acting entity and all other entities
+that control, are controlled by, or are under common control with that entity.
+For the purposes of this definition, "control" means (i) the power, direct or
+indirect, to cause the direction or management of such entity, whether by
+contract or otherwise, or (ii) ownership of fifty percent (50%) or more of the
+outstanding shares, or (iii) beneficial ownership of such entity.
 
-   "You" (or "Your") shall mean an individual or Legal Entity
-   exercising permissions granted by this License.
+"You" (or "Your") shall mean an individual or Legal Entity exercising
+permissions granted by this License.
 
-   "Source" form shall mean the preferred form for making modifications,
-   including but not limited to software source code, documentation
-   source, and configuration files.
+"Source" form shall mean the preferred form for making modifications, including
+but not limited to software source code, documentation source, and configuration
+files.
 
-   "Object" form shall mean any form resulting from mechanical
-   transformation or translation of a Source form, including but
-   not limited to compiled object code, generated documentation,
-   and conversions to other media types.
+"Object" form shall mean any form resulting from mechanical transformation or
+translation of a Source form, including but not limited to compiled object code,
+generated documentation, and conversions to other media types.
 
-   "Work" shall mean the work of authorship, whether in Source or
-   Object form, made available under the License, as indicated by a
-   copyright notice that is included in or attached to the work
-   (an example is provided in the Appendix below).
+"Work" shall mean the work of authorship, whether in Source or Object form, made
+available under the License, as indicated by a copyright notice that is included
+in or attached to the work (an example is provided in the Appendix below).
 
-   "Derivative Works" shall mean any work, whether in Source or Object
-   form, that is based on (or derived from) the Work and for which the
-   editorial revisions, annotations, elaborations, or other modifications
-   represent, as a whole, an original work of authorship. For the purposes
-   of this License, Derivative Works shall not include works that remain
-   separable from, or merely link (or bind by name) to the interfaces of,
-   the Work and Derivative Works thereof.
+"Derivative Works" shall mean any work, whether in Source or Object form, that
+is based on (or derived from) the Work and for which the editorial revisions,
+annotations, elaborations, or other modifications represent, as a whole, an
+original work of authorship. For the purposes of this License, Derivative Works
+shall not include works that remain separable from, or merely link (or bind by
+name) to the interfaces of, the Work and Derivative Works thereof.
 
-   "Contribution" shall mean any work of authorship, including
-   the original version of the Work and any modifications or additions
-   to that Work or Derivative Works thereof, that is intentionally
-   submitted to Licensor for inclusion in the Work by the copyright owner
-   or by an individual or Legal Entity authorized to submit on behalf of
-   the copyright owner. For the purposes of this definition, "submitted"
-   means any form of electronic, verbal, or written communication sent
-   to the Licensor or its representatives, including but not limited to
-   communication on electronic mailing lists, source code control systems,
-   and issue tracking systems that are managed by, or on behalf of, the
-   Licensor for the purpose of discussing and improving the Work, but
-   excluding communication that is conspicuously marked or otherwise
-   designated in writing by the copyright owner as "Not a Contribution."
+"Contribution" shall mean any work of authorship, including the original version
+of the Work and any modifications or additions to that Work or Derivative Works
+thereof, that is intentionally submitted to Licensor for inclusion in the Work
+by the copyright owner or by an individual or Legal Entity authorized to submit
+on behalf of the copyright owner. For the purposes of this definition,
+"submitted" means any form of electronic, verbal, or written communication sent
+to the Licensor or its representatives, including but not limited to
+communication on electronic mailing lists, source code control systems, and
+issue tracking systems that are managed by, or on behalf of, the Licensor for
+the purpose of discussing and improving the Work, but excluding communication
+that is conspicuously marked or otherwise designated in writing by the copyright
+owner as "Not a Contribution."
 
-   "Contributor" shall mean Licensor and any individual or Legal Entity
-   on behalf of whom a Contribution has been received by Licensor and
-   subsequently incorporated within the Work.
+"Contributor" shall mean Licensor and any individual or Legal Entity on behalf
+of whom a Contribution has been received by Licensor and subsequently
+incorporated within the Work.
 
-2. Grant of Copyright License. Subject to the terms and conditions of
-   this License, each Contributor hereby grants to You a perpetual,
-   worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-   copyright license to reproduce, prepare Derivative Works of,
-   publicly display, publicly perform, sublicense, and distribute the
-   Work and such Derivative Works in Source or Object form.
+2. Grant of Copyright License.
 
-3. Grant of Patent License. Subject to the terms and conditions of
-   this License, each Contributor hereby grants to You a perpetual,
-   worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-   (except as stated in this section) patent license to make, have made,
-   use, offer to sell, sell, import, and otherwise transfer the Work,
-   where such license applies only to those patent claims licensable
-   by such Contributor that are necessarily infringed by their
-   Contribution(s) alone or by combination of their Contribution(s)
-   with the Work to which such Contribution(s) was submitted. If You
-   institute patent litigation against any entity (including a
-   cross-claim or counterclaim in a lawsuit) alleging that the Work
-   or a Contribution incorporated within the Work constitutes direct
-   or contributory patent infringement, then any patent licenses
-   granted to You under this License for that Work shall terminate
-   as of the date such litigation is filed.
+Subject to the terms and conditions of this License, each Contributor hereby
+grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free,
+irrevocable copyright license to reproduce, prepare Derivative Works of,
+publicly display, publicly perform, sublicense, and distribute the Work and such
+Derivative Works in Source or Object form.
 
-4. Redistribution. You may reproduce and distribute copies of the
-   Work or Derivative Works thereof in any medium, with or without
-   modifications, and in Source or Object form, provided that You
-   meet the following conditions:
+3. Grant of Patent License.
 
-   (a) You must give any other recipients of the Work or
-       Derivative Works a copy of this License; and
+Subject to the terms and conditions of this License, each Contributor hereby
+grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free,
+irrevocable (except as stated in this section) patent license to make, have
+made, use, offer to sell, sell, import, and otherwise transfer the Work, where
+such license applies only to those patent claims licensable by such Contributor
+that are necessarily infringed by their Contribution(s) alone or by combination
+of their Contribution(s) with the Work to which such Contribution(s) was
+submitted. If You institute patent litigation against any entity (including a
+cross-claim or counterclaim in a lawsuit) alleging that the Work or a
+Contribution incorporated within the Work constitutes direct or contributory
+patent infringement, then any patent licenses granted to You under this License
+for that Work shall terminate as of the date such litigation is filed.
 
-   (b) You must cause any modified files to carry prominent notices
-       stating that You changed the files; and
+4. Redistribution.
 
-   (c) You must retain, in the Source form of any Derivative Works
-       that You distribute, all copyright, patent, trademark, and
-       attribution notices from the Source form of the Work,
-       excluding those notices that do not pertain to any part of
-       the Derivative Works; and
+You may reproduce and distribute copies of the Work or Derivative Works thereof
+in any medium, with or without modifications, and in Source or Object form,
+provided that You meet the following conditions:
 
-   (d) If the Work includes a "NOTICE" text file as part of its
-       distribution, then any Derivative Works that You distribute must
-       include a readable copy of the attribution notices contained
-       within such NOTICE file, excluding those notices that do not
-       pertain to any part of the Derivative Works, in at least one
-       of the following places: within a NOTICE text file distributed
-       as part of the Derivative Works; within the Source form or
-       documentation, if provided along with the Derivative Works; or,
-       within a display generated by the Derivative Works, if and
-       wherever such third-party notices normally appear. The contents
-       of the NOTICE file are for informational purposes only and
-       do not modify the License. You may add Your own attribution
-       notices within Derivative Works that You distribute, alongside
-       or as an addendum to the NOTICE text from the Work, provided
-       that such additional attribution notices cannot be construed
-       as modifying the License.
+You must give any other recipients of the Work or Derivative Works a copy of
+this License; and
+You must cause any modified files to carry prominent notices stating that You
+changed the files; and
+You must retain, in the Source form of any Derivative Works that You distribute,
+all copyright, patent, trademark, and attribution notices from the Source form
+of the Work, excluding those notices that do not pertain to any part of the
+Derivative Works; and
+If the Work includes a "NOTICE" text file as part of its distribution, then any
+Derivative Works that You distribute must include a readable copy of the
+attribution notices contained within such NOTICE file, excluding those notices
+that do not pertain to any part of the Derivative Works, in at least one of the
+following places: within a NOTICE text file distributed as part of the
+Derivative Works; within the Source form or documentation, if provided along
+with the Derivative Works; or, within a display generated by the Derivative
+Works, if and wherever such third-party notices normally appear. The contents of
+the NOTICE file are for informational purposes only and do not modify the
+License. You may add Your own attribution notices within Derivative Works that
+You distribute, alongside or as an addendum to the NOTICE text from the Work,
+provided that such additional attribution notices cannot be construed as
+modifying the License.
+You may add Your own copyright statement to Your modifications and may provide
+additional or different license terms and conditions for use, reproduction, or
+distribution of Your modifications, or for any such Derivative Works as a whole,
+provided Your use, reproduction, and distribution of the Work otherwise complies
+with the conditions stated in this License.
 
-   You may add Your own copyright statement to Your modifications and
-   may provide additional or different license terms and conditions
-   for use, reproduction, or distribution of Your modifications, or
-   for any such Derivative Works as a whole, provided Your use,
-   reproduction, and distribution of the Work otherwise complies with
-   the conditions stated in this License.
+5. Submission of Contributions.
 
-5. Submission of Contributions. Unless You explicitly state otherwise,
-   any Contribution intentionally submitted for inclusion in the Work
-   by You to the Licensor shall be under the terms and conditions of
-   this License, without any additional terms or conditions.
-   Notwithstanding the above, nothing herein shall supersede or modify
-   the terms of any separate license agreement you may have executed
-   with Licensor regarding such Contributions.
+Unless You explicitly state otherwise, any Contribution intentionally submitted
+for inclusion in the Work by You to the Licensor shall be under the terms and
+conditions of this License, without any additional terms or conditions.
+Notwithstanding the above, nothing herein shall supersede or modify the terms of
+any separate license agreement you may have executed with Licensor regarding
+such Contributions.
 
-6. Trademarks. This License does not grant permission to use the trade
-   names, trademarks, service marks, or product names of the Licensor,
-   except as required for reasonable and customary use in describing the
-   origin of the Work and reproducing the content of the NOTICE file.
+6. Trademarks.
 
-7. Disclaimer of Warranty. Unless required by applicable law or
-   agreed to in writing, Licensor provides the Work (and each
-   Contributor provides its Contributions) on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-   implied, including, without limitation, any warranties or conditions
-   of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-   PARTICULAR PURPOSE. You are solely responsible for determining the
-   appropriateness of using or redistributing the Work and assume any
-   risks associated with Your exercise of permissions under this License.
+This License does not grant permission to use the trade names, trademarks,
+service marks, or product names of the Licensor, except as required for
+reasonable and customary use in describing the origin of the Work and
+reproducing the content of the NOTICE file.
 
-8. Limitation of Liability. In no event and under no legal theory,
-   whether in tort (including negligence), contract, or otherwise,
-   unless required by applicable law (such as deliberate and grossly
-   negligent acts) or agreed to in writing, shall any Contributor be
-   liable to You for damages, including any direct, indirect, special,
-   incidental, or consequential damages of any character arising as a
-   result of this License or out of the use or inability to use the
-   Work (including but not limited to damages for loss of goodwill,
-   work stoppage, computer failure or malfunction, or any and all
-   other commercial damages or losses), even if such Contributor
-   has been advised of the possibility of such damages.
+7. Disclaimer of Warranty.
 
-9. Accepting Warranty or Additional Liability. While redistributing
-   the Work or Derivative Works thereof, You may choose to offer,
-   and charge a fee for, acceptance of support, warranty, indemnity,
-   or other liability obligations and/or rights consistent with this
-   License. However, in accepting such obligations, You may act only
-   on Your own behalf and on Your sole responsibility, not on behalf
-   of any other Contributor, and only if You agree to indemnify,
-   defend, and hold each Contributor harmless for any liability
-   incurred by, or claims asserted against, such Contributor by reason
-   of your accepting any such warranty or additional liability.
+Unless required by applicable law or agreed to in writing, Licensor provides the
+Work (and each Contributor provides its Contributions) on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied,
+including, without limitation, any warranties or conditions of TITLE,
+NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are
+solely responsible for determining the appropriateness of using or
+redistributing the Work and assume any risks associated with Your exercise of
+permissions under this License.
+
+8. Limitation of Liability.
+
+In no event and under no legal theory, whether in tort (including negligence),
+contract, or otherwise, unless required by applicable law (such as deliberate
+and grossly negligent acts) or agreed to in writing, shall any Contributor be
+liable to You for damages, including any direct, indirect, special, incidental,
+or consequential damages of any character arising as a result of this License or
+out of the use or inability to use the Work (including but not limited to
+damages for loss of goodwill, work stoppage, computer failure or malfunction, or
+any and all other commercial damages or losses), even if such Contributor has
+been advised of the possibility of such damages.
+
+9. Accepting Warranty or Additional Liability.
+
+While redistributing the Work or Derivative Works thereof, You may choose to
+offer, and charge a fee for, acceptance of support, warranty, indemnity, or
+other liability obligations and/or rights consistent with this License. However,
+in accepting such obligations, You may act only on Your own behalf and on Your
+sole responsibility, not on behalf of any other Contributor, and only if You
+agree to indemnify, defend, and hold each Contributor harmless for any liability
+incurred by, or claims asserted against, such Contributor by reason of your
+accepting any such warranty or additional liability.
 
 END OF TERMS AND CONDITIONS
 
-APPENDIX: How to apply the Apache License to your work.
+APPENDIX: How to apply the Apache License to your work
 
-   To apply the Apache License to your work, attach the following
-   boilerplate notice, with the fields enclosed by brackets "[]"
-   replaced with your own identifying information. (Don't include
-   the brackets!)  The text should be enclosed in the appropriate
-   comment syntax for the file format. We also recommend that a
-   file or class name and description of purpose be included on the
-   same "printed page" as the copyright notice for easier
-   identification within third-party archives.
+To apply the Apache License to your work, attach the following boilerplate
+notice, with the fields enclosed by brackets "[]" replaced with your own
+identifying information. (Don't include the brackets!) The text should be
+enclosed in the appropriate comment syntax for the file format. We also
+recommend that a file or class name and description of purpose be included on
+the same "printed page" as the copyright notice for easier identification within
+third-party archives.
 
-Copyright 2024 SWC contributors.
+   Copyright [yyyy] [name of copyright owner]
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
 
-	http://www.apache.org/licenses/LICENSE-2.0
+     http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
 ```
 
 ### ISC
@@ -784,23 +753,6 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-```
-
-### 0BSD
-```text
-/******************************************************************************
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */
 ```
 
 ### BlueOak-1.0.0
@@ -1813,7 +1765,7 @@ The packages under this license are dual-licensed; see the MIT and CC0-1.0 texts
 
 ## Additional Package Notices
 
-### @astrojs/compiler@2.12.2 (LICENSE)
+### @astrojs/compiler@2.13.1 (LICENSE)
 ```text
 MIT License
 
@@ -1870,7 +1822,7 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```
 
-### @astrojs/internal-helpers@0.7.1 (LICENSE)
+### @astrojs/internal-helpers@0.7.6 (LICENSE)
 ```text
 MIT License
 
@@ -1933,7 +1885,7 @@ SOFTWARE.
 """
 ```
 
-### @astrojs/markdown-remark@6.3.5 (LICENSE)
+### @astrojs/markdown-remark@6.3.11 (LICENSE)
 ```text
 MIT License
 
@@ -2059,7 +2011,7 @@ SOFTWARE.
 """
 ```
 
-### @astrojs/rss@4.0.13 (LICENSE)
+### @astrojs/rss@4.0.18 (LICENSE)
 ```text
 MIT License
 
@@ -2122,7 +2074,7 @@ SOFTWARE.
 """
 ```
 
-### @astrojs/sitemap@3.4.2 (LICENSE)
+### @astrojs/sitemap@3.7.2 (LICENSE)
 ```text
 MIT License
 
@@ -2311,7 +2263,7 @@ SOFTWARE.
 """
 ```
 
-### @img/sharp-linux-x64@0.33.5 (LICENSE)
+### @img/sharp-linux-x64@0.34.5 (LICENSE)
 ```text
 Apache License
 Version 2.0, January 2004
@@ -2506,7 +2458,7 @@ third-party archives.
    limitations under the License.
 ```
 
-### @img/sharp-linuxmusl-x64@0.33.5 (LICENSE)
+### @img/sharp-linuxmusl-x64@0.34.5 (LICENSE)
 ```text
 Apache License
 Version 2.0, January 2004
@@ -2904,211 +2856,6 @@ Apache License
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-```
-
-### @swc/helpers@0.5.17 (LICENSE)
-```text
-Apache License
-                        Version 2.0, January 2004
-                     http://www.apache.org/licenses/
-
-TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
-1. Definitions.
-
-   "License" shall mean the terms and conditions for use, reproduction,
-   and distribution as defined by Sections 1 through 9 of this document.
-
-   "Licensor" shall mean the copyright owner or entity authorized by
-   the copyright owner that is granting the License.
-
-   "Legal Entity" shall mean the union of the acting entity and all
-   other entities that control, are controlled by, or are under common
-   control with that entity. For the purposes of this definition,
-   "control" means (i) the power, direct or indirect, to cause the
-   direction or management of such entity, whether by contract or
-   otherwise, or (ii) ownership of fifty percent (50%) or more of the
-   outstanding shares, or (iii) beneficial ownership of such entity.
-
-   "You" (or "Your") shall mean an individual or Legal Entity
-   exercising permissions granted by this License.
-
-   "Source" form shall mean the preferred form for making modifications,
-   including but not limited to software source code, documentation
-   source, and configuration files.
-
-   "Object" form shall mean any form resulting from mechanical
-   transformation or translation of a Source form, including but
-   not limited to compiled object code, generated documentation,
-   and conversions to other media types.
-
-   "Work" shall mean the work of authorship, whether in Source or
-   Object form, made available under the License, as indicated by a
-   copyright notice that is included in or attached to the work
-   (an example is provided in the Appendix below).
-
-   "Derivative Works" shall mean any work, whether in Source or Object
-   form, that is based on (or derived from) the Work and for which the
-   editorial revisions, annotations, elaborations, or other modifications
-   represent, as a whole, an original work of authorship. For the purposes
-   of this License, Derivative Works shall not include works that remain
-   separable from, or merely link (or bind by name) to the interfaces of,
-   the Work and Derivative Works thereof.
-
-   "Contribution" shall mean any work of authorship, including
-   the original version of the Work and any modifications or additions
-   to that Work or Derivative Works thereof, that is intentionally
-   submitted to Licensor for inclusion in the Work by the copyright owner
-   or by an individual or Legal Entity authorized to submit on behalf of
-   the copyright owner. For the purposes of this definition, "submitted"
-   means any form of electronic, verbal, or written communication sent
-   to the Licensor or its representatives, including but not limited to
-   communication on electronic mailing lists, source code control systems,
-   and issue tracking systems that are managed by, or on behalf of, the
-   Licensor for the purpose of discussing and improving the Work, but
-   excluding communication that is conspicuously marked or otherwise
-   designated in writing by the copyright owner as "Not a Contribution."
-
-   "Contributor" shall mean Licensor and any individual or Legal Entity
-   on behalf of whom a Contribution has been received by Licensor and
-   subsequently incorporated within the Work.
-
-2. Grant of Copyright License. Subject to the terms and conditions of
-   this License, each Contributor hereby grants to You a perpetual,
-   worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-   copyright license to reproduce, prepare Derivative Works of,
-   publicly display, publicly perform, sublicense, and distribute the
-   Work and such Derivative Works in Source or Object form.
-
-3. Grant of Patent License. Subject to the terms and conditions of
-   this License, each Contributor hereby grants to You a perpetual,
-   worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-   (except as stated in this section) patent license to make, have made,
-   use, offer to sell, sell, import, and otherwise transfer the Work,
-   where such license applies only to those patent claims licensable
-   by such Contributor that are necessarily infringed by their
-   Contribution(s) alone or by combination of their Contribution(s)
-   with the Work to which such Contribution(s) was submitted. If You
-   institute patent litigation against any entity (including a
-   cross-claim or counterclaim in a lawsuit) alleging that the Work
-   or a Contribution incorporated within the Work constitutes direct
-   or contributory patent infringement, then any patent licenses
-   granted to You under this License for that Work shall terminate
-   as of the date such litigation is filed.
-
-4. Redistribution. You may reproduce and distribute copies of the
-   Work or Derivative Works thereof in any medium, with or without
-   modifications, and in Source or Object form, provided that You
-   meet the following conditions:
-
-   (a) You must give any other recipients of the Work or
-       Derivative Works a copy of this License; and
-
-   (b) You must cause any modified files to carry prominent notices
-       stating that You changed the files; and
-
-   (c) You must retain, in the Source form of any Derivative Works
-       that You distribute, all copyright, patent, trademark, and
-       attribution notices from the Source form of the Work,
-       excluding those notices that do not pertain to any part of
-       the Derivative Works; and
-
-   (d) If the Work includes a "NOTICE" text file as part of its
-       distribution, then any Derivative Works that You distribute must
-       include a readable copy of the attribution notices contained
-       within such NOTICE file, excluding those notices that do not
-       pertain to any part of the Derivative Works, in at least one
-       of the following places: within a NOTICE text file distributed
-       as part of the Derivative Works; within the Source form or
-       documentation, if provided along with the Derivative Works; or,
-       within a display generated by the Derivative Works, if and
-       wherever such third-party notices normally appear. The contents
-       of the NOTICE file are for informational purposes only and
-       do not modify the License. You may add Your own attribution
-       notices within Derivative Works that You distribute, alongside
-       or as an addendum to the NOTICE text from the Work, provided
-       that such additional attribution notices cannot be construed
-       as modifying the License.
-
-   You may add Your own copyright statement to Your modifications and
-   may provide additional or different license terms and conditions
-   for use, reproduction, or distribution of Your modifications, or
-   for any such Derivative Works as a whole, provided Your use,
-   reproduction, and distribution of the Work otherwise complies with
-   the conditions stated in this License.
-
-5. Submission of Contributions. Unless You explicitly state otherwise,
-   any Contribution intentionally submitted for inclusion in the Work
-   by You to the Licensor shall be under the terms and conditions of
-   this License, without any additional terms or conditions.
-   Notwithstanding the above, nothing herein shall supersede or modify
-   the terms of any separate license agreement you may have executed
-   with Licensor regarding such Contributions.
-
-6. Trademarks. This License does not grant permission to use the trade
-   names, trademarks, service marks, or product names of the Licensor,
-   except as required for reasonable and customary use in describing the
-   origin of the Work and reproducing the content of the NOTICE file.
-
-7. Disclaimer of Warranty. Unless required by applicable law or
-   agreed to in writing, Licensor provides the Work (and each
-   Contributor provides its Contributions) on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-   implied, including, without limitation, any warranties or conditions
-   of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-   PARTICULAR PURPOSE. You are solely responsible for determining the
-   appropriateness of using or redistributing the Work and assume any
-   risks associated with Your exercise of permissions under this License.
-
-8. Limitation of Liability. In no event and under no legal theory,
-   whether in tort (including negligence), contract, or otherwise,
-   unless required by applicable law (such as deliberate and grossly
-   negligent acts) or agreed to in writing, shall any Contributor be
-   liable to You for damages, including any direct, indirect, special,
-   incidental, or consequential damages of any character arising as a
-   result of this License or out of the use or inability to use the
-   Work (including but not limited to damages for loss of goodwill,
-   work stoppage, computer failure or malfunction, or any and all
-   other commercial damages or losses), even if such Contributor
-   has been advised of the possibility of such damages.
-
-9. Accepting Warranty or Additional Liability. While redistributing
-   the Work or Derivative Works thereof, You may choose to offer,
-   and charge a fee for, acceptance of support, warranty, indemnity,
-   or other liability obligations and/or rights consistent with this
-   License. However, in accepting such obligations, You may act only
-   on Your own behalf and on Your sole responsibility, not on behalf
-   of any other Contributor, and only if You agree to indemnify,
-   defend, and hold each Contributor harmless for any liability
-   incurred by, or claims asserted against, such Contributor by reason
-   of your accepting any such warranty or additional liability.
-
-END OF TERMS AND CONDITIONS
-
-APPENDIX: How to apply the Apache License to your work.
-
-   To apply the Apache License to your work, attach the following
-   boilerplate notice, with the fields enclosed by brackets "[]"
-   replaced with your own identifying information. (Don't include
-   the brackets!)  The text should be enclosed in the appropriate
-   comment syntax for the file format. We also recommend that a
-   file or class name and description of purpose be included on the
-   same "printed page" as the copyright notice for easier
-   identification within third-party archives.
-
-Copyright 2024 SWC contributors.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-	http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
 ```
 
 ### argparse@2.0.1 (LICENSE)
@@ -3574,7 +3321,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-### astro@5.12.8 (LICENSE)
+### astro@5.18.1 (LICENSE)
 ```text
 MIT License
 
@@ -3842,7 +3589,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-### detect-libc@2.0.4 (LICENSE)
+### detect-libc@2.1.2 (LICENSE)
 ```text
 Apache License
                            Version 2.0, January 2004
@@ -4162,11 +3909,105 @@ IN THE SOFTWARE.
 """
 ```
 
-### import-meta-resolve@4.1.0 (license)
+### fontkitten@1.0.3 (LICENSE)
+```text
+Copyright © 2025 Chris Swithinbank
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+"""
+This license applies to substantial parts of the codebase originating from the https://github.com/foliojs/fontkit repository:
+
+Copyright (c) 2014 Devon Govett
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+"""
+
+This license applies to substantial portions of the `src/types.ts` file originating from the https://www.npmjs.com/package/@types/fontkit package:
+
+Copyright (c) Microsoft Corporation.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE
+"""
+
+This license applies to `src/vendor/brotliDecode.ts` originating from https://github.com/google/brotli/blob/master/js/decode.ts:
+
+Copyright 2017 Google Inc. All Rights Reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+"""
+
+This license applies to `packages/@fontkitten/restructure` originating from https://github.com/foliojs/restructure:
+
+MIT License
+
+Copyright (c) 2015-present Devon Govett
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
+```
+
+### import-meta-resolve@4.2.0 (license)
 ```text
 (The MIT License)
 
-Copyright (c) 2021 Titus Wormer <mailto:tituswormer@gmail.com>
+Copyright (c) Titus Wormer <mailto:tituswormer@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -4240,7 +4081,7 @@ IN THE SOFTWARE.
 """
 ```
 
-### sharp@0.33.5 (LICENSE)
+### sharp@0.34.5 (LICENSE)
 ```text
 Apache License
 Version 2.0, January 2004
@@ -4699,7 +4540,7 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 END OF TERMS AND CONDITIONS
 ```
 
-### vite@6.3.5 (LICENSE.md)
+### vite@6.4.2 (LICENSE.md)
 ```text
 # Vite core license
 Vite is released under the MIT license:
