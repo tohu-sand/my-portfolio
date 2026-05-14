@@ -4,6 +4,7 @@ import GalleryGrid from "../../components/GalleryGrid.astro";
 import { getCollection } from "astro:content";
 import { compareByDateDesc } from "../../utils/date";
 import { entryToSlug } from "../../utils/slug";
+import { serializeJsonLd } from "../../utils/jsonLd";
 
 const artworks = (await getCollection("gallery")).slice().sort(compareByDateDesc);
 
@@ -55,7 +56,7 @@ const galleryStructuredData = {
   ogDescription={pageDescription}
   ogUrl="https://tohu-sand.com/gallery/"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(galleryStructuredData)}></script>
+  <script type="application/ld+json" set:html={serializeJsonLd(galleryStructuredData)}></script>
   
   <h2 class="text-2xl font-bold mb-6 text-stone-900 dark:text-stone-100">Gallery</h2>
   <GalleryGrid artworks={artworks} />

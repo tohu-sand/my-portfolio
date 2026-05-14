@@ -5,6 +5,7 @@ import PostCard from "../components/PostCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import type { CollectionEntry } from "astro:content";
 import { compareByDateDesc } from "../utils/date";
+import { serializeJsonLd } from "../utils/jsonLd";
 
 const today = new Date();
 today.setUTCHours(0, 0, 0, 0);
@@ -52,7 +53,7 @@ const heroImageStructuredData = {
   description="豆腐さんどのホームページです。漫画やイラストなどを公開しています。"
   adsense
 >
-  <script type="application/ld+json" set:html={JSON.stringify(heroImageStructuredData)}></script>
+  <script type="application/ld+json" set:html={serializeJsonLd(heroImageStructuredData)}></script>
   <div class="flex justify-center mb-8">
     <img
       src={heroImageUrl}

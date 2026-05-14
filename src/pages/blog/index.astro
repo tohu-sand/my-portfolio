@@ -4,6 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostCard from "../../components/PostCard.astro";
 import { compareByDateDesc } from "../../utils/date";
 import { entryToSlug } from "../../utils/slug";
+import { serializeJsonLd } from "../../utils/jsonLd";
 
 const posts = await getCollection("posts", () => true);
 const sortedPosts = posts.slice().sort(compareByDateDesc);
@@ -56,7 +57,7 @@ const blogPostsStructuredData = {
   ogDescription="豆腐さんどのブログです。"
   ogUrl="https://tohu-sand.com/blog/"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(blogPostsStructuredData)}></script>
+  <script type="application/ld+json" set:html={serializeJsonLd(blogPostsStructuredData)}></script>
   
   <h2 class="text-2xl font-bold mb-6 text-stone-900 dark:text-stone-100">Blog</h2>
   <div class="grid md:grid-cols-2 gap-6">

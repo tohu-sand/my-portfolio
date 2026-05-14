@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { entryToSlug } from "../../utils/slug";
 import { formatDateJP } from "../../utils/date";
+import { serializeJsonLd } from "../../utils/jsonLd";
 
 type PostEntry = CollectionEntry<"posts">;
 
@@ -72,7 +73,7 @@ const structuredData = {
   twitterTitle={`hasamiyacco | ${data.title}`}
   twitterImageAlt={`${data.title} - 豆腐さんどのブログ記事のサムネイル画像`}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+  <script type="application/ld+json" set:html={serializeJsonLd(structuredData)}></script>
   
   <article class="prose dark:prose-invert mx-auto prose-a:text-[color:var(--accent)] prose-a:hover:text-[color:var(--accent)]">
     <h1>{data.title}</h1>

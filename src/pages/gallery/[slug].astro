@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { entryToSlug } from "../../utils/slug";
 import { compareByDateAsc, formatDateJP } from "../../utils/date";
+import { serializeJsonLd } from "../../utils/jsonLd";
 
 type ArtworkEntry = CollectionEntry<"gallery">;
 
@@ -91,7 +92,7 @@ const structuredData = kind === "comic"
   twitterCard="summary_large_image"
   twitterImageAlt={`${data.title} - 豆腐さんどの${kind === "comic" ? "漫画" : "イラスト"}作品`}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+  <script type="application/ld+json" set:html={serializeJsonLd(structuredData)}></script>
   
   <article class="prose dark:prose-invert mx-auto prose-a:text-[color:var(--accent)] prose-a:hover:text-[color:var(--accent)]">
     <h1 class="text-3xl font-bold mb-4 text-stone-900 dark:text-stone-100">{data.title}</h1>
