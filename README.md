@@ -7,6 +7,7 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 - **Gallery**: Showcase of artwork and illustrations with image optimization
 - **Blog**: Personal blog posts and articles with content collections
 - **Info**: Event information and announcements
+- **RSS Feeds**: Separate feeds for blog, gallery, and info collections
 - **Contact**: Contact form with thank-you page
 - **Links Page**: Social media and external links
 - **Dark Mode Toggle**: Automatic and manual theme switching
@@ -19,6 +20,7 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 ```text
 /
 ├── public/
+│   ├── ads.txt
 │   ├── favicon.ico
 │   ├── favicon.svg
 │   ├── favicon-192.png
@@ -40,20 +42,27 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 │   │   └── posts/
 │   ├── layouts/
 │   │   └── BaseLayout.astro
-│   └── pages/
-│       ├── index.astro
-│       ├── link.astro
-│       ├── blog/
-│       │   ├── index.astro
-│       │   └── [slug].astro
-│       ├── contact/
-│       │   ├── index.astro
-│       │   └── thank-you.astro
-│       ├── gallery/
-│       │   ├── index.astro
-│       │   └── [slug].astro
-│       └── info/
-│           └── index.astro
+│   ├── pages/
+│   │   ├── index.astro
+│   │   ├── link.astro
+│   │   ├── rss.xml.js
+│   │   ├── blog/
+│   │   │   ├── index.astro
+│   │   │   └── [slug].astro
+│   │   ├── contact/
+│   │   │   ├── index.astro
+│   │   │   └── thank-you.astro
+│   │   ├── gallery/
+│   │   │   ├── index.astro
+│   │   │   ├── [slug].astro
+│   │   │   └── rss.xml.js
+│   │   └── info/
+│   │       ├── index.astro
+│   │       └── rss.xml.js
+│   └── utils/
+│       ├── date.ts
+│       ├── jsonLd.ts
+│       └── slug.ts
 ├── astro.config.mjs
 ├── tailwind.config.mjs
 ├── tsconfig.json
@@ -66,7 +75,8 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) with Typography plugin
 - **Icons**: [Astro Icon](https://github.com/natemoo-re/astro-icon) with Lucide and Simple Icons
 - **Content Management**: Astro Content Collections with TypeScript validation
-- **SEO**: Automatic sitemap generation with @astrojs/sitemap
+- **SEO**: Automatic sitemap generation with @astrojs/sitemap and JSON-LD structured data
+- **RSS**: Feed generation with @astrojs/rss
 - **Package Manager**: pnpm
 - **Deployment**: Cloudflare Pages
 
