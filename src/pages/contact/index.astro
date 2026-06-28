@@ -25,11 +25,14 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           <label for="email" class="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2">
             メールアドレス <span class="text-red-500">*</span>
           </label>
-          <input 
-            type="email" 
+          <input
+            type="text"
             id="email"
             name="email"
-            required 
+            required
+            inputmode="email"
+            autocomplete="email"
+            maxlength="254"
             class="w-full px-3 py-2 border border-stone-300 dark:border-stone-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:border-[color:var(--accent)] dark:bg-stone-700 dark:text-stone-100 transition-colors"
           />
         </div>
@@ -75,4 +78,23 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </div>
 
   </div>
+
+  <script>
+    const emailInput = document.getElementById("email") as HTMLInputElement | null;
+    const form = emailInput?.form;
+    if (emailInput && form) {
+      // メールアドレスの厳格な形式チェック（ドメインに必ずドット付きTLDを要求）
+      const emailPattern =
+        /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9](?:[A-Za-z0-9\-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9\-]*[A-Za-z0-9])?)*\.[A-Za-z]{2,}$/;
+      form.addEventListener("submit", (event) => {
+        // 前後の空白を除去
+        emailInput.value = emailInput.value.trim();
+        // 形式に合わない場合は、実際には送信せず、本物と同じサンクスページへ遷移させる（いたずら防止）
+        if (!emailPattern.test(emailInput.value)) {
+          event.preventDefault();
+          window.location.href = "/contact/thank-you";
+        }
+      });
+    }
+  </script>
 </BaseLayout>
