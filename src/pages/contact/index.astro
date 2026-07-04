@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="hasamiyacco | コンタクト" recaptcha>
+<BaseLayout title="hasamiyacco | コンタクト" turnstile>
   <div class="max-w-2xl mx-auto">
     <h1 class="text-3xl font-bold text-center mb-8">Contact</h1>
 
@@ -63,7 +63,19 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         </div>
 
         <div>
-          <div class="g-recaptcha" data-sitekey="6LelK5srAAAAAIAm7mIAGJZtIz7ovGSb1M5RObAQ"></div>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADvQ9lg4IDTLgpK-" data-language="ja"></div>
+          <script is:inline>
+            // サイトのダークモード（htmlのdarkクラス）にウィジェットのテーマを合わせる
+            {
+              const widget = document.querySelector(".cf-turnstile");
+              if (widget) {
+                widget.setAttribute(
+                  "data-theme",
+                  document.documentElement.classList.contains("dark") ? "dark" : "light"
+                );
+              }
+            }
+          </script>
         </div>
 
         <div class="text-center">
