@@ -1,0 +1,4 @@
+# Cloudflare Pages custom headers
+# noai / noimageai: img2dataset 等のデータセット構築ツールが参照するAI学習拒否シグナル
+/*
+  X-Robots-Tag: noai, noimageai

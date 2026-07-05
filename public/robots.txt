@@ -1,0 +1,90 @@
+# robots.txt for tohu-sand.com
+# 通常の検索エンジンは許可し、AI学習・スクレイピング用クローラーを拒否する
+
+# --- OpenAI ---
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+Disallow: /
+
+# --- Anthropic ---
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: anthropic-ai
+User-agent: claude-web
+Disallow: /
+
+# --- Google (AI学習のみ拒否。通常のGoogle検索には影響しない) ---
+User-agent: Google-Extended
+Disallow: /
+
+# --- Apple (AI学習のみ拒否) ---
+User-agent: Applebot-Extended
+Disallow: /
+
+# --- Meta ---
+User-agent: FacebookBot
+User-agent: meta-externalagent
+User-agent: meta-externalfetcher
+Disallow: /
+
+# --- Common Crawl (多くのAI学習データセットの元) ---
+User-agent: CCBot
+Disallow: /
+
+# --- Perplexity ---
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Disallow: /
+
+# --- ByteDance (TikTok) ---
+User-agent: Bytespider
+User-agent: TikTokSpider
+Disallow: /
+
+# --- Amazon ---
+User-agent: Amazonbot
+Disallow: /
+
+# --- Mistral ---
+User-agent: MistralAI-User
+Disallow: /
+
+# --- Cohere ---
+User-agent: cohere-ai
+User-agent: cohere-training-data-crawler
+Disallow: /
+
+# --- Allen Institute for AI ---
+User-agent: AI2Bot
+Disallow: /
+
+# --- DuckDuckGo AI (DuckAssist) ---
+User-agent: DuckAssistBot
+Disallow: /
+
+# --- 画像収集・データセット構築系 ---
+User-agent: img2dataset
+User-agent: ImagesiftBot
+Disallow: /
+
+# --- その他のAI/スクレイピング系クローラー ---
+User-agent: Diffbot
+User-agent: omgili
+User-agent: omgilibot
+User-agent: webzio-extended
+User-agent: Timpibot
+User-agent: YouBot
+User-agent: PanguBot
+User-agent: Kangaroo Bot
+User-agent: SemrushBot-OCOB
+User-agent: iaskspider/2.0
+Disallow: /
+
+# --- 上記以外(通常の検索エンジン等)は許可 ---
+User-agent: *
+Allow: /
+Disallow: /contact/thank-you/
+
+Sitemap: https://tohu-sand.com/sitemap-index.xml
