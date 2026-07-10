@@ -142,7 +142,10 @@ const structuredData = kind === "comic"
         <>
           &nbsp;|&nbsp;タグ:
           {data.tags.map((t: string) => (
-            <span class="inline-block ml-1 px-2 py-0.5 bg-stone-200 dark:bg-stone-700 text-stone-800 dark:text-stone-200 rounded">{t}</span>
+            <a
+              href={`/gallery/?tag=${encodeURIComponent(t)}`}
+              class="inline-block ml-1 px-2 py-0.5 bg-stone-200 dark:bg-stone-700 text-stone-800 dark:text-stone-200 rounded no-underline hover:bg-stone-300 dark:hover:bg-stone-600 transition-colors"
+            >{t}</a>
           ))}
         </>
       )}
