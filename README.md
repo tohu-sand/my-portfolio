@@ -1,6 +1,6 @@
 # Personal Portfolio Website
 
-A personal portfolio website built with Astro, featuring a gallery, blog, and information pages. The site is deployed on Cloudflare Pages.
+A personal portfolio website built with Astro, featuring a gallery, blog, and information pages. The site is deployed on Cloudflare Pages and published at **https://tohu-sand.com/**.
 
 ## Features
 
@@ -105,7 +105,7 @@ The development server will be available at `http://localhost:4321`.
 
 ## Deployment
 
-This site is automatically deployed to Cloudflare Pages. Any commits to the main branch will trigger a new deployment.
+This site is automatically deployed to Cloudflare Pages and published at https://tohu-sand.com/. Any commits to the main branch will trigger a new deployment.
 
 ##  License & Copyright
 
