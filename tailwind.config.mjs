@@ -2,6 +2,7 @@
 export default {
   content: [
     "./src/**/*.{astro,md,mdx,jsx,tsx}",
+    "./src/plugins/**/*.mjs",
   ],
   darkMode: 'class',
   theme: {
