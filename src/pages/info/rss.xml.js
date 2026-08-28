@@ -1,9 +1,10 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
+import { isPublishedInfo } from '../../utils/info';
 import { entryToSlug } from '../../utils/slug';
 
 export async function GET(context) {
-  const infos = await getCollection('info');
+  const infos = await getCollection('info', isPublishedInfo);
   
   // 日付順にソート（新しい順）
   const sortedInfos = infos.slice().sort((a, b) => 

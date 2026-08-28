@@ -3,12 +3,12 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import InfoTimelineItem from "../../components/InfoTimelineItem.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { groupByYearDesc } from "../../utils/date";
-import { getTodayUTC } from "../../utils/info";
+import { getTodayUTC, isPublishedInfo } from "../../utils/info";
 import { entryToSlug } from "../../utils/slug";
 
 const pageDescription = "豆腐さんどのお知らせページです。イベント参加や掲載などの情報を掲載しています。";
 
-const infos = await getCollection("info", () => true);
+const infos = await getCollection("info", isPublishedInfo);
 const infosByYear = groupByYearDesc(infos);
 const today = getTodayUTC();
 ---

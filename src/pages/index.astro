@@ -5,6 +5,7 @@ import PostCard from "../components/PostCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import type { CollectionEntry } from "astro:content";
 import { compareByDateDesc } from "../utils/date";
+import { isPublishedInfo } from "../utils/info";
 import { serializeJsonLd } from "../utils/jsonLd";
 
 const today = new Date();
@@ -13,7 +14,11 @@ const thirtyDaysAgo = new Date();
 thirtyDaysAgo.setUTCHours(0, 0, 0, 0);
 thirtyDaysAgo.setUTCDate(thirtyDaysAgo.getUTCDate() - 30);
 
-const infos = await getCollection("info", ({ data }: CollectionEntry<"info">) => {
+const infos = await getCollection("info", (entry: CollectionEntry<"info">) => {
+  if (!isPublishedInfo(entry)) {
+    return false;
+  }
+  const { data } = entry;
   if (data.category === "Event" && data.date < today) {
     return false;
   }

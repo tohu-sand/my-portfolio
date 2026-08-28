@@ -39,6 +39,7 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 │   │   ├── config.ts
 │   │   ├── gallery/
 │   │   ├── info/
+│   │   │   └── drafts/      # unpublished info entries (gitignored)
 │   │   └── posts/
 │   ├── layouts/
 │   │   └── BaseLayout.astro
@@ -61,6 +62,7 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 │   │       └── rss.xml.js
 │   └── utils/
 │       ├── date.ts
+│       ├── info.ts
 │       ├── jsonLd.ts
 │       └── slug.ts
 ├── astro.config.mjs
@@ -102,6 +104,15 @@ pnpm preview
 ```
 
 The development server will be available at `http://localhost:4321`.
+
+### Info drafts
+
+Unpublished info entries can be written ahead of time in `src/content/info/drafts/`.
+Files in that directory are ignored by git (see `.gitignore`), so they are never committed or deployed.
+
+- `pnpm dev` shows drafts alongside published entries so you can preview them.
+- `pnpm build` excludes drafts (see `isPublishedInfo` in `src/utils/info.ts`), so a local production build never includes them either.
+- To publish a draft, move the file up one level into `src/content/info/` and commit it.
 
 ## Deployment
 

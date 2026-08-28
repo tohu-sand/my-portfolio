@@ -33,3 +33,7 @@ pnpm-debug.log*
 venv/
 __pycache__/
 *.py
+
+# info drafts (unpublished; local only — see README "Info drafts")
+src/content/info/drafts/*
+!src/content/info/drafts/.gitkeep
