@@ -1,0 +1,35 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  category: string;
+  class?: string;
+}
+
+const { category, class: className = "" } = Astro.props;
+
+const styles: Record<string, { icon: string; classes: string }> = {
+  Event: {
+    icon: "lucide:calendar",
+    classes:
+      "bg-orange-100 text-orange-800 ring-orange-200 dark:bg-orange-400/15 dark:text-orange-300 dark:ring-orange-400/30",
+  },
+  Publication: {
+    icon: "lucide:book-open",
+    classes:
+      "bg-sky-100 text-sky-800 ring-sky-200 dark:bg-sky-400/15 dark:text-sky-300 dark:ring-sky-400/30",
+  },
+};
+
+const style = styles[category] ?? {
+  icon: "lucide:tag",
+  classes:
+    "bg-stone-100 text-stone-700 ring-stone-200 dark:bg-stone-700 dark:text-stone-300 dark:ring-stone-600",
+};
+---
+<span
+  class={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ring-1 ring-inset ${style.classes} ${className}`}
+>
+  <Icon name={style.icon} class="h-3.5 w-3.5" aria-hidden="true" />
+  {category}
+</span>

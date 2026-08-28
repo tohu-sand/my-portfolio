@@ -1,0 +1,31 @@
+---
+import type { EventStatus } from "../utils/info";
+
+interface Props {
+  status: EventStatus;
+  class?: string;
+}
+
+const { status, class: className = "" } = Astro.props;
+
+const styles: Record<EventStatus, { label: string; classes: string }> = {
+  upcoming: {
+    label: "開催予定",
+    classes: "bg-[color:var(--accent)] text-[color:var(--accent-contrast)]",
+  },
+  today: {
+    label: "本日開催",
+    classes: "bg-[color:var(--accent)] text-[color:var(--accent-contrast)]",
+  },
+  past: {
+    label: "終了",
+    classes:
+      "bg-stone-100 text-stone-500 ring-1 ring-inset ring-stone-200 dark:bg-stone-800 dark:text-stone-400 dark:ring-stone-700",
+  },
+};
+
+const style = styles[status];
+---
+<span class={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${style.classes} ${className}`}>
+  {style.label}
+</span>

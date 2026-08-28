@@ -1,0 +1,21 @@
+---
+import { Icon } from "astro-icon/components";
+import { getLinkMeta } from "../utils/info";
+
+interface Props {
+  url: string;
+  class?: string;
+}
+
+const { url, class: className = "" } = Astro.props;
+const { label, icon } = getLinkMeta(url);
+---
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class={`inline-flex items-center gap-1.5 rounded-lg border border-stone-200 bg-white px-3 py-1.5 text-sm font-medium text-[color:var(--accent)] transition-colors hover:border-[color:var(--accent)] hover:bg-orange-50 dark:border-stone-700 dark:bg-stone-800 dark:hover:bg-stone-700 ${className}`}
+>
+  <Icon name={icon} class="h-4 w-4" aria-hidden="true" />
+  {label}
+</a>
