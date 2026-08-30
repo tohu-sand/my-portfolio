@@ -14,7 +14,7 @@ const dateStr = formatDateJP(data.date);
 const kindLabel = data.kind === "comic" ? "漫画" : "イラスト";
 ---
 <figure class="group h-full">
-  <a href={`/gallery/${resolvedSlug}/`} class="flex h-full flex-col rounded-xl border border-stone-200 dark:border-stone-700 overflow-hidden bg-white dark:bg-stone-800 shadow transition-shadow hover:shadow-lg dark:shadow-stone-900/50 dark:hover:shadow-stone-900/70">
+  <a href={`/gallery/${resolvedSlug}/`} class="flex h-full flex-col rounded-xl border border-stone-200 dark:border-stone-700 overflow-hidden bg-white dark:bg-stone-800 shadow-sm transition-shadow hover:shadow-lg dark:shadow-stone-900/50 dark:hover:shadow-stone-900/70">
     <div class="relative h-48 overflow-hidden">
       <img
         src={data.thumbnail}

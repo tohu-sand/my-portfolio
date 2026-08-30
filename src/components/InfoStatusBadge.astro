@@ -11,11 +11,11 @@ const { status, class: className = "" } = Astro.props;
 const styles: Record<EventStatus, { label: string; classes: string }> = {
   upcoming: {
     label: "開催予定",
-    classes: "bg-[color:var(--accent)] text-[color:var(--accent-contrast)]",
+    classes: "bg-(--accent) text-(--accent-contrast)",
   },
   today: {
     label: "本日開催",
-    classes: "bg-[color:var(--accent)] text-[color:var(--accent-contrast)]",
+    classes: "bg-(--accent) text-(--accent-contrast)",
   },
   past: {
     label: "終了",

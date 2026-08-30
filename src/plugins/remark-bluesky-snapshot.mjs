@@ -155,7 +155,7 @@ function renderCard(snapshot) {
     ? `<img src="${escapeHtml(snapshot.author.avatar)}" alt="" width="40" height="40" class="m-0 h-10 w-10 shrink-0 rounded-full" loading="lazy" decoding="async" />`
     : "";
   return (
-    `<figure class="bluesky-snapshot not-prose my-6 max-w-xl rounded-xl border border-stone-200 bg-white p-4 shadow-sm dark:border-stone-700 dark:bg-stone-900">` +
+    `<figure class="bluesky-snapshot not-prose my-6 max-w-xl rounded-xl border border-stone-200 bg-white p-4 shadow-xs dark:border-stone-700 dark:bg-stone-900">` +
     `<div class="flex items-center gap-3">` +
     avatar +
     `<div class="min-w-0 leading-tight">` +

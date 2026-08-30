@@ -1,3 +1,36 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind CSS v4: 設定は tailwind.config.mjs ではなくこのファイル内で行う */
+@import 'tailwindcss' source(none);
+
+@plugin '@tailwindcss/typography';
+
+/* v3 の content 設定と同じ範囲だけをスキャンする（remark プラグインが出力する HTML も含む） */
+@source '../**/*.{astro,md,mdx,jsx,tsx}';
+@source '../plugins/**/*.mjs';
+
+/* v3 の darkMode: 'class' 相当 */
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-display: 'Noto Sans JP Variable', 'Noto Sans JP', sans-serif;
+}
+
+/*
+  v4 では既定のボーダー色が currentcolor に変わったため、
+  v3 と同じ見た目（gray-200）を維持する互換スタイル。
+  色指定のない `border` をすべて明示的な色付きに置き換えれば削除できる。
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  /* v4 の Preflight はボタンの cursor を default にするため、v3 と同じ pointer に戻す */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}

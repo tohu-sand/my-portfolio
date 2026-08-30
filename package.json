@@ -8,7 +8,8 @@
     "prebuild": "node scripts/generate-third-party-licenses.cjs",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.2.4",
@@ -19,11 +20,13 @@
     "astro-icon": "^1.2.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
     "@astrojs/sitemap": "^3.7.3",
     "@iconify-json/simple-icons": "^1.2.94",
     "@tailwindcss/typography": "^0.5.20",
-    "autoprefixer": "^10.5.4",
-    "tailwindcss": "^3.4.19"
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3"
   },
   "pnpm": {
     "overrides": {

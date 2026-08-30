@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import { unified } from "@astrojs/markdown-remark";
 import sitemap from "@astrojs/sitemap";
+import tailwindcss from "@tailwindcss/vite";
 
 import icon from "astro-icon";
 
@@ -8,6 +9,9 @@ import { remarkBlueskySnapshot } from "./src/plugins/remark-bluesky-snapshot.mjs
 
 export default defineConfig({
   site: "https://tohu-sand.com",
+  vite: {
+    plugins: [tailwindcss()],
+  },
   // Astro 7 のデフォルト('jsx')は inline 要素間の空白を落とすため、従来どおりの挙動を維持する
   compressHTML: true,
   markdown: {

@@ -94,7 +94,7 @@ const structuredData = kind === "comic"
 >
   <script type="application/ld+json" set:html={serializeJsonLd(structuredData)}></script>
   
-  <article class="prose dark:prose-invert mx-auto prose-a:text-[color:var(--accent)] prose-a:hover:text-[color:var(--accent)]">
+  <article class="prose dark:prose-invert mx-auto prose-a:text-(--accent) hover:prose-a:text-(--accent)">
     <h1 class="text-3xl font-bold mb-4 text-stone-900 dark:text-stone-100">{data.title}</h1>
     {kind === "comic" ? (
       <>
@@ -104,17 +104,17 @@ const structuredData = kind === "comic"
             title={data.reader?.title ?? "SkyBind reader"}
             loading="lazy"
             style="width: 100%; height: 70vh; min-height: 420px; border: 0;"
-            allowFullscreen
+            allowfullscreen
           ></iframe>
         </div>
-        <div class="mb-6 not-prose hidden md:block relative left-1/2 right-1/2 w-screen -ml-[50vw] -mr-[50vw] px-4 sm:px-6 lg:px-8">
-          <div class="mx-auto w-full max-w-[50rem]">
+        <div class="mb-6 not-prose hidden md:block relative left-1/2 right-1/2 w-screen ml-[-50vw] mr-[-50vw] px-4 sm:px-6 lg:px-8">
+          <div class="mx-auto w-full max-w-200">
             <iframe
               src={`${readerBase}?layout=spread`}
               title={data.reader?.title ?? "SkyBind reader"}
               loading="lazy"
               style="width: 100%; height: 70vh; min-height: 420px; border: 0;"
-              allowFullscreen
+              allowfullscreen
             ></iframe>
           </div>
         </div>
@@ -144,7 +144,7 @@ const structuredData = kind === "comic"
           {data.tags.map((t: string) => (
             <a
               href={`/gallery/?tag=${encodeURIComponent(t)}`}
-              class="inline-block ml-1 px-2 py-0.5 bg-stone-200 dark:bg-stone-700 text-stone-800 dark:text-stone-200 rounded no-underline hover:bg-stone-300 dark:hover:bg-stone-600 transition-colors"
+              class="inline-block ml-1 px-2 py-0.5 bg-stone-200 dark:bg-stone-700 text-stone-800 dark:text-stone-200 rounded-sm no-underline hover:bg-stone-300 dark:hover:bg-stone-600 transition-colors"
             >{t}</a>
           ))}
         </>
@@ -156,7 +156,7 @@ const structuredData = kind === "comic"
     {prevArtwork ? (
           <a 
       href={`/gallery/${entryToSlug(prevArtwork)}/`}
-            class="group flex items-center space-x-3 text-stone-600 dark:text-stone-400 hover:text-[color:var(--accent)] transition-colors"
+            class="group flex items-center space-x-3 text-stone-600 dark:text-stone-400 hover:text-(--accent) transition-colors"
           >
             <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -170,7 +170,7 @@ const structuredData = kind === "comic"
     {nextArtwork ? (
           <a 
       href={`/gallery/${entryToSlug(nextArtwork)}/`}
-            class="group flex items-center space-x-3 text-stone-600 dark:text-stone-400 hover:text-[color:var(--accent)] transition-colors"
+            class="group flex items-center space-x-3 text-stone-600 dark:text-stone-400 hover:text-(--accent) transition-colors"
           >
             <span class="text-sm">次の作品</span>
             <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

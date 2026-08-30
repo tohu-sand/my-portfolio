@@ -69,8 +69,6 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 │   └── content.config.ts
 ├── .node-version
 ├── astro.config.mjs
-├── postcss.config.mjs
-├── tailwind.config.mjs
 ├── tsconfig.json
 └── package.json
 ```
@@ -78,7 +76,7 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 ## Tech Stack
 
 - **Framework**: [Astro](https://astro.build/) v7.x with Static Site Generation
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v3 (via PostCSS) with Typography plugin
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4 (via `@tailwindcss/vite`, configured in `src/styles/global.css`) with Typography plugin
 - **Icons**: [Astro Icon](https://github.com/natemoo-re/astro-icon) with Lucide and Simple Icons
 - **Content Management**: Astro Content Collections with TypeScript validation
 - **SEO**: Automatic sitemap generation with @astrojs/sitemap and JSON-LD structured data
