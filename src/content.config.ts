@@ -1,7 +1,9 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 const gallery = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/gallery' }),
   schema: z.object({
     title: z.string(),
     date: z.date(),
@@ -22,14 +24,14 @@ const gallery = defineCollection({
     if (kind === 'comic') {
       if (!data.reader?.src) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: 'custom',
           message: 'reader.src is required for comics',
           path: ['reader', 'src'],
         });
       }
     } else if (!data.image) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: 'custom',
         message: 'image is required for illustrations',
         path: ['image'],
       });
@@ -38,7 +40,7 @@ const gallery = defineCollection({
 });
 
 const posts = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/posts' }),
   schema: z.object({
     title: z.string(),
     date: z.date(),
@@ -48,14 +50,15 @@ const posts = defineCollection({
   }),
 });
 
+// `drafts/` 配下も読み込む（本番ビルドでの除外は src/utils/info.ts の isPublishedInfo が行う）
 const info = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/info' }),
   schema: z.object({
     title: z.string(),
     date: z.date(),
     category: z.string(),
     location: z.string().optional(),
-    url: z.string().url().optional(),
+    url: z.url().optional(),
     description: z.string().optional(),
   }),
 });

@@ -36,13 +36,14 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 │   │   ├── NavBar.astro
 │   │   └── PostCard.astro
 │   ├── content/
-│   │   ├── config.ts
 │   │   ├── gallery/
 │   │   ├── info/
 │   │   │   └── drafts/      # unpublished info entries (gitignored)
 │   │   └── posts/
 │   ├── layouts/
 │   │   └── BaseLayout.astro
+│   ├── styles/
+│   │   └── global.css
 │   ├── pages/
 │   │   ├── index.astro
 │   │   ├── link.astro
@@ -60,12 +61,15 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 │   │   └── info/
 │   │       ├── index.astro
 │   │       └── rss.xml.js
-│   └── utils/
-│       ├── date.ts
-│       ├── info.ts
-│       ├── jsonLd.ts
-│       └── slug.ts
+│   ├── utils/
+│   │   ├── date.ts
+│   │   ├── info.ts
+│   │   ├── jsonLd.ts
+│   │   └── slug.ts
+│   └── content.config.ts
+├── .node-version
 ├── astro.config.mjs
+├── postcss.config.mjs
 ├── tailwind.config.mjs
 ├── tsconfig.json
 └── package.json
@@ -73,8 +77,8 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 
 ## Tech Stack
 
-- **Framework**: [Astro](https://astro.build/) v5.x with Static Site Generation
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with Typography plugin
+- **Framework**: [Astro](https://astro.build/) v7.x with Static Site Generation
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v3 (via PostCSS) with Typography plugin
 - **Icons**: [Astro Icon](https://github.com/natemoo-re/astro-icon) with Lucide and Simple Icons
 - **Content Management**: Astro Content Collections with TypeScript validation
 - **SEO**: Automatic sitemap generation with @astrojs/sitemap and JSON-LD structured data
@@ -85,7 +89,7 @@ A personal portfolio website built with Astro, featuring a gallery, blog, and in
 ## Development
 
 ### Prerequisites
-- Node.js (recommended: latest LTS version)
+- Node.js 22.19 or later (pinned to 22.23.2 in `.node-version`; Astro 7 itself needs 22.12+, but its dependencies require 22.19+)
 - pnpm (package manager)
 
 ### Local Development
@@ -117,6 +121,8 @@ Files in that directory are ignored by git (see `.gitignore`), so they are never
 ## Deployment
 
 This site is automatically deployed to Cloudflare Pages and published at https://tohu-sand.com/. Any commits to the main branch will trigger a new deployment.
+
+The Node.js version used by the build is pinned in `.node-version` (Cloudflare Pages reads this file).
 
 ##  License & Copyright
 
