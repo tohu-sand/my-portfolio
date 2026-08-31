@@ -19,6 +19,24 @@ export function getEventStatus(date: Date, today: Date): EventStatus {
   return "past";
 }
 
+/** 日付から状態を表示するカテゴリ */
+const STATUS_CATEGORIES = new Set(["Event", "Publication"]);
+
+export function hasDateStatus(category: string): boolean {
+  return STATUS_CATEGORIES.has(category);
+}
+
+const STATUS_LABELS: Record<string, Partial<Record<EventStatus, string>>> = {
+  Event: { upcoming: "開催予定", today: "本日開催", past: "終了" },
+  // 過去の掲載物に「終了」は不自然なので、発売前のみ表示する
+  Publication: { upcoming: "発売予定", today: "本日発売" },
+};
+
+/** カテゴリと状態に応じたバッジ文言。表示しない場合は null */
+export function getStatusLabel(category: string, status: EventStatus): string | null {
+  return STATUS_LABELS[category]?.[status] ?? null;
+}
+
 export interface LinkMeta {
   label: string;
   icon: string;

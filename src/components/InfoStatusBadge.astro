@@ -1,31 +1,28 @@
 ---
-import type { EventStatus } from "../utils/info";
+import { getStatusLabel, type EventStatus } from "../utils/info";
 
 interface Props {
   status: EventStatus;
+  category: string;
   class?: string;
 }
 
-const { status, class: className = "" } = Astro.props;
+const { status, category, class: className = "" } = Astro.props;
 
-const styles: Record<EventStatus, { label: string; classes: string }> = {
-  upcoming: {
-    label: "開催予定",
-    classes: "bg-(--accent) text-(--accent-contrast)",
-  },
-  today: {
-    label: "本日開催",
-    classes: "bg-(--accent) text-(--accent-contrast)",
-  },
-  past: {
-    label: "終了",
-    classes:
-      "bg-stone-100 text-stone-500 ring-1 ring-inset ring-stone-200 dark:bg-stone-800 dark:text-stone-400 dark:ring-stone-700",
-  },
+const label = getStatusLabel(category, status);
+
+const activeClasses: Record<string, string> = {
+  Event: "bg-(--accent) text-(--accent-contrast)",
+  Publication: "bg-sky-600 text-white dark:bg-sky-500 dark:text-stone-950",
 };
 
-const style = styles[status];
+const classes =
+  status === "past"
+    ? "bg-stone-100 text-stone-500 ring-1 ring-inset ring-stone-200 dark:bg-stone-800 dark:text-stone-400 dark:ring-stone-700"
+    : (activeClasses[category] ?? activeClasses.Event);
 ---
-<span class={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${style.classes} ${className}`}>
-  {style.label}
-</span>
+{label && (
+  <span class={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${classes} ${className}`}>
+    {label}
+  </span>
+)}

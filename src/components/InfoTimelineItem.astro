@@ -1,7 +1,7 @@
 ---
 import { render, type CollectionEntry } from "astro:content";
 import { getDatePartsUTC } from "../utils/date";
-import { getEventStatus, type EventStatus } from "../utils/info";
+import { getEventStatus, hasDateStatus, type EventStatus } from "../utils/info";
 import InfoCategoryBadge from "./InfoCategoryBadge.astro";
 import InfoStatusBadge from "./InfoStatusBadge.astro";
 import InfoLink from "./InfoLink.astro";
@@ -17,7 +17,7 @@ const { entry, id, today } = Astro.props;
 const { data } = entry;
 const parts = getDatePartsUTC(data.date);
 const status: EventStatus | null =
-  data.category === "Event" ? getEventStatus(data.date, today) : null;
+  hasDateStatus(data.category) ? getEventStatus(data.date, today) : null;
 const isActive = status === "upcoming" || status === "today";
 const hasBody = (entry.body ?? "").trim().length > 0;
 const rendered = hasBody ? await render(entry) : null;
@@ -48,7 +48,7 @@ const Content = rendered?.Content;
     >
       <div class="flex flex-wrap items-center gap-2">
         <InfoCategoryBadge category={data.category} />
-        {status && <InfoStatusBadge status={status} />}
+        {status && <InfoStatusBadge status={status} category={data.category} />}
       </div>
 
       <h4 class="mt-2 text-lg font-semibold text-stone-900 dark:text-stone-100">{data.title}</h4>
