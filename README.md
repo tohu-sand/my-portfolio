@@ -1,129 +1,105 @@
 # Personal Portfolio Website
 
-A personal portfolio website built with Astro, featuring a gallery, blog, and information pages. The site is deployed on Cloudflare Pages and published at **https://tohu-sand.com/**.
+An Astro site that publishes an illustration gallery, a blog, and event
+announcements at https://tohu-sand.com/.
 
-## Features
+## Overview
 
-- **Gallery**: Showcase of artwork and illustrations with image optimization
-- **Blog**: Personal blog posts and articles with content collections
-- **Info**: Event information and announcements
-- **RSS Feeds**: Separate feeds for blog, gallery, and info collections
-- **Contact**: Contact form with thank-you page
-- **Links Page**: Social media and external links
-- **Dark Mode Toggle**: Automatic and manual theme switching
-- **Responsive Design**: Built with Tailwind CSS for mobile-first design
-- **Static Site Generation**: Fast loading times with Astro's SSG approach
-- **SEO Optimized**: Automatic sitemap generation and meta tags
+All content is Markdown with front matter under `src/content/`, split into
+three collections. Astro builds the whole site to static HTML; there is no
+server-side code.
 
-## Project Structure
+| Collection | Directory | Page | Feed |
+|---|---|---|---|
+| Gallery | `src/content/gallery/` | `/gallery/` | `/gallery/rss.xml` |
+| Blog | `src/content/posts/` | `/blog/` | `/rss.xml` |
+| Info | `src/content/info/` | `/info/` | `/info/rss.xml` |
+
+Images are not stored in this repository. Front matter references them by URL
+on `cdn.tohu-sand.com`.
+
+## Requirements
+
+- Node.js 22.23.2, pinned in `.node-version`
+- pnpm 10.13
+- Tested on Linux
+
+## Installation
+
+```bash
+pnpm install
+```
+
+## Usage
+
+Start the development server:
+
+```bash
+pnpm dev
+```
 
 ```text
-/
-├── public/
-│   ├── ads.txt
-│   ├── favicon.ico
-│   ├── favicon.svg
-│   ├── favicon-192.png
-│   ├── favicon-512.png
-│   └── apple-touch-icon.png
-├── src/
-│   ├── components/
-│   │   ├── DarkModeToggle.astro
-│   │   ├── Footer.astro
-│   │   ├── GalleryGrid.astro
-│   │   ├── GalleryItem.astro
-│   │   ├── InfoCard.astro
-│   │   ├── NavBar.astro
-│   │   └── PostCard.astro
-│   ├── content/
-│   │   ├── gallery/
-│   │   ├── info/
-│   │   │   └── drafts/      # unpublished info entries (gitignored)
-│   │   └── posts/
-│   ├── layouts/
-│   │   └── BaseLayout.astro
-│   ├── styles/
-│   │   └── global.css
-│   ├── pages/
-│   │   ├── index.astro
-│   │   ├── link.astro
-│   │   ├── rss.xml.js
-│   │   ├── blog/
-│   │   │   ├── index.astro
-│   │   │   └── [slug].astro
-│   │   ├── contact/
-│   │   │   ├── index.astro
-│   │   │   └── thank-you.astro
-│   │   ├── gallery/
-│   │   │   ├── index.astro
-│   │   │   ├── [slug].astro
-│   │   │   └── rss.xml.js
-│   │   └── info/
-│   │       ├── index.astro
-│   │       └── rss.xml.js
-│   ├── utils/
-│   │   ├── date.ts
-│   │   ├── info.ts
-│   │   ├── jsonLd.ts
-│   │   └── slug.ts
-│   └── content.config.ts
-├── .node-version
-├── astro.config.mjs
-├── tsconfig.json
-└── package.json
+Dev server running at http://localhost:4321 (pid 6789)
+  Stop:   astro dev stop
+  Status: astro dev status
+  Logs:   astro dev logs
 ```
 
-## Tech Stack
+The server keeps running after the command returns. Stop it with
+`pnpm astro dev stop`.
 
-- **Framework**: [Astro](https://astro.build/) v7.x with Static Site Generation
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4 (via `@tailwindcss/vite`, configured in `src/styles/global.css`) with Typography plugin
-- **Icons**: [Astro Icon](https://github.com/natemoo-re/astro-icon) with Lucide and Simple Icons
-- **Content Management**: Astro Content Collections with TypeScript validation
-- **SEO**: Automatic sitemap generation with @astrojs/sitemap and JSON-LD structured data
-- **RSS**: Feed generation with @astrojs/rss
-- **Package Manager**: pnpm
-- **Deployment**: Cloudflare Pages
+### Adding content
 
-## Development
+Create a Markdown file in the collection directory. Each collection has a
+schema in `src/content.config.ts`, and the build fails on an entry that does
+not match it. An info entry looks like this:
 
-### Prerequisites
-- Node.js 22.19 or later (pinned to 22.23.2 in `.node-version`; Astro 7 itself needs 22.12+, but its dependencies require 22.19+)
-- pnpm (package manager)
-
-### Local Development
-```bash
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Preview production build
-pnpm preview
+```markdown
+---
+title: COMITIA152
+date: 2025-06-02
+category: Event
+location: 東京ビッグサイト
+url: https://bsky.app/profile/tohu-sand.com/post/3lq6yt6baes2z
+description: 東2 M01b「ロボット技術研究会」にて新刊漫画『ペンタナール・オクタノール・ノナナール』（本文20ページ、500円）を販売します。Webでの販売予定はありません。
+---
 ```
 
-The development server will be available at `http://localhost:4321`.
+Gallery entries need `title`, `date`, `thumbnail`, and either `image` for an
+illustration or `reader.src` for a comic. Blog posts need `title`, `date`, and
+`thumbnail`, followed by the article body.
 
 ### Info drafts
 
-Unpublished info entries can be written ahead of time in `src/content/info/drafts/`.
-Files in that directory are ignored by git (see `.gitignore`), so they are never committed or deployed.
+Git ignores files in `src/content/info/drafts/`. `pnpm dev` shows them next to
+the published entries; `pnpm build` leaves them out. To publish a draft, move
+it up one level into `src/content/info/` and commit it.
 
-- `pnpm dev` shows drafts alongside published entries so you can preview them.
-- `pnpm build` excludes drafts (see `isPublishedInfo` in `src/utils/info.ts`), so a local production build never includes them either.
-- To publish a draft, move the file up one level into `src/content/info/` and commit it.
+## Development
+
+```bash
+pnpm check     # type-check .astro and .ts files
+pnpm build     # build to dist/
+pnpm preview   # serve dist/ at http://localhost:4321
+```
+
+`pnpm build` first regenerates `THIRD_PARTY_LICENSES.md` from the installed
+dependencies. Run `pnpm licenses` to regenerate it on its own. Like the
+development server, `pnpm preview` keeps running in the background; stop it
+with `pnpm astro preview stop`.
 
 ## Deployment
 
-This site is automatically deployed to Cloudflare Pages and published at https://tohu-sand.com/. Any commits to the main branch will trigger a new deployment.
+Cloudflare Pages builds the `main` branch with `pnpm build` and serves `dist/`.
+It reads the Node.js version from `.node-version`. HTTP response headers are
+set in `public/_headers`, and crawler rules in `public/robots.txt`.
 
-The Node.js version used by the build is pinned in `.node-version` (Cloudflare Pages reads this file).
+## License
 
-##  License & Copyright
+The source code is under the MIT License. See [LICENSE](LICENSE).
 
-- Source code is licensed under the MIT License. See [LICENSE](LICENSE).
-- Content assets (artwork, images, and text in `public/` and `src/content/`) are © tohu_sand. All rights reserved unless otherwise noted.
-- Third-party dependency licenses are listed in [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md).
+Artwork, images, and text under `public/` and `src/content/` are © tohu_sand.
+All rights reserved unless noted otherwise.
+
+Third-party dependency licenses are listed in
+[THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md).
