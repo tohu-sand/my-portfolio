@@ -2,12 +2,27 @@
 import type { CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 import GalleryItem from "./GalleryItem.astro";
+import {
+  GALLERY_KINDS,
+  getGalleryKind,
+  getGalleryKindLabel,
+  type GalleryKind,
+} from "../utils/gallery";
 
 interface Props {
   artworks: CollectionEntry<"gallery">[];
 }
 
 const { artworks } = Astro.props as Props;
+
+const kindCounts = new Map<GalleryKind, number>();
+for (const art of artworks) {
+  const kind = getGalleryKind(art.data);
+  kindCounts.set(kind, (kindCounts.get(kind) ?? 0) + 1);
+}
+// 1種類しかないときは絞り込む意味がないので、種類フィルタ自体を出さない
+const kinds = GALLERY_KINDS.filter((kind) => (kindCounts.get(kind) ?? 0) > 0);
+const showKindFilter = kinds.length > 1;
 
 const tagCounts = new Map<string, number>();
 for (const art of artworks) {
@@ -19,6 +34,7 @@ const tags = [...tagCounts.keys()].sort(
   (a, b) => tagCounts.get(b)! - tagCounts.get(a)! || a.localeCompare(b, "ja")
 );
 
+const groupLabelClass = "w-8 shrink-0 text-xs text-stone-500 dark:text-stone-400";
 const pillClass =
   "rounded-full px-3 py-1 text-sm bg-stone-200 dark:bg-stone-700 text-stone-800 dark:text-stone-200 transition-colors hover:bg-stone-300 dark:hover:bg-stone-600 aria-pressed:bg-stone-800 aria-pressed:text-white dark:aria-pressed:bg-stone-100 dark:aria-pressed:text-stone-900";
 ---
@@ -35,18 +51,23 @@ const pillClass =
     <Icon name="lucide:chevron-down" class="w-4 h-4 transition-transform" data-gallery-chevron />
   </button>
 
-  <div id="gallery-filter-panel" data-gallery-controls hidden>
-    <div class="mt-3 flex flex-wrap items-center gap-2">
-      <div class="flex flex-wrap gap-2" role="group" aria-label="タグで絞り込み">
-        <button type="button" class={pillClass} data-tag="" aria-pressed="true">
-          すべて <span class="text-xs opacity-70">{artworks.length}</span>
-        </button>
-        {tags.map((tag) => (
-          <button type="button" class={pillClass} data-tag={tag} aria-pressed="false">
-            {tag} <span class="text-xs opacity-70">{tagCounts.get(tag)}</span>
-          </button>
-        ))}
-      </div>
+  <div id="gallery-filter-panel" class="mt-3 flex flex-col gap-3" data-gallery-controls hidden>
+    <div class="flex flex-wrap items-center gap-2">
+      {showKindFilter && (
+        <>
+          <span id="gallery-kind-label" class={groupLabelClass}>種類</span>
+          <div class="flex flex-wrap gap-2" role="group" aria-labelledby="gallery-kind-label">
+            <button type="button" class={pillClass} data-kind="" aria-pressed="true">
+              すべて <span class="text-xs opacity-70">{artworks.length}</span>
+            </button>
+            {kinds.map((kind) => (
+              <button type="button" class={pillClass} data-kind={kind} aria-pressed="false">
+                {getGalleryKindLabel(kind)} <span class="text-xs opacity-70">{kindCounts.get(kind)}</span>
+              </button>
+            ))}
+          </div>
+        </>
+      )}
       <select
         data-sort
         aria-label="並び替え"
@@ -56,6 +77,19 @@ const pillClass =
         <option value="oldest">古い順</option>
       </select>
     </div>
+    <div class="flex flex-wrap items-center gap-2">
+      <span id="gallery-tag-label" class={groupLabelClass}>タグ</span>
+      <div class="flex flex-wrap gap-2" role="group" aria-labelledby="gallery-tag-label">
+        <button type="button" class={pillClass} data-tag="" aria-pressed="true">
+          すべて <span class="text-xs opacity-70">{artworks.length}</span>
+        </button>
+        {tags.map((tag) => (
+          <button type="button" class={pillClass} data-tag={tag} aria-pressed="false">
+            {tag} <span class="text-xs opacity-70">{tagCounts.get(tag)}</span>
+          </button>
+        ))}
+      </div>
+    </div>
   </div>
 </div>
 
@@ -64,6 +98,7 @@ const pillClass =
     <div
       class="h-full"
       data-gallery-item
+      data-kind={getGalleryKind(art.data)}
       data-tags={JSON.stringify(art.data.tags ?? [])}
       data-date={art.data.date.toISOString()}
     >
@@ -85,12 +120,17 @@ const pillClass =
 
   if (toggle && controls && grid && emptyMessage) {
     const items = Array.from(grid.querySelectorAll<HTMLElement>("[data-gallery-item]"));
+    const kindButtons = Array.from(controls.querySelectorAll<HTMLButtonElement>("[data-kind]"));
     const tagButtons = Array.from(controls.querySelectorAll<HTMLButtonElement>("[data-tag]"));
     const sortSelect = controls.querySelector<HTMLSelectElement>("[data-sort]")!;
 
     const params = new URLSearchParams(location.search);
+    let activeKind = params.get("kind") ?? "";
     let activeTag = params.get("tag") ?? "";
     let sortOrder = params.get("sort") === "oldest" ? "oldest" : "newest";
+    if (activeKind && !kindButtons.some((b) => b.dataset.kind === activeKind)) {
+      activeKind = "";
+    }
     if (activeTag && !tagButtons.some((b) => b.dataset.tag === activeTag)) {
       activeTag = "";
     }
@@ -115,18 +155,25 @@ const pillClass =
       let visibleCount = 0;
       for (const item of items) {
         const itemTags: string[] = JSON.parse(item.dataset.tags ?? "[]");
-        const visible = !activeTag || itemTags.includes(activeTag);
+        const kindMatches = !activeKind || item.dataset.kind === activeKind;
+        const tagMatches = !activeTag || itemTags.includes(activeTag);
+        const visible = kindMatches && tagMatches;
         item.hidden = !visible;
         if (visible) visibleCount++;
       }
       emptyMessage.hidden = visibleCount > 0;
 
+      for (const button of kindButtons) {
+        button.setAttribute("aria-pressed", String((button.dataset.kind ?? "") === activeKind));
+      }
       for (const button of tagButtons) {
         button.setAttribute("aria-pressed", String((button.dataset.tag ?? "") === activeTag));
       }
       sortSelect.value = sortOrder;
 
       const url = new URL(location.href);
+      if (activeKind) url.searchParams.set("kind", activeKind);
+      else url.searchParams.delete("kind");
       if (activeTag) url.searchParams.set("tag", activeTag);
       else url.searchParams.delete("tag");
       if (sortOrder === "oldest") url.searchParams.set("sort", "oldest");
@@ -134,6 +181,12 @@ const pillClass =
       history.replaceState(null, "", url);
     };
 
+    for (const button of kindButtons) {
+      button.addEventListener("click", () => {
+        activeKind = button.dataset.kind ?? "";
+        apply();
+      });
+    }
     for (const button of tagButtons) {
       button.addEventListener("click", () => {
         activeTag = button.dataset.tag ?? "";
@@ -146,7 +199,7 @@ const pillClass =
     });
 
     // フィルタ付きURLで開いたときは状態が見えるようパネルを開いておく
-    if (activeTag || sortOrder === "oldest") {
+    if (activeKind || activeTag || sortOrder === "oldest") {
       setExpanded(true);
     }
     apply();
