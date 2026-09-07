@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const illustrationUrl = "https://cdn.tohu-sand.com/others/404.png";
+---
+
+<BaseLayout title="hasamiyacco | ページが見つかりません" robots="noindex">
+  <div class="max-w-2xl mx-auto text-center">
+    <div class="flex justify-center mb-6">
+      <img
+        src={illustrationUrl}
+        alt="倒れ込んでいるキャラクターのイラスト"
+        width="1000"
+        height="697"
+        class="w-full max-w-sm h-auto"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+
+    <p class="text-6xl font-bold text-(--accent) mb-4">404</p>
+    <h1 class="text-3xl font-bold mb-6">ページが見つかりません</h1>
+
+    <p class="text-lg text-stone-600 dark:text-stone-400 mb-8">
+      お探しのページは移動または削除された可能性があります。
+    </p>
+
+    <a
+      href="/"
+      class="inline-block bg-(--accent) hover:bg-(--accent-hover) text-(--accent-contrast) font-medium py-3 px-8 rounded-md transition-colors duration-200"
+    >
+      トップページへ戻る
+    </a>
+  </div>
+</BaseLayout>
