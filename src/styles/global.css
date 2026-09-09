@@ -7,9 +7,6 @@
 @source '../**/*.{astro,md,mdx,jsx,tsx}';
 @source '../plugins/**/*.mjs';
 
-/* v3 の darkMode: 'class' 相当 */
-@custom-variant dark (&:is(.dark *));
-
 @theme {
   --font-display: 'Noto Sans JP Variable', 'Noto Sans JP', sans-serif;
 }

@@ -19,11 +19,11 @@ const kindLabel = getGalleryKindLabel(kind);
 // イラストはサイト共通の --accent（ヘッダー下線と同じ）、漫画は Publication バッジと同じ sky。
 const accentClass: Record<GalleryKind, string> = {
   illustration: "border-(--accent)",
-  comic: "border-sky-600 dark:border-sky-500",
+  comic: "border-sky-500",
 };
 ---
 <figure class="group h-full">
-  <a href={`/gallery/${resolvedSlug}/`} class="flex h-full flex-col rounded-xl border border-stone-200 dark:border-stone-700 overflow-hidden bg-white dark:bg-stone-800 shadow-sm transition-shadow hover:shadow-lg dark:shadow-stone-900/50 dark:hover:shadow-stone-900/70">
+  <a href={`/gallery/${resolvedSlug}/`} class="flex h-full flex-col rounded-xl border border-stone-700 overflow-hidden bg-stone-800 shadow-sm transition-shadow hover:shadow-lg shadow-stone-900/50 hover:shadow-stone-900/70">
     <div class="relative h-48 overflow-hidden">
       <img
         src={data.thumbnail}
@@ -34,8 +34,8 @@ const accentClass: Record<GalleryKind, string> = {
       <span class="absolute inset-0 bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true"></span>
     </div>
     <figcaption class={`flex flex-col border-t-4 p-4 text-sm leading-tight ${accentClass[kind]}`}>
-      <span class="line-clamp-2 font-medium text-stone-900 dark:text-stone-100">{data.title}</span>
-      <time datetime={data.date.toISOString()} class="mt-1 text-xs text-stone-500 dark:text-stone-400">
+      <span class="line-clamp-2 font-medium text-stone-100">{data.title}</span>
+      <time datetime={data.date.toISOString()} class="mt-1 text-xs text-stone-400">
         {dateStr}・{kindLabel}
       </time>
     </figcaption>

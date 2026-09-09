@@ -142,7 +142,7 @@ function renderImages(images) {
     .map((image) => {
       const size =
         image.width && image.height ? ` width="${image.width}" height="${image.height}"` : "";
-      return `<img src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt)}"${size} class="m-0 w-full rounded-lg border border-stone-200 dark:border-stone-700" loading="lazy" decoding="async" />`;
+      return `<img src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt)}"${size} class="m-0 w-full rounded-lg border border-stone-700" loading="lazy" decoding="async" />`;
     })
     .join("");
   const cols = images.length > 1 ? " grid-cols-2" : "";
@@ -155,18 +155,18 @@ function renderCard(snapshot) {
     ? `<img src="${escapeHtml(snapshot.author.avatar)}" alt="" width="40" height="40" class="m-0 h-10 w-10 shrink-0 rounded-full" loading="lazy" decoding="async" />`
     : "";
   return (
-    `<figure class="bluesky-snapshot not-prose my-6 max-w-xl rounded-xl border border-stone-200 bg-white p-4 shadow-xs dark:border-stone-700 dark:bg-stone-900">` +
+    `<figure class="bluesky-snapshot not-prose my-6 max-w-xl rounded-xl border border-stone-700 bg-stone-900 p-4 shadow-xs">` +
     `<div class="flex items-center gap-3">` +
     avatar +
     `<div class="min-w-0 leading-tight">` +
-    `<p class="m-0 truncate font-bold text-stone-900 dark:text-stone-100">${escapeHtml(snapshot.author.displayName)}</p>` +
-    `<p class="m-0 truncate text-sm text-stone-500 dark:text-stone-400">@${escapeHtml(snapshot.author.handle)}</p>` +
+    `<p class="m-0 truncate font-bold text-stone-100">${escapeHtml(snapshot.author.displayName)}</p>` +
+    `<p class="m-0 truncate text-sm text-stone-400">@${escapeHtml(snapshot.author.handle)}</p>` +
     `</div>` +
     `<a href="${url}" target="_blank" rel="noopener noreferrer" class="ml-auto shrink-0 text-[#1185fe]" aria-label="Blueskyで元の投稿を見る">${BUTTERFLY_SVG}</a>` +
     `</div>` +
-    `<p lang="${escapeHtml(snapshot.lang)}" class="m-0 mt-3 whitespace-pre-wrap text-stone-900 dark:text-stone-100">${escapeHtml(snapshot.text)}</p>` +
+    `<p lang="${escapeHtml(snapshot.lang)}" class="m-0 mt-3 whitespace-pre-wrap text-stone-100">${escapeHtml(snapshot.text)}</p>` +
     renderImages(snapshot.images) +
-    `<figcaption class="m-0 mt-3 text-sm text-stone-500 dark:text-stone-400">` +
+    `<figcaption class="m-0 mt-3 text-sm text-stone-400">` +
     `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-inherit no-underline hover:underline">${formatDateJST(snapshot.createdAt)}</a>` +
     `</figcaption>` +
     `</figure>`

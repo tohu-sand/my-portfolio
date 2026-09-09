@@ -34,9 +34,9 @@ const tags = [...tagCounts.keys()].sort(
   (a, b) => tagCounts.get(b)! - tagCounts.get(a)! || a.localeCompare(b, "ja")
 );
 
-const groupLabelClass = "w-8 shrink-0 text-xs text-stone-500 dark:text-stone-400";
+const groupLabelClass = "w-8 shrink-0 text-xs text-stone-400";
 const pillClass =
-  "rounded-full px-3 py-1 text-sm bg-stone-200 dark:bg-stone-700 text-stone-800 dark:text-stone-200 transition-colors hover:bg-stone-300 dark:hover:bg-stone-600 aria-pressed:bg-stone-800 aria-pressed:text-white dark:aria-pressed:bg-stone-100 dark:aria-pressed:text-stone-900";
+  "rounded-full px-3 py-1 text-sm bg-stone-700 text-stone-200 transition-colors hover:bg-stone-600 aria-pressed:bg-stone-100 aria-pressed:text-stone-900";
 ---
 <div class="mb-6">
   <button
@@ -44,7 +44,7 @@ const pillClass =
     data-gallery-toggle
     aria-expanded="false"
     aria-controls="gallery-filter-panel"
-    class="flex items-center gap-1.5 text-sm text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+    class="flex items-center gap-1.5 text-sm text-stone-400 hover:text-stone-100 transition-colors"
   >
     <Icon name="lucide:sliders-horizontal" class="w-4 h-4" />
     絞り込み・並び替え
@@ -71,7 +71,7 @@ const pillClass =
       <select
         data-sort
         aria-label="並び替え"
-        class="ml-auto rounded-sm border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-800 px-2 py-1 text-sm text-stone-800 dark:text-stone-200"
+        class="ml-auto rounded-sm border border-stone-600 bg-stone-800 px-2 py-1 text-sm text-stone-200"
       >
         <option value="newest">新しい順</option>
         <option value="oldest">古い順</option>
@@ -107,7 +107,7 @@ const pillClass =
   ))}
 </section>
 
-<p class="mt-8 text-center text-stone-500 dark:text-stone-400" data-gallery-empty hidden>
+<p class="mt-8 text-center text-stone-400" data-gallery-empty hidden>
   該当する作品はありません。
 </p>
 

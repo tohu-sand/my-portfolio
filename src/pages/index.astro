@@ -68,21 +68,21 @@ const heroImageStructuredData = {
     />
   </div>
 
-  <h2 class="text-2xl font-bold mb-4 text-stone-900 dark:text-stone-100">About</h2>
-  <p class="text-stone-700 dark:text-stone-300 mb-6 ">
+  <h2 class="text-2xl font-bold mb-4 text-stone-100">About</h2>
+  <p class="text-stone-300 mb-6 ">
     <strong>豆腐さんど(@tohu_sand)</strong><br />
     趣味で漫画・イラストを描いています。自主制作漫画誌展示即売会 コミティアにて同人サークル「ロボット技術研究会」を主宰しています。
   </p>
 
-  <h2 class="text-2xl font-bold mt-10 mb-4 text-stone-900 dark:text-stone-100">Upcoming Info</h2>
+  <h2 class="text-2xl font-bold mt-10 mb-4 text-stone-100">Upcoming Info</h2>
   <div class="space-y-4">
     {sortedInfos.length
       ? sortedInfos.map((e: InfoEntry) => <InfoCard entry={e} />)
-      : <p class="text-stone-600 dark:text-stone-400">現在お知らせはありません。</p>}
+      : <p class="text-stone-400">現在お知らせはありません。</p>}
   </div>
 
-  <h2 class="text-2xl font-bold mt-10 mb-4 text-stone-900 dark:text-stone-100">Recent Post</h2>
+  <h2 class="text-2xl font-bold mt-10 mb-4 text-stone-100">Recent Post</h2>
   {latestPost
     ? <PostCard entry={latestPost} />
-    : <p class="text-stone-600 dark:text-stone-400">まだブログ記事がありません。</p>}
+    : <p class="text-stone-400">まだブログ記事がありません。</p>}
 </BaseLayout>

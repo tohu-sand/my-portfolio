@@ -94,8 +94,8 @@ const structuredData = kind === "comic"
 >
   <script type="application/ld+json" set:html={serializeJsonLd(structuredData)}></script>
   
-  <article class="prose dark:prose-invert mx-auto prose-a:text-(--accent) hover:prose-a:text-(--accent)">
-    <h1 class="text-3xl font-bold mb-4 text-stone-900 dark:text-stone-100">{data.title}</h1>
+  <article class="prose prose-invert mx-auto prose-a:text-(--accent) hover:prose-a:text-(--accent)">
+    <h1 class="text-3xl font-bold mb-4 text-stone-100">{data.title}</h1>
     {kind === "comic" ? (
       <>
         <div class="mb-6 not-prose md:hidden">
@@ -131,11 +131,11 @@ const structuredData = kind === "comic"
       </div>
     )}
     {data.description && (
-    <p class="mb-4 text-stone-700 dark:text-stone-300">{data.description}</p>
+    <p class="mb-4 text-stone-300">{data.description}</p>
     )}
     <Content />
 
-    <p class="mt-8 text-sm text-stone-500 dark:text-stone-400">
+    <p class="mt-8 text-sm text-stone-400">
       公開日:
   <time datetime={data.date.toISOString()}>{dateStr}</time>
       {data.tags && (
@@ -144,19 +144,19 @@ const structuredData = kind === "comic"
           {data.tags.map((t: string) => (
             <a
               href={`/gallery/?tag=${encodeURIComponent(t)}`}
-              class="inline-block ml-1 px-2 py-0.5 bg-stone-200 dark:bg-stone-700 text-stone-800 dark:text-stone-200 rounded-sm no-underline hover:bg-stone-300 dark:hover:bg-stone-600 transition-colors"
+              class="inline-block ml-1 px-2 py-0.5 bg-stone-700 text-stone-200 rounded-sm no-underline hover:bg-stone-600 transition-colors"
             >{t}</a>
           ))}
         </>
       )}
     </p>
 
-        <nav class="mt-12 pt-8 mb-5 border-t border-stone-200 dark:border-stone-700">
+        <nav class="mt-12 pt-8 mb-5 border-t border-stone-700">
       <div class="flex justify-between items-center">
     {prevArtwork ? (
           <a 
       href={`/gallery/${entryToSlug(prevArtwork)}/`}
-            class="group flex items-center space-x-3 text-stone-600 dark:text-stone-400 hover:text-(--accent) transition-colors"
+            class="group flex items-center space-x-3 text-stone-400 hover:text-(--accent) transition-colors"
           >
             <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -170,7 +170,7 @@ const structuredData = kind === "comic"
     {nextArtwork ? (
           <a 
       href={`/gallery/${entryToSlug(nextArtwork)}/`}
-            class="group flex items-center space-x-3 text-stone-600 dark:text-stone-400 hover:text-(--accent) transition-colors"
+            class="group flex items-center space-x-3 text-stone-400 hover:text-(--accent) transition-colors"
           >
             <span class="text-sm">次の作品</span>
             <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

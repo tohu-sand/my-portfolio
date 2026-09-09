@@ -13,12 +13,12 @@ const label = getStatusLabel(category, status);
 
 const activeClasses: Record<string, string> = {
   Event: "bg-(--accent) text-(--accent-contrast)",
-  Publication: "bg-sky-600 text-white dark:bg-sky-500 dark:text-stone-950",
+  Publication: "bg-sky-500 text-stone-950",
 };
 
 const classes =
   status === "past"
-    ? "bg-stone-100 text-stone-500 ring-1 ring-inset ring-stone-200 dark:bg-stone-800 dark:text-stone-400 dark:ring-stone-700"
+    ? "bg-stone-800 text-stone-400 ring-1 ring-inset ring-stone-700"
     : (activeClasses[category] ?? activeClasses.Event);
 ---
 {label && (

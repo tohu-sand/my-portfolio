@@ -12,7 +12,7 @@ const { category, location, class: className = "" } = Astro.props;
 // Publication の location は出版社・発行元なので、場所ではなく建物のアイコンにする
 const icon = category === "Publication" ? "lucide:building-2" : "lucide:map-pin";
 ---
-<p class={`flex items-center gap-1.5 text-sm text-stone-600 dark:text-stone-400 ${className}`}>
+<p class={`flex items-center gap-1.5 text-sm text-stone-400 ${className}`}>
   <Icon name={icon} class="h-4 w-4 shrink-0" aria-hidden="true" />
   <span>{location}</span>
 </p>

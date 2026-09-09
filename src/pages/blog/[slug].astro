@@ -75,9 +75,9 @@ const structuredData = {
 >
   <script type="application/ld+json" set:html={serializeJsonLd(structuredData)}></script>
   
-  <article class="prose dark:prose-invert mx-auto prose-a:text-(--accent) hover:prose-a:text-(--accent)">
+  <article class="prose prose-invert mx-auto prose-a:text-(--accent) hover:prose-a:text-(--accent)">
     <h1>{data.title}</h1>
-  <p class="text-sm text-stone-600 dark:text-stone-400">{dateStr}</p>
+  <p class="text-sm text-stone-400">{dateStr}</p>
 
     <img
       src={data.thumbnail}

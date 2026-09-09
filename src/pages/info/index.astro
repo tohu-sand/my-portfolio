@@ -21,8 +21,8 @@ const today = getTodayUTC();
 >
   <div class="mx-auto max-w-3xl">
     <div class="mb-8">
-      <h2 class="text-2xl font-bold text-stone-900 dark:text-stone-100">Information</h2>
-      <p class="mt-1 text-sm text-stone-600 dark:text-stone-400">イベント参加・掲載などのお知らせです。</p>
+      <h2 class="text-2xl font-bold text-stone-100">Information</h2>
+      <p class="mt-1 text-sm text-stone-400">イベント参加・掲載などのお知らせです。</p>
     </div>
 
     <div class="space-y-12">
@@ -30,10 +30,10 @@ const today = getTodayUTC();
         <section aria-labelledby={`info-year-${year}`}>
           <h3
             id={`info-year-${year}`}
-            class="mb-6 flex items-center gap-4 text-sm font-semibold tracking-widest text-stone-500 dark:text-stone-400"
+            class="mb-6 flex items-center gap-4 text-sm font-semibold tracking-widest text-stone-400"
           >
             <span>{year}</span>
-            <span class="h-px flex-1 bg-stone-200 dark:bg-stone-700" aria-hidden="true"></span>
+            <span class="h-px flex-1 bg-stone-700" aria-hidden="true"></span>
           </h3>
           <ol class="list-none">
             {entries.map((e: CollectionEntry<"info">) => (
