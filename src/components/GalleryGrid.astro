@@ -2,12 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 import GalleryItem from "./GalleryItem.astro";
-import {
-  GALLERY_KINDS,
-  getGalleryKind,
-  getGalleryKindLabel,
-  type GalleryKind,
-} from "../utils/gallery";
+import { GALLERY_KINDS, getGalleryKind, getGalleryKindLabel } from "../utils/gallery";
 
 interface Props {
   artworks: CollectionEntry<"gallery">[];
@@ -15,193 +10,236 @@ interface Props {
 
 const { artworks } = Astro.props as Props;
 
-const kindCounts = new Map<GalleryKind, number>();
+const kindCounts = new Map<string, number>();
+const tagCounts = new Map<string, number>();
 for (const art of artworks) {
   const kind = getGalleryKind(art.data);
   kindCounts.set(kind, (kindCounts.get(kind) ?? 0) + 1);
-}
-// 1種類しかないときは絞り込む意味がないので、種類フィルタ自体を出さない
-const kinds = GALLERY_KINDS.filter((kind) => (kindCounts.get(kind) ?? 0) > 0);
-const showKindFilter = kinds.length > 1;
-
-const tagCounts = new Map<string, number>();
-for (const art of artworks) {
   for (const tag of art.data.tags ?? []) {
     tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
   }
 }
+
+// 1種類しかないときは切り替える意味がないので、種類の切り替え自体を出さない
+const kinds = GALLERY_KINDS.filter((kind) => (kindCounts.get(kind) ?? 0) > 0);
+const showKindFilter = kinds.length > 1;
+
+// 作品数の多い順。同数なら五十音順
 const tags = [...tagCounts.keys()].sort(
   (a, b) => tagCounts.get(b)! - tagCounts.get(a)! || a.localeCompare(b, "ja")
 );
 
-const groupLabelClass = "w-8 shrink-0 text-xs text-stone-400";
-const pillClass =
-  "rounded-full px-3 py-1 text-sm bg-stone-700 text-stone-200 transition-colors hover:bg-stone-600 aria-pressed:bg-stone-100 aria-pressed:text-stone-900";
+// 種類はセグメント（面）、タグはチップ（枠線）と形を変えて、2 つの軸を見分けやすくする。
+// 選択中はどちらも白背景に反転。該当 0 件で押しても意味がない選択肢は薄くして押せなくする。
+// ホバー色は未選択のときだけ効かせ、選択中（白背景）の文字が白く溶けないようにする。
+const segmentClass =
+  "rounded-md px-3 py-1 text-sm text-stone-400 transition-colors not-aria-pressed:hover:text-stone-100 aria-pressed:bg-stone-100 aria-pressed:text-stone-900 disabled:pointer-events-none disabled:opacity-40";
+const chipClass =
+  "group inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full border border-stone-700 px-3 py-1 text-sm text-stone-300 transition-colors not-aria-pressed:hover:border-stone-500 not-aria-pressed:hover:text-stone-100 aria-pressed:border-stone-100 aria-pressed:bg-stone-100 aria-pressed:text-stone-900 disabled:pointer-events-none disabled:opacity-40";
+const resetClass = "underline underline-offset-2 transition-colors hover:text-stone-100";
 ---
-<div class="mb-6">
-  <button
-    type="button"
-    data-gallery-toggle
-    aria-expanded="false"
-    aria-controls="gallery-filter-panel"
-    class="flex items-center gap-1.5 text-sm text-stone-400 hover:text-stone-100 transition-colors"
-  >
-    <Icon name="lucide:sliders-horizontal" class="w-4 h-4" />
-    絞り込み・並び替え
-    <Icon name="lucide:chevron-down" class="w-4 h-4 transition-transform" data-gallery-chevron />
-  </button>
-
-  <div id="gallery-filter-panel" class="mt-3 flex flex-col gap-3" data-gallery-controls hidden>
-    <div class="flex flex-wrap items-center gap-2">
+<div data-gallery>
+  <div class="mb-6 flex flex-col gap-3">
+    <div class="flex flex-wrap items-center gap-3">
       {showKindFilter && (
-        <>
-          <span id="gallery-kind-label" class={groupLabelClass}>種類</span>
-          <div class="flex flex-wrap gap-2" role="group" aria-labelledby="gallery-kind-label">
-            <button type="button" class={pillClass} data-kind="" aria-pressed="true">
-              すべて <span class="text-xs opacity-70">{artworks.length}</span>
+        <div role="group" aria-label="種類" class="inline-flex rounded-lg bg-stone-800 p-1">
+          <button type="button" class={segmentClass} data-kind="" aria-pressed="true">すべて</button>
+          {kinds.map((kind) => (
+            <button type="button" class={segmentClass} data-kind={kind} aria-pressed="false">
+              {getGalleryKindLabel(kind)}
             </button>
-            {kinds.map((kind) => (
-              <button type="button" class={pillClass} data-kind={kind} aria-pressed="false">
-                {getGalleryKindLabel(kind)} <span class="text-xs opacity-70">{kindCounts.get(kind)}</span>
-              </button>
-            ))}
-          </div>
-        </>
+          ))}
+        </div>
       )}
-      <select
-        data-sort
-        aria-label="並び替え"
-        class="ml-auto rounded-sm border border-stone-600 bg-stone-800 px-2 py-1 text-sm text-stone-200"
-      >
-        <option value="newest">新しい順</option>
-        <option value="oldest">古い順</option>
-      </select>
-    </div>
-    <div class="flex flex-wrap items-center gap-2">
-      <span id="gallery-tag-label" class={groupLabelClass}>タグ</span>
-      <div class="flex flex-wrap gap-2" role="group" aria-labelledby="gallery-tag-label">
-        <button type="button" class={pillClass} data-tag="" aria-pressed="true">
-          すべて <span class="text-xs opacity-70">{artworks.length}</span>
-        </button>
-        {tags.map((tag) => (
-          <button type="button" class={pillClass} data-tag={tag} aria-pressed="false">
-            {tag} <span class="text-xs opacity-70">{tagCounts.get(tag)}</span>
-          </button>
-        ))}
+      <div class="ml-auto flex items-center gap-1.5 text-stone-400">
+        <Icon name="lucide:arrow-down-up" class="h-4 w-4" aria-hidden="true" />
+        <select
+          data-sort
+          aria-label="並び替え"
+          class="rounded-md border border-stone-700 bg-stone-800 px-2 py-1 text-sm text-stone-200"
+        >
+          <option value="newest">新しい順</option>
+          <option value="oldest">古い順</option>
+        </select>
       </div>
     </div>
+
+    <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+      {/* スマホでは折り返さず 1 行の横スクロールにし、画面端まで伸ばしてチップが端で切れる＝スクロールできる合図にする */}
+      {tags.length > 0 && (
+        <div
+          role="group"
+          aria-label="タグ"
+          data-gallery-tags
+          class="relative -mx-4 flex min-w-0 flex-1 items-center gap-2 overflow-x-auto px-4 py-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:py-0"
+        >
+          <Icon name="lucide:tag" class="h-4 w-4 shrink-0 text-stone-500" aria-hidden="true" />
+          {tags.map((tag) => (
+            <button type="button" class={chipClass} data-tag={tag} aria-pressed="false">
+              {tag}
+              <span class="hidden text-xs tabular-nums opacity-60 sm:inline" data-count>{tagCounts.get(tag)}</span>
+              <Icon name="lucide:x" class="hidden h-3.5 w-3.5 group-aria-pressed:inline" aria-hidden="true" />
+            </button>
+          ))}
+        </div>
+      )}
+      {/* スマホでは行を増やさないよう読み上げ専用にする（選択中のチップの × で解除できる） */}
+      <p data-gallery-status class="sr-only text-xs text-stone-400 sm:not-sr-only sm:ml-auto" aria-live="polite">
+        <span class="tabular-nums" data-gallery-count>{artworks.length}</span>件
+        <button type="button" data-gallery-reset class={`ml-2 ${resetClass}`} hidden>絞り込みを解除</button>
+      </p>
+    </div>
   </div>
+
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-gallery-grid>
+    {artworks.map((art: CollectionEntry<"gallery">) => (
+      <div
+        class="h-full"
+        data-gallery-item
+        data-kind={getGalleryKind(art.data)}
+        data-tags={JSON.stringify(art.data.tags ?? [])}
+        data-date={art.data.date.toISOString()}
+      >
+        <GalleryItem entry={art} />
+      </div>
+    ))}
+  </section>
+
+  <p class="mt-8 text-center text-stone-400" data-gallery-empty hidden>
+    該当する作品はありません。
+    <button type="button" data-gallery-reset class={`ml-2 ${resetClass}`}>絞り込みを解除</button>
+  </p>
 </div>
 
-<section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-gallery-grid>
-  {artworks.map((art: CollectionEntry<"gallery">) => (
-    <div
-      class="h-full"
-      data-gallery-item
-      data-kind={getGalleryKind(art.data)}
-      data-tags={JSON.stringify(art.data.tags ?? [])}
-      data-date={art.data.date.toISOString()}
-    >
-      <GalleryItem entry={art} />
-    </div>
-  ))}
-</section>
-
-<p class="mt-8 text-center text-stone-400" data-gallery-empty hidden>
-  該当する作品はありません。
-</p>
-
 <script>
-  const toggle = document.querySelector<HTMLButtonElement>("[data-gallery-toggle]");
-  const chevron = document.querySelector<HTMLElement>("[data-gallery-chevron]");
-  const controls = document.querySelector<HTMLElement>("[data-gallery-controls]");
-  const grid = document.querySelector<HTMLElement>("[data-gallery-grid]");
-  const emptyMessage = document.querySelector<HTMLElement>("[data-gallery-empty]");
+  interface Item {
+    el: HTMLElement;
+    kind: string;
+    tags: string[];
+    time: number;
+  }
 
-  if (toggle && controls && grid && emptyMessage) {
-    const items = Array.from(grid.querySelectorAll<HTMLElement>("[data-gallery-item]"));
-    const kindButtons = Array.from(controls.querySelectorAll<HTMLButtonElement>("[data-kind]"));
-    const tagButtons = Array.from(controls.querySelectorAll<HTMLButtonElement>("[data-tag]"));
-    const sortSelect = controls.querySelector<HTMLSelectElement>("[data-sort]")!;
+  const root = document.querySelector<HTMLElement>("[data-gallery]");
+  const grid = root?.querySelector<HTMLElement>("[data-gallery-grid]");
+  const emptyMessage = root?.querySelector<HTMLElement>("[data-gallery-empty]");
+  const countLabel = root?.querySelector<HTMLElement>("[data-gallery-count]");
+  const sortSelect = root?.querySelector<HTMLSelectElement>("[data-sort]");
 
+  if (root && grid && emptyMessage && countLabel && sortSelect) {
+    const items: Item[] = Array.from(grid.querySelectorAll<HTMLElement>("[data-gallery-item]")).map(
+      (el) => ({
+        el,
+        kind: el.dataset.kind ?? "",
+        tags: JSON.parse(el.dataset.tags ?? "[]"),
+        time: Date.parse(el.dataset.date ?? ""),
+      })
+    );
+    // 作品カードの wrapper も data-kind を持つので、ボタンだけを拾う
+    const kindButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("button[data-kind]"));
+    const tagButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("button[data-tag]"));
+    const tagRow = root.querySelector<HTMLElement>("[data-gallery-tags]");
+    const resetButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-gallery-reset]"));
+    const statusReset = root.querySelector<HTMLButtonElement>("[data-gallery-status] [data-gallery-reset]");
+
+    const matchesKind = (item: Item, kind: string) => !kind || item.kind === kind;
+    const matchesTag = (item: Item, tag: string) => !tag || item.tags.includes(tag);
+
+    // URL のクエリから初期状態を復元する（作品ページのタグリンクは ?tag= で飛んでくる）
     const params = new URLSearchParams(location.search);
-    let activeKind = params.get("kind") ?? "";
-    let activeTag = params.get("tag") ?? "";
-    let sortOrder = params.get("sort") === "oldest" ? "oldest" : "newest";
-    if (activeKind && !kindButtons.some((b) => b.dataset.kind === activeKind)) {
-      activeKind = "";
-    }
-    if (activeTag && !tagButtons.some((b) => b.dataset.tag === activeTag)) {
-      activeTag = "";
-    }
-
-    const setExpanded = (expanded: boolean) => {
-      controls.hidden = !expanded;
-      toggle.setAttribute("aria-expanded", String(expanded));
-      chevron?.classList.toggle("rotate-180", expanded);
+    const pick = (value: string | null, allowed: string[]) =>
+      value && allowed.includes(value) ? value : "";
+    const state = {
+      kind: pick(params.get("kind"), kindButtons.map((b) => b.dataset.kind ?? "")),
+      tag: pick(params.get("tag"), tagButtons.map((b) => b.dataset.tag ?? "")),
+      sort: params.get("sort") === "oldest" ? "oldest" : "newest",
     };
 
-    toggle.addEventListener("click", () => {
-      setExpanded(controls.hidden);
-    });
+    // 選択肢の見た目と件数を更新する。もう一方の軸の選択を反映した件数が 0 なら押せなくする。
+    // ただし選択中のものは、解除できるよう常に押せる状態を保つ。
+    const updateOption = (button: HTMLButtonElement, count: number, pressed: boolean) => {
+      button.setAttribute("aria-pressed", String(pressed));
+      button.disabled = count === 0 && !pressed;
+      const countEl = button.querySelector<HTMLElement>("[data-count]");
+      if (countEl) countEl.textContent = String(count);
+    };
 
-    const apply = () => {
-      const sorted = items.slice().sort((a, b) => {
-        const diff = Date.parse(a.dataset.date ?? "") - Date.parse(b.dataset.date ?? "");
-        return sortOrder === "oldest" ? diff : -diff;
-      });
-      for (const item of sorted) grid.appendChild(item);
+    // 横スクロールのタグ行で、選択中のチップが画面外なら見える位置まで横にだけ動かす
+    // （?tag= で開いたとき用。縦方向のページ位置は動かさない）
+    const revealTag = (button: HTMLElement) => {
+      if (!tagRow) return;
+      const pad = 16;
+      const start = button.offsetLeft;
+      const end = start + button.offsetWidth;
+      const viewStart = tagRow.scrollLeft;
+      const viewEnd = viewStart + tagRow.clientWidth;
+      if (start < viewStart + pad) tagRow.scrollLeft = start - pad;
+      else if (end > viewEnd - pad) tagRow.scrollLeft = end - tagRow.clientWidth + pad;
+    };
 
-      let visibleCount = 0;
+    const render = () => {
+      const sorted = items
+        .slice()
+        .sort((a, b) => (state.sort === "oldest" ? a.time - b.time : b.time - a.time));
+      for (const item of sorted) grid.appendChild(item.el);
+
+      let visible = 0;
       for (const item of items) {
-        const itemTags: string[] = JSON.parse(item.dataset.tags ?? "[]");
-        const kindMatches = !activeKind || item.dataset.kind === activeKind;
-        const tagMatches = !activeTag || itemTags.includes(activeTag);
-        const visible = kindMatches && tagMatches;
-        item.hidden = !visible;
-        if (visible) visibleCount++;
+        const show = matchesKind(item, state.kind) && matchesTag(item, state.tag);
+        item.el.hidden = !show;
+        if (show) visible++;
       }
-      emptyMessage.hidden = visibleCount > 0;
+      emptyMessage.hidden = visible > 0;
+      countLabel.textContent = String(visible);
+      if (statusReset) statusReset.hidden = !state.kind && !state.tag;
 
       for (const button of kindButtons) {
-        button.setAttribute("aria-pressed", String((button.dataset.kind ?? "") === activeKind));
+        const kind = button.dataset.kind ?? "";
+        const count = items.filter((i) => matchesKind(i, kind) && matchesTag(i, state.tag)).length;
+        updateOption(button, count, kind === state.kind);
       }
       for (const button of tagButtons) {
-        button.setAttribute("aria-pressed", String((button.dataset.tag ?? "") === activeTag));
+        const tag = button.dataset.tag ?? "";
+        const count = items.filter((i) => matchesKind(i, state.kind) && matchesTag(i, tag)).length;
+        updateOption(button, count, tag === state.tag);
+        if (tag === state.tag) revealTag(button);
       }
-      sortSelect.value = sortOrder;
+      sortSelect.value = state.sort;
 
       const url = new URL(location.href);
-      if (activeKind) url.searchParams.set("kind", activeKind);
-      else url.searchParams.delete("kind");
-      if (activeTag) url.searchParams.set("tag", activeTag);
-      else url.searchParams.delete("tag");
-      if (sortOrder === "oldest") url.searchParams.set("sort", "oldest");
-      else url.searchParams.delete("sort");
+      const setParam = (key: string, value: string) =>
+        value ? url.searchParams.set(key, value) : url.searchParams.delete(key);
+      setParam("kind", state.kind);
+      setParam("tag", state.tag);
+      setParam("sort", state.sort === "oldest" ? "oldest" : "");
       history.replaceState(null, "", url);
     };
 
     for (const button of kindButtons) {
       button.addEventListener("click", () => {
-        activeKind = button.dataset.kind ?? "";
-        apply();
+        state.kind = button.dataset.kind ?? "";
+        render();
       });
     }
     for (const button of tagButtons) {
       button.addEventListener("click", () => {
-        activeTag = button.dataset.tag ?? "";
-        apply();
+        const tag = button.dataset.tag ?? "";
+        // 選択中のタグをもう一度押すと解除
+        state.tag = state.tag === tag ? "" : tag;
+        render();
+      });
+    }
+    for (const button of resetButtons) {
+      button.addEventListener("click", () => {
+        state.kind = "";
+        state.tag = "";
+        render();
       });
     }
     sortSelect.addEventListener("change", () => {
-      sortOrder = sortSelect.value === "oldest" ? "oldest" : "newest";
-      apply();
+      state.sort = sortSelect.value === "oldest" ? "oldest" : "newest";
+      render();
     });
 
-    // フィルタ付きURLで開いたときは状態が見えるようパネルを開いておく
-    if (activeKind || activeTag || sortOrder === "oldest") {
-      setExpanded(true);
-    }
-    apply();
+    render();
   }
 </script>
