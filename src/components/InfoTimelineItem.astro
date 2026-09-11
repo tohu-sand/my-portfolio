@@ -23,7 +23,8 @@ const hasBody = (entry.body ?? "").trim().length > 0;
 const rendered = hasBody ? await render(entry) : null;
 const Content = rendered?.Content;
 ---
-<li id={id} class="group grid scroll-mt-24 grid-cols-[3.5rem_1fr] gap-x-3 sm:grid-cols-[4.5rem_1fr] sm:gap-x-4">
+{/* data-category: Publication のとき、この中の --accent が第2アクセント（緑）に切り替わる（BaseLayout 参照） */}
+<li id={id} data-category={data.category} class="group grid scroll-mt-24 grid-cols-[3.5rem_1fr] gap-x-3 sm:grid-cols-[4.5rem_1fr] sm:gap-x-4">
   <time datetime={parts.iso} class="flex flex-col items-center pt-1 leading-none text-stone-100">
     <span class="sr-only">{parts.year}年{parts.month}月{parts.day}日（{parts.weekday}）</span>
     <span aria-hidden="true" class="text-xs font-medium text-stone-400">{parts.month}月</span>
@@ -41,9 +42,7 @@ const Content = rendered?.Content;
 
     <article
       class={`rounded-xl border bg-stone-800 p-4 shadow-xs sm:p-5 ${
-        isActive
-          ? "border-orange-400/50"
-          : "border-stone-700"
+        isActive ? "border-(--accent)/50" : "border-stone-700"
       }`}
     >
       <div class="flex flex-wrap items-center gap-2">

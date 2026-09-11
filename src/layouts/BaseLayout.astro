@@ -79,6 +79,18 @@ const finalRobots = robots ? `${robots}, noai, noimageai` : "noai, noimageai";
         --accent: #fb923c;
         --accent-hover: #fdba74;
         --accent-contrast: #1a0f05;
+        /* Publication / 漫画用の第2アクセント。favicon の緑 (#93b65f) の彩度を少し上げたもの */
+        --accent-2: #8eb947;
+        --accent-2-hover: #b5d489;
+      }
+      /*
+        Publication のカード（data-category を持つ要素）の中では、リンク・枠線・タイムラインの点など
+        共通の --accent を使う要素をまとめて第2アクセントに切り替える。
+        カテゴリを知っているバッジは --accent-2 を直接参照しているので、この差し替えに依存しない。
+      */
+      :global([data-category="Publication"]) {
+        --accent: var(--accent-2);
+        --accent-hover: var(--accent-2-hover);
       }
     </style>
   </head>

@@ -17,7 +17,8 @@ const hasBody = (entry.body ?? "").trim().length > 0;
 const rendered = hasBody ? await render(entry) : null;
 const Content = rendered?.Content;
 ---
-<article id={id} class="scroll-mt-24 rounded-xl border border-stone-700 bg-stone-800 p-4 shadow-xs">
+{/* data-category: Publication のとき、この中の --accent が第2アクセント（緑）に切り替わる（BaseLayout 参照） */}
+<article id={id} data-category={data.category} class="scroll-mt-24 rounded-xl border border-stone-700 bg-stone-800 p-4 shadow-xs">
   <div class="flex flex-wrap items-center gap-2">
     <InfoCategoryBadge category={data.category} />
     <time datetime={data.date.toISOString().slice(0, 10)} class="text-sm text-stone-400">{dateStr}</time>

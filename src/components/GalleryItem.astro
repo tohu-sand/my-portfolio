@@ -16,10 +16,10 @@ const kind = getGalleryKind(data);
 const kindLabel = getGalleryKindLabel(kind);
 
 // サムネイルとキャプションの境目に入れる、種類ごとのアクセントカラー。
-// イラストはサイト共通の --accent（ヘッダー下線と同じ）、漫画は Publication バッジと同じ sky。
+// イラストはサイト共通の --accent（ヘッダー下線と同じ）、漫画は Publication バッジと同じ --accent-2（favicon の緑）。
 const accentClass: Record<GalleryKind, string> = {
   illustration: "border-(--accent)",
-  comic: "border-sky-500",
+  comic: "border-(--accent-2)",
 };
 ---
 <figure class="group h-full">
