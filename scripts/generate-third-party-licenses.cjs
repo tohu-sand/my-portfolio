@@ -194,10 +194,18 @@ const licenseTextSources = {
   ],
   '0BSD': [
     { type: 'package', name: 'tslib', stripCopyright: true }
+  ],
+  'MPL-2.0': [
+    { type: 'package', name: 'lightningcss', stripCopyright: false }
+  ],
+  // サイトで実際に配信しているフォント (Noto Sans JP) のライセンス
+  'OFL-1.1': [
+    { type: 'package', name: '@fontsource-variable/noto-sans-jp', stripCopyright: false }
   ]
 };
 
-const licenseOrder = [
+// よく使うライセンスはこの順に並べ、それ以外のライセンスも漏らさず末尾に ID 順で続ける
+const preferredLicenseOrder = [
   'MIT',
   'Apache-2.0',
   'ISC',
@@ -208,14 +216,34 @@ const licenseOrder = [
   'CC0-1.0',
   'CC-BY-4.0',
   'LGPL-3.0-or-later',
+  'MPL-2.0',
+  'OFL-1.1',
   'Python-2.0',
   '(MIT OR CC0-1.0)'
-].filter((licenseId) => licenseData[licenseId]);
+];
+const licenseOrder = [
+  ...preferredLicenseOrder.filter((licenseId) => licenseData[licenseId]),
+  ...Object.keys(licenseData).filter((licenseId) => !preferredLicenseOrder.includes(licenseId)).sort()
+];
+
+// ライセンスごとの本文。「License Texts」節に出すほか、同じ本文を Additional Package Notices に重複掲載しないための照合にも使う
+const licenseTexts = new Map();
+for (const licenseId of licenseOrder) {
+  if (licenseId === '(MIT OR CC0-1.0)') continue;
+  try {
+    licenseTexts.set(
+      licenseId,
+      loadLicenseTextFromSources(licenseId, licenseTextSources[licenseId] || [], packageLookup, licenseData)
+    );
+  } catch (error) {
+    console.warn(`[licenses] ${error.message}`);
+  }
+}
 
 const extraNoticePatterns = [/this license applies to/i, /third[- ]party/i];
 const extraNotices = [];
 
-function collectExtraNotices(pkg, pkgPath) {
+function collectExtraNotices(pkg, pkgPath, licenseId) {
   const licenseFiles = findLicenseFiles(pkgPath);
   for (const file of licenseFiles) {
     const filePath = path.join(pkgPath, file);
@@ -223,6 +251,10 @@ function collectExtraNotices(pkg, pkgPath) {
     try {
       content = readText(filePath);
     } catch (error) {
+      continue;
+    }
+    // ライセンス本文そのもの (MPL-2.0 など「third party」を含むもの) は License Texts 節に出すので除外する
+    if (normalizeText(content) === licenseTexts.get(licenseId)) {
       continue;
     }
     if (extraNoticePatterns.some((pattern) => pattern.test(content))) {
@@ -284,7 +316,7 @@ for (const licenseId of licenseOrder) {
     output.push(`- ${pkg.name}@${versions}${noticeText}`);
 
     for (const pkgPath of pkg.paths) {
-      collectExtraNotices(pkg, pkgPath);
+      collectExtraNotices(pkg, pkgPath, licenseId);
     }
   }
 }
@@ -300,11 +332,11 @@ for (const licenseId of licenseOrder) {
     continue;
   }
 
-  const sources = licenseTextSources[licenseId] || [];
-  if (!sources.length) {
+  // 出典を決めていないライセンスも、そのライセンスのパッケージに同梱された LICENSE ファイルから本文を出す
+  const text = licenseTexts.get(licenseId);
+  if (text === undefined) {
     continue;
   }
-  const text = loadLicenseTextFromSources(licenseId, sources, packageLookup, licenseData);
 
   output.push('');
   output.push(`### ${licenseId}`);

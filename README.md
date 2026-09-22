@@ -90,7 +90,9 @@ pnpm preview   # serve dist/ at http://localhost:4321
 ```
 
 `pnpm build` first regenerates `THIRD_PARTY_LICENSES.md` from the installed
-dependencies. Run `pnpm licenses` to regenerate it on its own. Like the
+dependencies. Run `pnpm run licenses` to regenerate it on its own (`pnpm
+licenses` without `run` is pnpm's own subcommand and does not run the
+script). Like the
 development server, `pnpm preview` keeps running in the background; stop it
 with `pnpm astro preview stop`.
 
