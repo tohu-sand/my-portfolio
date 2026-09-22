@@ -82,8 +82,27 @@ User-agent: SemrushBot-OCOB
 User-agent: iaskspider/2.0
 Disallow: /
 
+# --- 日本語LLM / 画像データセット構築 / その他のAI学習系 ---
+# Cotoyogi, SBIntuitionsBot: 日本語LLMの学習用クローラー
+# LAION 系, imageSpider: 画像データセット構築
+# GoogleOther-Image, Google-CloudVertexBot: Google の研究・Vertex AI 用 (通常のGoogle検索には影響しない)
+User-agent: Cotoyogi
+User-agent: SBIntuitionsBot
+User-agent: laion-huggingface-processor
+User-agent: LAIONDownloader
+User-agent: imageSpider
+User-agent: GoogleOther-Image
+User-agent: Google-CloudVertexBot
+User-agent: meta-webindexer
+User-agent: DeepSeekBot
+User-agent: QwenBot
+User-agent: Ai2Bot-Dolma
+Disallow: /
+
 # --- 上記以外(通常の検索エンジン等)は許可 ---
+# Content-Signal: 検索インデックスは許可し、AI学習と AI 回答への入力 (RAG 等) は拒否する
 User-agent: *
+Content-Signal: search=yes, ai-input=no, ai-train=no
 Allow: /
 Disallow: /contact/thank-you/
 
