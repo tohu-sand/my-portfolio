@@ -87,8 +87,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       const emailPattern =
         /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9](?:[A-Za-z0-9\-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9\-]*[A-Za-z0-9])?)*\.[A-Za-z]{2,}$/;
       form.addEventListener("submit", (event) => {
-        // 前後の空白を除去
-        emailInput.value = emailInput.value.trim();
+        // IME がオンのまま入力された全角の英数・＠・．・。を半角に直し、前後の空白を除去する
+        // （type="text" のため PC の IME が無効化されず、全角のまま入力されることがある）
+        emailInput.value = emailInput.value.normalize("NFKC").replace(/[。｡]/g, ".").trim();
         // 形式に合わない場合は、実際には送信せず、本物と同じサンクスページへ遷移させる（いたずら防止）
         if (!emailPattern.test(emailInput.value)) {
           event.preventDefault();
