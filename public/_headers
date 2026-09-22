@@ -1,8 +1,15 @@
 # Cloudflare Pages custom headers
 # noai / noimageai: img2dataset 等のデータセット構築ツールが参照するAI学習拒否シグナル
+# HSTS: サブドメイン (cdn / illust / colormix) もすべて Cloudflare 経由の HTTPS なので includeSubDomains を付ける
 /*
   X-Robots-Tag: noai, noimageai
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# /_astro/ のファイル名には内容ハッシュが付くので、再検証なしで1年キャッシュしてよい
+# （指定がないとゾーンの Browser Cache TTL=4時間で must-revalidate になる）
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
