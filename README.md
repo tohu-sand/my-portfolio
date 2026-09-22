@@ -69,6 +69,12 @@ Gallery entries need `title`, `date`, `thumbnail`, and either `image` for an
 illustration or `reader.src` for a comic. Blog posts need `title`, `date`, and
 `thumbnail`, followed by the article body.
 
+Give the image shown on the detail page its pixel size so the browser can
+reserve the space before it loads: `mediumWidth` / `mediumHeight` next to
+`mediumImage` in a gallery entry, and `thumbnailWidth` / `thumbnailHeight`
+next to `thumbnail` in a blog post. Both fields are optional but must be set
+together.
+
 ### Info drafts
 
 Git ignores files in `src/content/info/drafts/`. `pnpm dev` shows them next to

@@ -9,6 +9,9 @@ const gallery = defineCollection({
     date: z.date(),
     image: z.string().optional(),
     mediumImage: z.string().optional(),
+    // mediumImage の実寸（px）。作品ページの <img> に width/height として出し、読み込み中のレイアウトずれを防ぐ
+    mediumWidth: z.number().int().positive().optional(),
+    mediumHeight: z.number().int().positive().optional(),
     thumbnail: z.string(),
     tags: z.array(z.string()).optional(),
     description: z.string().optional(),
@@ -36,6 +39,13 @@ const gallery = defineCollection({
         path: ['image'],
       });
     }
+    if ((data.mediumWidth === undefined) !== (data.mediumHeight === undefined)) {
+      ctx.addIssue({
+        code: 'custom',
+        message: 'mediumWidth and mediumHeight must be set together',
+        path: ['mediumWidth'],
+      });
+    }
   }),
 });
 
@@ -45,8 +55,14 @@ const posts = defineCollection({
     title: z.string(),
     date: z.date(),
     thumbnail: z.string(),
+    // thumbnail の実寸（px）。記事ページの見出し画像に width/height として出す
+    thumbnailWidth: z.number().int().positive().optional(),
+    thumbnailHeight: z.number().int().positive().optional(),
     tags: z.array(z.string()).optional(),
     excerpt: z.string().optional(),
+  }).refine((data) => (data.thumbnailWidth === undefined) === (data.thumbnailHeight === undefined), {
+    message: 'thumbnailWidth and thumbnailHeight must be set together',
+    path: ['thumbnailWidth'],
   }),
 });
 

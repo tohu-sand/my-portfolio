@@ -82,7 +82,9 @@ const structuredData = {
     <img
       src={data.thumbnail}
       alt={data.title}
-      class="not-prose w-full rounded-lg my-4"
+      width={data.thumbnailWidth}
+      height={data.thumbnailHeight}
+      class="not-prose w-full h-auto rounded-lg my-4"
       loading="lazy"
     />
 

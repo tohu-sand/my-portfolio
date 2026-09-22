@@ -23,6 +23,10 @@ const slug = entryToSlug(entry);
 const kind = data.kind ?? "illustration";
 const imageUrl = data.image || data.thumbnail;
 const mediumImageUrl = data.mediumImage || imageUrl;
+// 寸法は mediumImage のものなので、mediumImage を表示するときだけ付ける
+const mediumSize = data.mediumImage
+  ? { width: data.mediumWidth, height: data.mediumHeight }
+  : {};
 const ogImage = data.mediumImage || data.image || data.thumbnail;
 const dateStr = formatDateJP(data.date);
 // reader.src にクエリが付いていても壊れないよう、layout は URL API で上書きする
@@ -131,7 +135,8 @@ const structuredData = kind === "comic"
           <img
             src={mediumImageUrl}
             alt={data.title}
-            class="w-full rounded-lg hover:opacity-90 transition-opacity duration-200"
+            {...mediumSize}
+            class="w-full h-auto rounded-lg hover:opacity-90 transition-opacity duration-200"
           />
         </a>
       </div>
