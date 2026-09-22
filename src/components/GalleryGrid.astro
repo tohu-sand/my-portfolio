@@ -92,14 +92,14 @@ const resetClass = "underline underline-offset-2 transition-colors hover:text-st
   )}
 
   <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-gallery-grid>
-    {artworks.map((art: CollectionEntry<"gallery">) => (
+    {artworks.map((art: CollectionEntry<"gallery">, index: number) => (
       <div
         class="h-full"
         data-gallery-item
         data-kind={getGalleryKind(art.data)}
         data-tags={JSON.stringify(art.data.tags ?? [])}
       >
-        <GalleryItem entry={art} />
+        <GalleryItem entry={art} priority={index === 0} />
       </div>
     ))}
   </section>

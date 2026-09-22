@@ -85,7 +85,8 @@ const structuredData = {
       width={data.thumbnailWidth}
       height={data.thumbnailHeight}
       class="not-prose w-full h-auto rounded-lg my-4"
-      loading="lazy"
+      fetchpriority="high"
+      decoding="async"
     />
 
     {data.excerpt && <p class="italic">{data.excerpt}</p>}

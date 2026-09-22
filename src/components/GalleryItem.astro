@@ -6,9 +6,11 @@ import { getGalleryKind, getGalleryKindLabel, type GalleryKind } from "../utils/
 
 interface Props {
   entry: CollectionEntry<"gallery">;
+  /** 一覧の先頭など、初期表示で確実に見える作品は遅延させず優先して取得する */
+  priority?: boolean;
 }
 
-const { entry } = Astro.props;
+const { entry, priority = false } = Astro.props;
 const { data } = entry;
 const resolvedSlug = entryToSlug(entry);
 const dateStr = formatDateJP(data.date);
@@ -29,7 +31,9 @@ const accentClass: Record<GalleryKind, string> = {
         src={data.thumbnail}
         alt={data.title}
         class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-        loading="lazy"
+        loading={priority ? "eager" : "lazy"}
+        fetchpriority={priority ? "high" : undefined}
+        decoding="async"
       />
       <span class="absolute inset-0 bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true"></span>
     </div>

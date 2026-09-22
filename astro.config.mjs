@@ -6,6 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 
 import { remarkBlueskySnapshot } from "./src/plugins/remark-bluesky-snapshot.mjs";
+import { rehypeLazyImages } from "./src/plugins/rehype-lazy-images.mjs";
 
 export default defineConfig({
   site: "https://tohu-sand.com",
@@ -18,6 +19,7 @@ export default defineConfig({
     // Astro 7 の既定は Sätteri。remark プラグインを使うため unified パイプラインを明示する
     processor: unified({
       remarkPlugins: [remarkBlueskySnapshot],
+      rehypePlugins: [rehypeLazyImages],
     }),
   },
   integrations: [sitemap({

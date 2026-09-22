@@ -137,6 +137,8 @@ const structuredData = kind === "comic"
             alt={data.title}
             {...mediumSize}
             class="w-full h-auto rounded-lg hover:opacity-90 transition-opacity duration-200"
+            fetchpriority="high"
+            decoding="async"
           />
         </a>
       </div>
