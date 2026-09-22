@@ -10,6 +10,8 @@ import path from "node:path";
  * - キャッシュがある限りネットワークにもBluesky本体にも依存しないため、
  *   元の投稿が削除されても記事は壊れない
  * - キャッシュがなくAPI取得にも失敗した場合は、元の埋め込みHTMLをそのまま残す
+ * - 置換するのは埋め込み（blockquote + embed.js）の部分だけ。同じHTMLブロックに
+ *   複数の埋め込みや他のHTML・テキストが続いていても、それらは残す
  */
 
 const API_ENDPOINT = "https://public.api.bsky.app/xrpc/app.bsky.feed.getPosts";
@@ -182,21 +184,53 @@ function collectEmbedNodes(node, found) {
   }
 }
 
+// Blueskyの埋め込みコード1件分（blockquote と、直後にあれば embed.js の script）
+const EMBED_RE =
+  /<blockquote\b[^>]*\bdata-bluesky-uri="([^"]+)"[^>]*>[\s\S]*?<\/blockquote>(?:\s*<script\b[^>]*embed\.bsky\.app[^>]*><\/script>)?/g;
+
 export function remarkBlueskySnapshot() {
   return async (tree, file) => {
     const nodes = [];
     collectEmbedNodes(tree, nodes);
+    const cwd = file.cwd ?? process.cwd();
+    const fileName = file.path ? path.relative(cwd, file.path) : "(unknown file)";
 
     for (const node of nodes) {
-      const uri = node.value.match(/data-bluesky-uri="([^"]+)"/)?.[1];
-      if (!uri) continue;
-      try {
-        node.value = renderCard(await loadSnapshot(uri, file.cwd ?? process.cwd()));
-      } catch (err) {
+      // Markdown では空行を挟まずに続く HTML 行が1つの html ノードになるため、
+      // ノード全体ではなく埋め込みに一致した範囲だけを置換し、残りはそのまま出力する
+      let output = "";
+      let leftover = "";
+      let lastIndex = 0;
+      for (const match of node.value.matchAll(EMBED_RE)) {
+        const before = node.value.slice(lastIndex, match.index);
+        output += before;
+        leftover += before;
+        lastIndex = match.index + match[0].length;
+
+        const uri = match[1];
+        try {
+          output += renderCard(await loadSnapshot(uri, cwd));
+        } catch (err) {
+          console.warn(
+            `[bluesky-snapshot] ${uri} のスナップショット化に失敗しました（元の埋め込みを維持します）: ${err.message}`,
+          );
+          output += match[0];
+        }
+      }
+      const tail = node.value.slice(lastIndex);
+      output += tail;
+      leftover += tail;
+
+      if (lastIndex === 0) {
+        console.warn(`[bluesky-snapshot] ${fileName}: 埋め込みコードを解釈できませんでした（そのまま出力します）`);
+        continue;
+      }
+      if (leftover.trim()) {
         console.warn(
-          `[bluesky-snapshot] ${uri} のスナップショット化に失敗しました（元の埋め込みを維持します）: ${err.message}`,
+          `[bluesky-snapshot] ${fileName}: 埋め込みと同じブロックに他のテキストがあり、段落として扱われません。埋め込みの後に空行を入れてください: 「${leftover.trim().slice(0, 30)}…」`,
         );
       }
+      node.value = output;
     }
   };
 }
