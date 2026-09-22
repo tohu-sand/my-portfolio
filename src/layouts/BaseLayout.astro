@@ -35,7 +35,9 @@ const finalRobots = robots ? `${robots}, noai, noimageai` : "noai, noimageai";
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={finalOgUrl} />
-    <link rel="preconnect" href="https://cdn.tohu-sand.com" crossorigin />
+    <!-- CDN は crossorigin 属性のない <img> で参照するだけなので、preconnect にも crossorigin を付けない
+         （付けると別の接続プールに張られ、画像の取得に再利用されない） -->
+    <link rel="preconnect" href="https://cdn.tohu-sand.com" />
     <meta name="robots" content={finalRobots} />
     <meta name="Hatena::Bookmark" content="nocomment" />
     

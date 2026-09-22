@@ -69,6 +69,14 @@ function formatDateJST(iso) {
 
 async function downloadImage(url, fileBase, cwd) {
   return dedupe(`img:${fileBase}`, async () => {
+    // 既にダウンロード済み（コミット済み）のファイルはそのまま使う。
+    // アバターは DID ごとに1ファイルなので、新しい投稿を追加しても縮小済みの画像が上書きされない
+    const imageDir = path.join(cwd, IMAGE_DIR);
+    const existing = (await fs.readdir(imageDir).catch(() => [])).find((name) =>
+      name.startsWith(`${fileBase}.`),
+    );
+    if (existing) return `${IMAGE_BASE}/${existing}`;
+
     const res = await fetch(url);
     if (!res.ok) throw new Error(`image fetch failed (${res.status}): ${url}`);
     const ext = EXT_BY_MIME[res.headers.get("content-type")] ?? ".jpg";
