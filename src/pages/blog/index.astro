@@ -18,6 +18,7 @@ const blogPostsStructuredData = {
   "url": "https://tohu-sand.com/blog/",
   "author": {
     "@type": "Person",
+    "@id": "https://tohu-sand.com/#person",
     "name": "豆腐さんど",
     "url": "https://tohu-sand.com/"
   },
@@ -29,17 +30,19 @@ const blogPostsStructuredData = {
       "datePublished": post.data.date.toISOString().split('T')[0],
       "author": {
         "@type": "Person",
+        "@id": "https://tohu-sand.com/#person",
         "name": "豆腐さんど"
       },
       "url": `https://tohu-sand.com/blog/${slug}/`,
       "image": {
         "@type": "ImageObject",
-        "url": post.data.thumbnail,
-        "contentUrl": `https://tohu-sand.com/blog/${slug}/`,
-        "license": "https://tohu-sand.com/",
+        "url": `https://tohu-sand.com/blog/${slug}/`,
+        "contentUrl": post.data.thumbnail,
+        "license": "https://tohu-sand.com/policy/",
         "acquireLicensePage": "https://tohu-sand.com/contact/",
         "creator": {
           "@type": "Person",
+          "@id": "https://tohu-sand.com/#person",
           "name": "豆腐さんど",
           "url": "https://tohu-sand.com/"
         },
@@ -59,7 +62,7 @@ const blogPostsStructuredData = {
 >
   <script type="application/ld+json" set:html={serializeJsonLd(blogPostsStructuredData)}></script>
   
-  <h2 class="text-2xl font-bold mb-6 text-stone-100">Blog</h2>
+  <h1 class="text-2xl font-bold mb-6 text-stone-100">Blog</h1>
   <div class="grid md:grid-cols-2 gap-6">
     {sortedPosts.map((p: CollectionEntry<'posts'>) => <PostCard entry={p} />)}
   </div>

@@ -1,5 +1,9 @@
 # Cloudflare Pages custom headers
-# noai / noimageai: img2dataset 等のデータセット構築ツールが参照するAI学習拒否シグナル
+# noai / noimageai: このサイトの文章・画像を AI の学習・データセット構築に使わないという意思表示。
+#   文書化された読み手は img2dataset 等のデータセット構築ツール。AI 検索・回答での引用を拒否する意味ではなく、
+#   robots.txt の Content-Signal (ai-input=yes, ai-train=no) と矛盾しない。
+#   nosnippet / max-snippet / noarchive / nocache は付けない (AI Overviews・AI モード・Copilot での引用を妨げるため)。
+#   画像本体の拒否シグナル (noindex を含む) は cdn.tohu-sand.com の Transform Rule で付与している。
 # HSTS: サブドメイン (cdn / illust / colormix) もすべて Cloudflare 経由の HTTPS なので includeSubDomains を付ける
 /*
   X-Robots-Tag: noai, noimageai

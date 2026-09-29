@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "@fontsource-variable/noto-sans-jp";
 import NavBar from "../components/NavBar.astro";
 import Footer from "../components/Footer.astro";
+import { serializeJsonLd } from "../utils/jsonLd";
 const { 
   title = "Site Title", 
   description = "hasamiyacco - 豆腐さんどのホームページ",
@@ -24,8 +25,49 @@ const finalOgDescription = ogDescription || description;
 const finalTwitterTitle = twitterTitle || finalOgTitle;
 const fallbackUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
 const finalOgUrl = ogUrl || fallbackUrl;
-// AI学習拒否シグナル(noai/noimageai)を全ページに付与し、ページ個別のrobots指定とマージする
+// AI 学習拒否シグナル (noai / noimageai) を全ページに付与し、ページ個別の robots 指定とマージする。
+// AI 検索・回答での引用は許可する方針なので、nosnippet / max-snippet / noarchive / nocache は付けない。
 const finalRobots = robots ? `${robots}, noai, noimageai` : "noai, noimageai";
+
+// サイト共通の実体情報 (WebSite / Person / Organization)。各ページの JSON-LD は @id でこの Person を参照する
+const siteGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://tohu-sand.com/#website",
+      "url": "https://tohu-sand.com/",
+      "name": "hasamiyacco",
+      "inLanguage": "ja",
+      "publisher": { "@id": "https://tohu-sand.com/#person" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://tohu-sand.com/#person",
+      "name": "豆腐さんど",
+      "alternateName": ["tohu_sand"],
+      "url": "https://tohu-sand.com/",
+      "description": "趣味で漫画・イラストを描いています。コミティアで同人サークル「ロボット技術研究会」を主宰しています。",
+      "memberOf": { "@id": "https://tohu-sand.com/#circle" },
+      "sameAs": [
+        "https://bsky.app/profile/tohu-sand.com",
+        "https://twitter.com/tohu_sand",
+        "https://www.pixiv.net/users/65836171",
+        "https://www.instagram.com/tohu_sand/",
+        "https://fedibird.com/@tohu_sand",
+        "https://pawoo.net/@tohu_sand",
+        "https://github.com/tohu-sand"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://tohu-sand.com/#circle",
+      "name": "ロボット技術研究会",
+      "url": "https://portal.circle.ms/Circle/Index/10492982",
+      "founder": { "@id": "https://tohu-sand.com/#person" }
+    }
+  ]
+};
 ---
 <!DOCTYPE html>
 <html lang="ja" class="scroll-smooth">
@@ -40,6 +82,7 @@ const finalRobots = robots ? `${robots}, noai, noimageai` : "noai, noimageai";
     <link rel="preconnect" href="https://cdn.tohu-sand.com" />
     <meta name="robots" content={finalRobots} />
     <meta name="Hatena::Bookmark" content="nocomment" />
+    <script type="application/ld+json" set:html={serializeJsonLd(siteGraph)}></script>
     
     <!-- Begin Social Card Metadata -->
     <!-- Open Graph (used by Bluesky, Facebook, LINE etc.) -->

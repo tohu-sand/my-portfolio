@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pageDescription = "Usage policy for the artwork, comics, and text on tohu-sand.com.";
+---
+<BaseLayout
+  title="hasamiyacco | Policy"
+  description={pageDescription}
+  ogTitle="hasamiyacco | Policy"
+  ogDescription={pageDescription}
+  ogUrl="https://tohu-sand.com/policy/"
+>
+  <section lang="en" class="prose prose-invert max-w-none prose-a:text-(--accent) hover:prose-a:text-(--accent) prose-a:font-medium">
+    <h1 class="text-2xl! font-bold!">Policy</h1>
+    <p class="text-sm text-stone-400">Last updated: <time datetime="2026-09-29">September 29, 2026</time></p>
+
+    <p>
+      All artwork, comics, images, and text on tohu-sand.com and cdn.tohu-sand.com are &copy; tohu_sand.
+      All rights reserved. For fan art, the characters belong to their respective rights holders.
+    </p>
+
+    <h2>AI training</h2>
+    <p>
+      Do not use any image or text from this site to train, fine-tune, or evaluate AI or machine-learning models,
+      to build datasets, or as input for AI image generation. This applies no matter how the file was obtained.
+      No license for these uses is available.
+    </p>
+    <p>
+      Search engines and AI search services may index the pages and link to them. This does not extend to the
+      image files.
+    </p>
+
+    <h2>Reposting</h2>
+    <p>
+      Do not repost or redistribute the artwork, comics, or text without permission. Linking to a page is fine.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Questions and permission requests: <a href="/contact/">contact form</a>.
+    </p>
+
+    <p class="text-sm text-stone-400">
+      The source code of this site is on
+      <a href="https://github.com/tohu-sand/my-portfolio" target="_blank" rel="noopener noreferrer">GitHub</a>
+      under the MIT License. That license does not cover the artwork, images, or text.
+    </p>
+  </section>
+</BaseLayout>

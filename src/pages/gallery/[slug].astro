@@ -50,7 +50,13 @@ const defaultDescription = kind === "comic"
 const description = data.description || defaultDescription;
 const artworkUrl = `https://tohu-sand.com/gallery/${slug}/`;
 
-// 構造化データの準備
+// 構造化データの準備。creator は BaseLayout の @graph にある Person を @id で参照する
+const creator = {
+  "@type": "Person",
+  "@id": "https://tohu-sand.com/#person",
+  "name": "豆腐さんど",
+  "url": "https://tohu-sand.com/"
+};
 const structuredData = kind === "comic"
   ? {
       "@context": "https://schema.org",
@@ -62,32 +68,26 @@ const structuredData = kind === "comic"
       "dateCreated": data.date.toISOString().split("T")[0],
       "creditText": "豆腐さんど",
       "copyrightNotice": `© ${data.date.getFullYear()} 豆腐さんど`,
-      "creator": {
-        "@type": "Person",
-        "name": "豆腐さんど",
-        "url": "https://tohu-sand.com/"
-      },
-      "license": "https://tohu-sand.com/",
+      "creator": creator,
+      "license": "https://tohu-sand.com/policy/",
       "acquireLicensePage": "https://tohu-sand.com/contact/",
       "keywords": data.tags?.join(", ") || ""
     }
   : {
+      // contentUrl = ページに表示している画像ファイル (medium)、url = 作品ページ。原寸 URL は載せない
       "@context": "https://schema.org",
       "@type": "ImageObject",
       "name": data.title,
       "description": description,
-      "url": imageUrl,
+      "url": artworkUrl,
+      "contentUrl": data.mediumImage || data.thumbnail,
       "thumbnailUrl": data.thumbnail,
-      "contentUrl": artworkUrl,
+      "mainEntityOfPage": artworkUrl,
       "dateCreated": data.date.toISOString().split("T")[0],
       "creditText": "豆腐さんど",
       "copyrightNotice": `© ${data.date.getFullYear()} 豆腐さんど`,
-      "creator": {
-        "@type": "Person",
-        "name": "豆腐さんど",
-        "url": "https://tohu-sand.com/"
-      },
-      "license": "https://tohu-sand.com/",
+      "creator": creator,
+      "license": "https://tohu-sand.com/policy/",
       "acquireLicensePage": "https://tohu-sand.com/contact/",
       "keywords": data.tags?.join(", ") || ""
     };

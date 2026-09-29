@@ -1,41 +1,49 @@
 # robots.txt for tohu-sand.com
-# 通常の検索エンジンは許可し、AI学習・スクレイピング用クローラーを拒否する
+# 方針: 検索エンジンと AI 検索・AI 回答エンジンによるページの索引・引用・要約・リンクは許可し、
+# AI モデルの学習・ファインチューニング・データセット構築への利用は拒否する。
+# 画像 (作品・ブログ) は cdn.tohu-sand.com から配信している。そちらの robots.txt では、リンクプレビューと
+# フィードリーダー以外のクローラー (検索エンジンを含む) をすべて拒否している。
+# 詳細: https://tohu-sand.com/policy/
 
-# --- OpenAI ---
+# ===== AI学習・データセット構築用のクローラー (拒否) =====
+
+# --- OpenAI (GPTBot = 学習用。検索用の OAI-SearchBot とユーザー操作の ChatGPT-User は許可) ---
 User-agent: GPTBot
-User-agent: ChatGPT-User
-User-agent: OAI-SearchBot
 Disallow: /
 
-# --- Anthropic ---
+# --- Anthropic (ClaudeBot = 学習用。anthropic-ai / claude-web は旧トークン。Claude-SearchBot / Claude-User は許可) ---
 User-agent: ClaudeBot
-User-agent: Claude-User
-User-agent: Claude-SearchBot
 User-agent: anthropic-ai
 User-agent: claude-web
 Disallow: /
 
-# --- Google (AI学習のみ拒否。通常のGoogle検索には影響しない) ---
+# --- Google (Gemini の学習とグラウンディングを拒否。Google 検索・AI Overviews・AI モードには影響しない) ---
 User-agent: Google-Extended
 Disallow: /
 
-# --- Apple (AI学習のみ拒否) ---
+# --- Google (研究開発・Vertex AI 用。通常の Google 検索には影響しない) ---
+User-agent: GoogleOther
+User-agent: GoogleOther-Image
+User-agent: Google-CloudVertexBot
+Disallow: /
+
+# --- Apple (基盤モデルの学習のみ拒否。Siri / Spotlight / Safari 検索は Applebot で許可) ---
 User-agent: Applebot-Extended
 Disallow: /
 
-# --- Meta ---
-User-agent: FacebookBot
+# --- Meta (meta-externalagent = 学習用、meta-externalads = 広告・事業用、FacebookBot = 旧トークン) ---
+# Meta AI 検索用の meta-webindexer とユーザー操作の meta-externalfetcher は許可
 User-agent: meta-externalagent
-User-agent: meta-externalfetcher
+User-agent: meta-externalads
+User-agent: FacebookBot
 Disallow: /
 
-# --- Common Crawl (多くのAI学習データセットの元) ---
-User-agent: CCBot
+# --- Amazon (Amazonbot は Amazon の AI 学習に使われ得る。検索用の Amzn-SearchBot / Amzn-User は許可) ---
+User-agent: Amazonbot
 Disallow: /
 
-# --- Perplexity ---
-User-agent: PerplexityBot
-User-agent: Perplexity-User
+# --- Mistral (MistralAI-Training = 学習用。MistralAI-Index / MistralAI-User は許可) ---
+User-agent: MistralAI-Training
 Disallow: /
 
 # --- ByteDance (TikTok) ---
@@ -43,33 +51,37 @@ User-agent: Bytespider
 User-agent: TikTokSpider
 Disallow: /
 
-# --- Amazon ---
-User-agent: Amazonbot
-Disallow: /
-
-# --- Mistral ---
-User-agent: MistralAI-User
-Disallow: /
-
-# --- Cohere ---
-User-agent: cohere-ai
-User-agent: cohere-training-data-crawler
+# --- Common Crawl (多くのAI学習データセットの元) ---
+User-agent: CCBot
 Disallow: /
 
 # --- Allen Institute for AI ---
 User-agent: AI2Bot
+User-agent: Ai2Bot-Dolma
 Disallow: /
 
-# --- DuckDuckGo AI (DuckAssist) ---
-User-agent: DuckAssistBot
+# --- Cohere (現在は学習用クローラーなしと表明しているが念のため) ---
+User-agent: cohere-ai
+User-agent: cohere-training-data-crawler
+Disallow: /
+
+# --- 日本語LLM・研究用 ---
+# Cotoyogi, SBIntuitionsBot: 日本語LLMの学習用 / ICC-Crawler: NICT の研究用 (AI研究を含む)
+# SB Intuitions の検索用 SBIntuitions-SearchBot は許可
+User-agent: Cotoyogi
+User-agent: SBIntuitionsBot
+User-agent: ICC-Crawler
 Disallow: /
 
 # --- 画像収集・データセット構築系 ---
 User-agent: img2dataset
 User-agent: ImagesiftBot
+User-agent: laion-huggingface-processor
+User-agent: LAIONDownloader
+User-agent: imageSpider
 Disallow: /
 
-# --- その他のAI/スクレイピング系クローラー ---
+# --- その他のAI学習・スクレイピング系 (学習に使わないと確認できないものを含む) ---
 User-agent: Diffbot
 User-agent: omgili
 User-agent: omgilibot
@@ -79,31 +91,22 @@ User-agent: YouBot
 User-agent: PanguBot
 User-agent: Kangaroo Bot
 User-agent: SemrushBot-OCOB
-User-agent: iaskspider/2.0
-Disallow: /
-
-# --- 日本語LLM / 画像データセット構築 / その他のAI学習系 ---
-# Cotoyogi, SBIntuitionsBot: 日本語LLMの学習用クローラー
-# LAION 系, imageSpider: 画像データセット構築
-# GoogleOther-Image, Google-CloudVertexBot: Google の研究・Vertex AI 用 (通常のGoogle検索には影響しない)
-User-agent: Cotoyogi
-User-agent: SBIntuitionsBot
-User-agent: laion-huggingface-processor
-User-agent: LAIONDownloader
-User-agent: imageSpider
-User-agent: GoogleOther-Image
-User-agent: Google-CloudVertexBot
-User-agent: meta-webindexer
+User-agent: iaskspider
 User-agent: DeepSeekBot
 User-agent: QwenBot
-User-agent: Ai2Bot-Dolma
 Disallow: /
 
-# --- 上記以外(通常の検索エンジン等)は許可 ---
-# Content-Signal: 検索インデックスは許可し、AI学習と AI 回答への入力 (RAG 等) は拒否する
+# ===== 上記以外 (検索エンジン、AI検索・AI回答エンジン) は許可 =====
+# 主な許可対象 (学習用とは別の検索・回答用トークン):
+#   Googlebot, bingbot, Applebot, DuckDuckBot,
+#   OAI-SearchBot, ChatGPT-User, Claude-SearchBot, Claude-User,
+#   PerplexityBot, Perplexity-User, DuckAssistBot, MistralAI-Index, MistralAI-User,
+#   Amzn-SearchBot, Amzn-User, meta-webindexer, meta-externalfetcher, SBIntuitions-SearchBot
+# Content-Signal: 検索と AI 回答への入力 (RAG・グラウンディング) は許可し、AI の学習・ファインチューニングは拒否する
+# (Disallow を Allow より前に置くのは、先頭一致で判定する古いパーサー向け。RFC 9309 では順序に関係なく長い方が優先)
 User-agent: *
-Content-Signal: search=yes, ai-input=no, ai-train=no
-Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Disallow: /contact/thank-you/
+Allow: /
 
 Sitemap: https://tohu-sand.com/sitemap-index.xml

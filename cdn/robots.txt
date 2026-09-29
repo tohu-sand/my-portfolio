@@ -1,0 +1,130 @@
+# robots.txt for cdn.tohu-sand.com (image host for tohu-sand.com)
+# Policy: https://tohu-sand.com/policy/
+#
+# Images on this host must not be used by any AI or machine-learning system:
+# no training, fine-tuning, dataset building, AI search indexing,
+# RAG/grounding, or display in AI answers.
+# Link-preview and feed fetchers may fetch images, except the full-size
+# artwork originals under /illust/ (only the web derivatives there).
+# Every other crawler, including web search engines, is disallowed.
+# Every file is also served with "X-Robots-Tag: noindex", so web search
+# gains nothing from fetching it.
+# This file is ASCII only on purpose.
+#
+# Source of truth: cdn/robots.txt in https://github.com/tohu-sand/my-portfolio
+# Upload: wrangler r2 object put assets/robots.txt --file cdn/robots.txt
+#   --content-type "text/plain; charset=utf-8" --cache-control "public, max-age=86400" --remote
+
+# --- AI training / dataset crawlers and training-control tokens ---
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: claude-web
+User-agent: Google-Extended
+User-agent: GoogleOther
+User-agent: GoogleOther-Image
+User-agent: Google-CloudVertexBot
+User-agent: Applebot-Extended
+User-agent: meta-externalagent
+User-agent: FacebookBot
+User-agent: Amazonbot
+User-agent: MistralAI-Training
+User-agent: Bytespider
+User-agent: TikTokSpider
+User-agent: CCBot
+User-agent: AI2Bot
+User-agent: Ai2Bot-Dolma
+User-agent: cohere-ai
+User-agent: cohere-training-data-crawler
+User-agent: Cotoyogi
+User-agent: SBIntuitionsBot
+User-agent: ICC-Crawler
+User-agent: img2dataset
+User-agent: ImagesiftBot
+User-agent: laion-huggingface-processor
+User-agent: LAIONDownloader
+User-agent: imageSpider
+User-agent: Diffbot
+User-agent: omgili
+User-agent: omgilibot
+User-agent: webzio-extended
+User-agent: Timpibot
+User-agent: PanguBot
+User-agent: Kangaroo Bot
+User-agent: SemrushBot-OCOB
+User-agent: DeepSeekBot
+User-agent: QwenBot
+Disallow: /
+
+# --- AI search indexers, AI assistants and user-triggered AI fetchers ---
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: DuckAssistBot
+User-agent: MistralAI-Index
+User-agent: MistralAI-User
+User-agent: Amzn-SearchBot
+User-agent: Amzn-User
+User-agent: meta-webindexer
+User-agent: meta-externalfetcher
+User-agent: SBIntuitions-SearchBot
+User-agent: ExaSearchBot
+User-agent: YouBot
+User-agent: iaskspider
+Disallow: /
+
+# --- Ad crawlers ---
+User-agent: meta-externalads
+User-agent: OAI-AdsBot
+Disallow: /
+
+# --- Web search engines ---
+# Microsoft states that Bingbot crawls "for both search and model training"
+# and filters training data by robots.txt (MAI-Image-2.6 data summary).
+# Images here are noindex, so search engines lose nothing by being disallowed.
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: bingbot
+User-agent: Applebot
+User-agent: DuckDuckBot
+User-agent: Kagibot
+Disallow: /
+
+# --- Link previews and feed readers: /illust/ web derivatives only (no originals); /blog/ and /others/ open ---
+# New derivatives go under /illust/web/. The files listed by name below were
+# published before that rule.
+User-agent: Twitterbot
+User-agent: facebookexternalhit
+User-agent: line-poker
+User-agent: Discordbot
+User-agent: Slackbot-LinkExpanding
+User-agent: Slack-ImgProxy
+User-agent: Slackbot
+User-agent: TelegramBot
+User-agent: LinkedInBot
+User-agent: Tumblr
+User-agent: Cardyb
+User-agent: Mastodon
+User-agent: SummalyBot
+User-agent: Misskey
+User-agent: Hatena
+User-agent: Feedly
+User-agent: Inoreader
+User-agent: NewsBlur
+User-agent: Feedbin
+User-agent: FreshRSS
+Allow: /illust/web/
+Allow: /illust/card.png
+Allow: /illust/2026-03-10_medium.webp
+Allow: /illust/2026-03-10_thumb.webp
+Allow: /illust/2026-04-29_medium.webp
+Allow: /illust/2026-08-08_medium.webp
+Disallow: /illust/
+
+# --- Everyone else ---
+User-agent: *
+Content-Signal: search=no, ai-input=no, ai-train=no
+Disallow: /

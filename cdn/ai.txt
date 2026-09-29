@@ -1,0 +1,9 @@
+# ai.txt for cdn.tohu-sand.com - no AI/ML use of any media. https://tohu-sand.com/policy/
+User-Agent: *
+Disallow: *.png
+Disallow: *.webp
+Disallow: *.jpg
+Disallow: *.jpeg
+Disallow: *.gif
+Disallow: *.avif
+Disallow: /

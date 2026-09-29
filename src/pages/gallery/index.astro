@@ -11,41 +11,32 @@ const artworks = (await getCollection("gallery")).slice().sort(compareByDateDesc
 // ページ説明文
 const pageDescription = "豆腐さんどのイラスト・漫画ギャラリーページです。オリジナル作品を公開しています。";
 
-const galleryImages = artworks.filter((artwork) => {
-  const kind = artwork.data.kind ?? "illustration";
-  return kind === "illustration";
-});
-
-// 構造化データの準備
+// 構造化データの準備。作品は画像ファイルではなく作品ページの一覧 (ItemList) として出す。
+// 画像ごとの ImageObject は各作品ページ側にあり、ここに原寸 URL を並べない
 const galleryStructuredData = {
   "@context": "https://schema.org",
   "@type": "ImageGallery",
   "name": "hasamiyacco | ギャラリー",
   "description": pageDescription,
   "url": "https://tohu-sand.com/gallery/",
+  "inLanguage": "ja",
   "author": {
     "@type": "Person",
+    "@id": "https://tohu-sand.com/#person",
     "name": "豆腐さんど",
     "url": "https://tohu-sand.com/"
   },
-  "image": galleryImages.map((artwork) => ({
-    "@type": "ImageObject",
-    "name": artwork.data.title,
-    "url": artwork.data.image || artwork.data.thumbnail,
-    "thumbnailUrl": artwork.data.thumbnail,
-    "dateCreated": artwork.data.date.toISOString().split('T')[0],
-    "creditText": "豆腐さんど",
-    "copyrightNotice": `© ${artwork.data.date.getFullYear()} 豆腐さんど`,
-    "license": "https://tohu-sand.com/",
-    "acquireLicensePage": "https://tohu-sand.com/contact/",
-    "creator": {
-      "@type": "Person",
-      "name": "豆腐さんど",
-      "url": "https://tohu-sand.com/"
-    },
-    "description": artwork.data.description || artwork.data.title,
-    "contentUrl": `https://tohu-sand.com/gallery/${entryToSlug(artwork)}/`
-  }))
+  "license": "https://tohu-sand.com/policy/",
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": artworks.length,
+    "itemListElement": artworks.map((artwork, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": artwork.data.title,
+      "url": `https://tohu-sand.com/gallery/${entryToSlug(artwork)}/`
+    }))
+  }
 };
 ---
 
@@ -58,6 +49,6 @@ const galleryStructuredData = {
 >
   <script type="application/ld+json" set:html={serializeJsonLd(galleryStructuredData)}></script>
   
-  <h2 class="text-2xl font-bold mb-6 text-stone-100">Gallery</h2>
+  <h1 class="text-2xl font-bold mb-6 text-stone-100">Gallery</h1>
   <GalleryGrid artworks={artworks} />
 </BaseLayout>

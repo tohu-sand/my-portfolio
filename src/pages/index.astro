@@ -34,19 +34,21 @@ const latestPost = allPosts.slice().sort(compareByDateDesc)[0];
 type InfoEntry = typeof sortedInfos[0];
 
 const heroImageUrl = "https://cdn.tohu-sand.com/illust/web/shijohikyaku_medium.webp";
+// contentUrl = 画像ファイル、url = 掲載ページ。creator は BaseLayout の @graph の Person を参照する
 const heroImageStructuredData = {
   "@context": "https://schema.org",
   "@type": "ImageObject",
   "name": "トップ画像",
   "description": "hasamiyaccoのトップ画像",
-  "url": heroImageUrl,
-  "contentUrl": "https://tohu-sand.com/",
-  "license": "https://tohu-sand.com/",
+  "url": "https://tohu-sand.com/",
+  "contentUrl": heroImageUrl,
+  "license": "https://tohu-sand.com/policy/",
   "acquireLicensePage": "https://tohu-sand.com/contact/",
   "creditText": "豆腐さんど",
   "copyrightNotice": "© 2025 豆腐さんど",
   "creator": {
     "@type": "Person",
+    "@id": "https://tohu-sand.com/#person",
     "name": "豆腐さんど",
     "url": "https://tohu-sand.com/"
   }
@@ -59,6 +61,7 @@ const heroImageStructuredData = {
   adsense
 >
   <script type="application/ld+json" set:html={serializeJsonLd(heroImageStructuredData)}></script>
+  <h1 class="sr-only">hasamiyacco - 豆腐さんどのホームページ</h1>
   <div class="flex justify-center mb-8">
     <img
       src={heroImageUrl}
