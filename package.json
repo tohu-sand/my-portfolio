@@ -30,6 +30,7 @@
   },
   "pnpm": {
     "overrides": {
+      "@tailwindcss/typography@0.5.20>postcss-selector-parser": "^7.1.6",
       "nanoid@<3.3.18": "^3.3.18",
       "picomatch@<2.3.2": "^2.3.2",
       "postcss@<=8.5.22": "^8.5.23",

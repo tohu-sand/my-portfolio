@@ -118,7 +118,7 @@ The list is based on the currently installed dependency tree (pnpm).
 - defu@6.1.7 — Copyright (c) Pooya Parsa <pooya@pi0.io>
 - dequal@2.0.3 — Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (lukeed.com)
 - destr@2.0.5 — Copyright (c) Pooya Parsa <pooya@pi0.io>
-- devalue@5.9.2 — Copyright (c) 2018-19 [these people](https://github.com/rich-harris/devalue/graphs/contributors)
+- devalue@5.9.4 — Copyright (c) 2018-19 [these people](https://github.com/rich-harris/devalue/graphs/contributors)
 - devlop@1.1.0 — Copyright (c) 2023 Titus Wormer <tituswormer@gmail.com>
 - dom-serializer@2.0.0 — Copyright (c) 2014 The cheeriojs contributors
 - dset@3.1.4 — Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (lukeed.com)
@@ -238,7 +238,7 @@ The list is based on the currently installed dependency tree (pnpm).
 - pathe@2.0.3 — Copyright (c) 2023-present Fabio Spampinato; Copyright (c) Pooya Parsa <pooya@pi0.io> - Daniel Roe <daniel@roe.dev>
 - picomatch@2.3.2, 4.0.4, 4.0.7 — Copyright (c) 2017-present, Jon Schlinkert.
 - postcss@8.5.26 — Copyright 2013 Andrey Sitnik <andrey@sitnik.es>
-- postcss-selector-parser@6.0.10 — Copyright (c) Ben Briggs <beneb.info@gmail.com> (http://beneb.info)
+- postcss-selector-parser@7.1.6 — Copyright (c) Ben Briggs <beneb.info@gmail.com> (http://beneb.info)
 - prettier@3.9.6 — Copyright © James Long and contributors
 - prismjs@1.30.0 — Copyright (c) 2012 Lea Verou
 - process-ancestry@0.1.0 — Copyright (c) Matt Kane
@@ -287,7 +287,7 @@ The list is based on the currently installed dependency tree (pnpm).
 - ufo@1.6.4 — Copyright (c) Pooya Parsa <pooya@pi0.io>
 - ultrahtml@1.6.0 — Copyright (c) 2013 Jason Miller
 - uncrypto@0.1.3 — Copyright (c) Pooya Parsa <pooya@pi0.io>
-- undici@8.10.0 — Copyright (c) Matteo Collina and Undici contributors
+- undici@8.11.2 — Copyright (c) Matteo Collina and Undici contributors
 - undici-types@7.16.0 — Copyright (c) Matteo Collina and Undici contributors
 - unified@11.0.5 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
 - unifont@0.7.5 — Copyright (c) 2024 Daniel Roe
@@ -336,12 +336,12 @@ The list is based on the currently installed dependency tree (pnpm).
 
 ### Apache-2.0
 
-- @img/sharp-linux-x64@0.35.4 — Copyright (c) Lovell Fuller
-- @img/sharp-linuxmusl-x64@0.35.4 — Copyright (c) Lovell Fuller
+- @img/sharp-linux-x64@0.35.5 — Copyright (c) Lovell Fuller
+- @img/sharp-linuxmusl-x64@0.35.5 — Copyright (c) Lovell Fuller
 - aria-query@5.3.2 — Copyright 2020 A11yance
 - axobject-query@4.1.0 — Copyright 2020 A11yance
 - detect-libc@2.1.2 — Copyright (c) Lovell Fuller
-- sharp@0.35.4 — Copyright (c) Lovell Fuller
+- sharp@0.35.5 — Copyright (c) Lovell Fuller
 - typescript@5.9.3 — Copyright (c) Microsoft Corp.
 
 ### ISC
@@ -376,9 +376,9 @@ The list is based on the currently installed dependency tree (pnpm).
 ### BSD-3-Clause
 
 - diff@9.0.0 — Copyright (c) 2009-2015, Kevin Decker <kpdecker@gmail.com>
-- fast-uri@3.1.6 — Copyright (c) 2011-2021, Gary Court until https://github.com/garycourt/uri-js/commit/a1acf730b4bba3f1097c9f52e7d9d3aba8cdcaae; Copyright (c) 2021-present The Fastify team <https://github.com/fastify/fastify#team>
-- smol-toml@1.8.0 — Copyright (c) Squirrel Chat et al., All rights reserved.
-- source-map-js@1.2.1 — Copyright (c) 2009-2011, Mozilla Foundation and contributors
+- fast-uri@3.1.8 — Copyright (c) 2011-2021, Gary Court until https://github.com/garycourt/uri-js/commit/a1acf730b4bba3f1097c9f52e7d9d3aba8cdcaae; Copyright (c) 2021-present The Fastify team <https://github.com/fastify/fastify#team>
+- smol-toml@1.9.0 — Copyright (c) Squirrel Chat et al., All rights reserved.
+- source-map-js@1.2.2 — Copyright (c) 2009-2011, Mozilla Foundation and contributors
 
 ### BlueOak-1.0.0
 
@@ -393,8 +393,8 @@ The list is based on the currently installed dependency tree (pnpm).
 
 ### LGPL-3.0-or-later
 
-- @img/sharp-libvips-linux-x64@1.3.3 — Copyright (c) Lovell Fuller
-- @img/sharp-libvips-linuxmusl-x64@1.3.3 — Copyright (c) Lovell Fuller
+- @img/sharp-libvips-linux-x64@1.3.4 — Copyright (c) Lovell Fuller
+- @img/sharp-libvips-linuxmusl-x64@1.3.4 — Copyright (c) Lovell Fuller
 
 ### MPL-2.0
 
