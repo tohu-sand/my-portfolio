@@ -3,11 +3,11 @@ import { Icon } from 'astro-icon/components';
 
 const links = [
   { href: "/", label: "HOME" },
-  { href: "/info", label: "INFO" },
-  { href: "/gallery", label: "GALLERY" },
-  { href: "/blog", label: "BLOG" },
-  { href: "/link", label: "LINK" },
-  { href: "/contact", label: "CONTACT" },
+  { href: "/info/", label: "INFO" },
+  { href: "/gallery/", label: "GALLERY" },
+  { href: "/blog/", label: "BLOG" },
+  { href: "/link/", label: "LINK" },
+  { href: "/contact/", label: "CONTACT" },
 ];
 const socials = [
   { href: "https://bsky.app/profile/tohu-sand.com", icon: "simple-icons:bluesky", label: "Bluesky" },
@@ -26,7 +26,7 @@ const isActive = (href: string) => {
 <header class="bg-stone-900 shadow-md border-b border-(--accent)">
   <div class="container mx-auto p-4">
     <div class="flex items-center justify-between">
-      <a href="/" class="flex items-center space-x-2 md:hidden" aria-label="ホームへ戻る">
+      <a href="/" class="flex items-center space-x-2 md:hidden">
         <img
           src="/favicon.svg"
           alt=""
@@ -39,14 +39,13 @@ const isActive = (href: string) => {
       </a>
 
       <nav class="space-x-6 hidden md:flex md:items-center">
-        <a href="/" class="flex items-center space-x-2" aria-label="ホームへ戻る">
+        <a href="/" class="flex items-center space-x-2">
           <img
             src="/favicon.svg"
             alt=""
             width="32"
             height="32"
             decoding="async"
-            aria-hidden="true"
             class="w-8 h-8"
           />
           <span class="font-bold text-stone-100">hasamiyacco</span>
@@ -73,7 +72,7 @@ const isActive = (href: string) => {
         <button
           id="mobile-menu-button"
           type="button"
-          class="md:hidden p-2 text-stone-100 hover:text-stone-400 transition-colors"
+          class="md:hidden p-2 text-stone-100 hover:text-stone-400 transition-colors cursor-pointer"
           aria-label="メニュー"
           aria-expanded="false"
           aria-controls="mobile-menu"
@@ -112,17 +111,12 @@ const isActive = (href: string) => {
 </header>
 
 <script>
-  function initMobileMenu() {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const openIcon = document.getElementById('menu-open-icon');
-    const closeIcon = document.getElementById('menu-close-icon');
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const openIcon = document.getElementById('menu-open-icon');
+  const closeIcon = document.getElementById('menu-close-icon');
 
-    if (!mobileMenuButton || !mobileMenu || !(mobileMenuButton instanceof HTMLButtonElement)) {
-      return;
-    }
-
-    // 開閉状態は aria-expanded で伝える（ボタン名は「メニュー」で固定）
+  if (mobileMenuButton && mobileMenu) {
     const setMenuOpen = (isOpen: boolean) => {
       mobileMenu.classList.toggle('hidden', !isOpen);
       mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
@@ -130,8 +124,6 @@ const isActive = (href: string) => {
       closeIcon?.classList.toggle('hidden', !isOpen);
     };
     const isMenuOpen = () => !mobileMenu.classList.contains('hidden');
-
-    setMenuOpen(false);
 
     mobileMenuButton.addEventListener('click', () => {
       setMenuOpen(!isMenuOpen());
@@ -142,7 +134,7 @@ const isActive = (href: string) => {
       link.addEventListener('click', () => setMenuOpen(false));
     });
 
-    // Escape で閉じ、フォーカスをボタンに戻す
+    // Escapeで閉じ、フォーカスをボタンに戻す
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && isMenuOpen()) {
         setMenuOpen(false);
@@ -150,7 +142,4 @@ const isActive = (href: string) => {
       }
     });
   }
-
-  // Astro が処理する <script> は module（defer 相当）なので、DOM 構築後に実行される
-  initMobileMenu();
 </script>

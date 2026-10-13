@@ -5,31 +5,25 @@ import NavBar from "../components/NavBar.astro";
 import Footer from "../components/Footer.astro";
 import { serializeJsonLd } from "../utils/jsonLd";
 const { 
-  title = "Site Title", 
+  title,
   description = "hasamiyacco - 豆腐さんどのホームページ",
   ogTitle,
-  ogDescription,
   ogImage = "https://cdn.tohu-sand.com/illust/card.png",
-  ogUrl,
   twitterCard = "summary",
-  twitterTitle,
-  twitterImageAlt = "hasamiyacco - 豆腐さんどのホームページ画像",
+  twitterImageAlt,
   robots,
   adsense = false,
   turnstile = false
 } = Astro.props;
 
-// デフォルトのOGタイトルとディスクリプション、Twitterタイトルを設定
+// デフォルトのOGタイトルを設定
 const finalOgTitle = ogTitle || title;
-const finalOgDescription = ogDescription || description;
-const finalTwitterTitle = twitterTitle || finalOgTitle;
-const fallbackUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
-const finalOgUrl = ogUrl || fallbackUrl;
-// AI 学習拒否シグナル (noai / noimageai) を全ページに付与し、ページ個別の robots 指定とマージする。
-// AI 検索・回答での引用は許可する方針なので、nosnippet / max-snippet / noarchive / nocache は付けない。
+const pageUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
+// AI学習拒否
 const finalRobots = robots ? `${robots}, noai, noimageai` : "noai, noimageai";
+const noindex = robots?.includes("noindex");
 
-// サイト共通の実体情報 (WebSite / Person / Organization)。各ページの JSON-LD は @id でこの Person を参照する
+// サイト共通の構造化データ
 const siteGraph = {
   "@context": "https://schema.org",
   "@graph": [
@@ -47,7 +41,7 @@ const siteGraph = {
       "name": "豆腐さんど",
       "alternateName": ["tohu_sand"],
       "url": "https://tohu-sand.com/",
-      "description": "趣味で漫画・イラストを描いています。コミティアで同人サークル「ロボット技術研究会」を主宰しています。",
+      "description": "趣味で漫画・イラストを描いています。自主制作漫画誌展示即売会 コミティアにて同人サークル「ロボット技術研究会」を主宰しています。",
       "memberOf": { "@id": "https://tohu-sand.com/#circle" },
       "sameAs": [
         "https://bsky.app/profile/tohu-sand.com",
@@ -75,10 +69,9 @@ const siteGraph = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={finalOgUrl} />
-    <!-- CDN は crossorigin 属性のない <img> で参照するだけなので、preconnect にも crossorigin を付けない
-         （付けると別の接続プールに張られ、画像の取得に再利用されない） -->
+    {description && <meta name="description" content={description} />}
+    {!noindex && <link rel="canonical" href={pageUrl} />}
+    {/* crossoriginを付けると<img>の取得に接続が再利用されない */}
     <link rel="preconnect" href="https://cdn.tohu-sand.com" />
     <meta name="robots" content={finalRobots} />
     <meta name="Hatena::Bookmark" content="nocomment" />
@@ -87,9 +80,9 @@ const siteGraph = {
     <!-- Begin Social Card Metadata -->
     <!-- Open Graph (used by Bluesky, Facebook, LINE etc.) -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content={finalOgUrl}>
+    {!noindex && <meta property="og:url" content={pageUrl} />}
     <meta property="og:title" content={finalOgTitle}>
-    <meta property="og:description" content={finalOgDescription}>
+    {description && <meta property="og:description" content={description} />}
     <meta property="og:image" content={ogImage}>
     <meta property="og:locale" content="ja_JP">
 
@@ -97,10 +90,10 @@ const siteGraph = {
     <meta name="twitter:card" content={twitterCard}>
     <meta name="twitter:site" content="@tohu_sand">
     <meta name="twitter:creator" content="@tohu_sand">
-    <meta name="twitter:title" content={finalTwitterTitle}>
-    <meta name="twitter:description" content={finalOgDescription}>
+    <meta name="twitter:title" content={finalOgTitle}>
+    {description && <meta name="twitter:description" content={description} />}
     <meta name="twitter:image" content={ogImage}>
-    <meta name="twitter:image:alt" content={twitterImageAlt}>
+    {twitterImageAlt && <meta name="twitter:image:alt" content={twitterImageAlt} />}
     <!-- End Social Card Metadata -->
 
     <!-- RSS Feeds -->
@@ -124,15 +117,11 @@ const siteGraph = {
         --accent: #fb923c;
         --accent-hover: #fdba74;
         --accent-contrast: #1a0f05;
-        /* Publication / 漫画用の第2アクセント。favicon の緑 (#93b65f) の彩度を少し上げたもの */
+        /* Publication・漫画用の第2アクセント */
         --accent-2: #8eb947;
         --accent-2-hover: #b5d489;
       }
-      /*
-        Publication のカード（data-category を持つ要素）の中では、リンク・枠線・タイムラインの点など
-        共通の --accent を使う要素をまとめて第2アクセントに切り替える。
-        カテゴリを知っているバッジは --accent-2 を直接参照しているので、この差し替えに依存しない。
-      */
+      /* Publicationのカード内は--accentを差し替える */
       :global([data-category="Publication"]) {
         --accent: var(--accent-2);
         --accent-hover: var(--accent-2-hover);

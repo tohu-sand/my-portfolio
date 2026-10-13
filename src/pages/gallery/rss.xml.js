@@ -1,31 +1,29 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
-import { entryToSlug } from '../../utils/slug';
+import { compareByDateDesc } from '../../utils/date';
 
 export async function GET(context) {
   const gallery = await getCollection('gallery');
-  
+
   // 日付順にソート（新しい順）
-  const sortedGallery = gallery.slice().sort((a, b) => 
-    b.data.date.valueOf() - a.data.date.valueOf()
-  );
+  const sortedGallery = gallery.sort(compareByDateDesc);
 
   return rss({
     title: 'hasamiyacco: ギャラリー',
-    description: '豆腐さんどのイラスト・漫画ギャラリーです。新作を配信しています。',
+    description: '豆腐さんどのイラスト・漫画ギャラリーです。',
     site: context.site,
     items: sortedGallery.map((item) => ({
       title: item.data.title,
       pubDate: item.data.date,
-      description: item.data.description || item.data.title,
-      link: `/gallery/${entryToSlug(item)}/`,
+      description: item.data.description,
+      link: `/gallery/${item.id}/`,
       categories: item.data.tags || [],
-      // 画像をエンクロージャーとして追加（RSSリーダーで画像が表示される）
-      enclosure: item.data.thumbnail ? {
-        url: new URL(item.data.thumbnail, context.site).toString(),
+      enclosure: {
+        url: item.data.thumbnail,
         type: 'image/webp',
-        length: 0, // 正確なサイズが不明な場合は0を指定可能
-      } : undefined,
+        // サイズ不明なので0
+        length: 0,
+      },
     })),
     customData: `<language>ja</language>`,
   });

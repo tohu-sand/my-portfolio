@@ -3,16 +3,14 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import GalleryGrid from "../../components/GalleryGrid.astro";
 import { getCollection } from "astro:content";
 import { compareByDateDesc } from "../../utils/date";
-import { entryToSlug } from "../../utils/slug";
-import { serializeJsonLd } from "../../utils/jsonLd";
+import { person, serializeJsonLd } from "../../utils/jsonLd";
 
-const artworks = (await getCollection("gallery")).slice().sort(compareByDateDesc);
+const artworks = (await getCollection("gallery")).sort(compareByDateDesc);
 
 // ページ説明文
-const pageDescription = "豆腐さんどのイラスト・漫画ギャラリーページです。オリジナル作品を公開しています。";
+const pageDescription = "豆腐さんどのイラスト・漫画ギャラリーページです。";
 
-// 構造化データの準備。作品は画像ファイルではなく作品ページの一覧 (ItemList) として出す。
-// 画像ごとの ImageObject は各作品ページ側にあり、ここに原寸 URL を並べない
+// 構造化データの準備
 const galleryStructuredData = {
   "@context": "https://schema.org",
   "@type": "ImageGallery",
@@ -20,12 +18,7 @@ const galleryStructuredData = {
   "description": pageDescription,
   "url": "https://tohu-sand.com/gallery/",
   "inLanguage": "ja",
-  "author": {
-    "@type": "Person",
-    "@id": "https://tohu-sand.com/#person",
-    "name": "豆腐さんど",
-    "url": "https://tohu-sand.com/"
-  },
+  "author": person,
   "license": "https://tohu-sand.com/policy/",
   "mainEntity": {
     "@type": "ItemList",
@@ -34,7 +27,7 @@ const galleryStructuredData = {
       "@type": "ListItem",
       "position": index + 1,
       "name": artwork.data.title,
-      "url": `https://tohu-sand.com/gallery/${entryToSlug(artwork)}/`
+      "url": `https://tohu-sand.com/gallery/${artwork.id}/`
     }))
   }
 };
@@ -43,9 +36,6 @@ const galleryStructuredData = {
 <BaseLayout 
   title="hasamiyacco | ギャラリー"
   description={pageDescription}
-  ogTitle="hasamiyacco | ギャラリー"
-  ogDescription={pageDescription}
-  ogUrl="https://tohu-sand.com/gallery/"
 >
   <script type="application/ld+json" set:html={serializeJsonLd(galleryStructuredData)}></script>
   

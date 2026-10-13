@@ -1,31 +1,26 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { entryToSlug } from "../utils/slug";
 import { formatDateJP } from "../utils/date";
 import { getGalleryKind, getGalleryKindLabel, type GalleryKind } from "../utils/gallery";
 
 interface Props {
   entry: CollectionEntry<"gallery">;
-  /** 一覧の先頭など、初期表示で確実に見える作品は遅延させず優先して取得する */
   priority?: boolean;
 }
 
 const { entry, priority = false } = Astro.props;
 const { data } = entry;
-const resolvedSlug = entryToSlug(entry);
 const dateStr = formatDateJP(data.date);
 const kind = getGalleryKind(data);
 const kindLabel = getGalleryKindLabel(kind);
 
-// サムネイルとキャプションの境目に入れる、種類ごとのアクセントカラー。
-// イラストはサイト共通の --accent（ヘッダー下線と同じ）、漫画は Publication バッジと同じ --accent-2（favicon の緑）。
 const accentClass: Record<GalleryKind, string> = {
   illustration: "border-(--accent)",
   comic: "border-(--accent-2)",
 };
 ---
 <figure class="group h-full">
-  <a href={`/gallery/${resolvedSlug}/`} class="flex h-full flex-col rounded-xl border border-stone-700 overflow-hidden bg-stone-800 shadow-sm transition-shadow hover:shadow-lg shadow-stone-900/50 hover:shadow-stone-900/70">
+  <a href={`/gallery/${entry.id}/`} class="flex h-full flex-col rounded-xl border border-stone-700 overflow-hidden bg-stone-800 shadow-sm transition-shadow hover:shadow-lg shadow-stone-900/50 hover:shadow-stone-900/70">
     <div class="relative h-48 overflow-hidden">
       <img
         src={data.thumbnail}
@@ -35,7 +30,7 @@ const accentClass: Record<GalleryKind, string> = {
         fetchpriority={priority ? "high" : undefined}
         decoding="async"
       />
-      <span class="absolute inset-0 bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true"></span>
+      <span class="absolute inset-0 bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
     </div>
     <figcaption class={`flex flex-col border-t-4 p-4 text-sm leading-tight ${accentClass[kind]}`}>
       <span class="line-clamp-2 font-medium text-stone-100">{data.title}</span>

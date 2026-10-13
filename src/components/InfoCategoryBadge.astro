@@ -3,10 +3,9 @@ import { Icon } from "astro-icon/components";
 
 interface Props {
   category: string;
-  class?: string;
 }
 
-const { category, class: className = "" } = Astro.props;
+const { category } = Astro.props;
 
 const styles: Record<string, { icon: string; classes: string }> = {
   Event: {
@@ -28,7 +27,7 @@ const style = styles[category] ?? {
 };
 ---
 <span
-  class={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ring-1 ring-inset ${style.classes} ${className}`}
+  class={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ring-1 ring-inset ${style.classes}`}
 >
   <Icon name={style.icon} class="h-3.5 w-3.5" aria-hidden="true" />
   {category}

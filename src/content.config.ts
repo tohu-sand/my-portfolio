@@ -9,7 +9,7 @@ const gallery = defineCollection({
     date: z.date(),
     image: z.string().optional(),
     mediumImage: z.string().optional(),
-    // mediumImage の実寸（px）。作品ページの <img> に width/height として出し、読み込み中のレイアウトずれを防ぐ
+    // mediumImageの実寸（px）
     mediumWidth: z.number().int().positive().optional(),
     mediumHeight: z.number().int().positive().optional(),
     thumbnail: z.string(),
@@ -19,7 +19,6 @@ const gallery = defineCollection({
     reader: z
       .object({
         src: z.string(),
-        title: z.string().optional(),
       })
       .optional(),
   }).superRefine((data, ctx) => {
@@ -55,7 +54,7 @@ const posts = defineCollection({
     title: z.string(),
     date: z.date(),
     thumbnail: z.string(),
-    // thumbnail の実寸（px）。記事ページの見出し画像に width/height として出す
+    // thumbnailの実寸（px）
     thumbnailWidth: z.number().int().positive().optional(),
     thumbnailHeight: z.number().int().positive().optional(),
     tags: z.array(z.string()).optional(),
@@ -66,7 +65,6 @@ const posts = defineCollection({
   }),
 });
 
-// `drafts/` 配下も読み込む（本番ビルドでの除外は src/utils/info.ts の isPublishedInfo が行う）
 const info = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/info' }),
   schema: z.object({

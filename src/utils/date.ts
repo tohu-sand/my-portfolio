@@ -20,7 +20,7 @@ export function compareByDateAsc<T extends { data: { date: Date } }>(
   return a.data.date.getTime() - b.data.date.getTime();
 }
 
-export interface DatePartsUTC {
+interface DatePartsUTC {
   year: number;
   month: number;
   day: number;
@@ -28,7 +28,7 @@ export interface DatePartsUTC {
   iso: string;
 }
 
-/** コンテンツの date は UTC 0時で解釈されるため、UTC 基準で分解する */
+// dateはUTCの0時なのでUTCで分解
 export function getDatePartsUTC(date: Date): DatePartsUTC {
   return {
     year: date.getUTCFullYear(),
@@ -39,7 +39,6 @@ export function getDatePartsUTC(date: Date): DatePartsUTC {
   };
 }
 
-/** 日付降順で並んだエントリを、年ごと（新しい年が先）にまとめる */
 export function groupByYearDesc<T extends { data: { date: Date } }>(
   entries: T[],
 ): Array<[number, T[]]> {
@@ -53,5 +52,5 @@ export function groupByYearDesc<T extends { data: { date: Date } }>(
       groups.set(year, [entry]);
     }
   }
-  return [...groups.entries()].sort(([a], [b]) => b - a);
+  return [...groups.entries()];
 }

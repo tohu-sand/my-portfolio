@@ -3,49 +3,35 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostCard from "../../components/PostCard.astro";
 import { compareByDateDesc } from "../../utils/date";
-import { entryToSlug } from "../../utils/slug";
-import { serializeJsonLd } from "../../utils/jsonLd";
+import { person, serializeJsonLd } from "../../utils/jsonLd";
 
-const posts = await getCollection("posts", () => true);
-const sortedPosts = posts.slice().sort(compareByDateDesc);
+const posts = await getCollection("posts");
+const sortedPosts = posts.sort(compareByDateDesc);
+
+const pageDescription = "豆腐さんどのブログです。";
 
 // 構造化データの準備
 const blogPostsStructuredData = {
   "@context": "https://schema.org",
   "@type": "Blog",
-  "name": "hasamiyacco: ブログ",
-  "description": "豆腐さんどのブログページ。イラストや創作に関する記事、日常の出来事などを投稿しています。",
+  "name": "hasamiyacco | ブログ",
+  "description": pageDescription,
   "url": "https://tohu-sand.com/blog/",
-  "author": {
-    "@type": "Person",
-    "@id": "https://tohu-sand.com/#person",
-    "name": "豆腐さんど",
-    "url": "https://tohu-sand.com/"
-  },
+  "author": person,
   "blogPost": sortedPosts.map((post: CollectionEntry<'posts'>) => {
-    const slug = entryToSlug(post);
     return {
       "@type": "BlogPosting",
       "headline": post.data.title,
       "datePublished": post.data.date.toISOString().split('T')[0],
-      "author": {
-        "@type": "Person",
-        "@id": "https://tohu-sand.com/#person",
-        "name": "豆腐さんど"
-      },
-      "url": `https://tohu-sand.com/blog/${slug}/`,
+      "author": person,
+      "url": `https://tohu-sand.com/blog/${post.id}/`,
       "image": {
         "@type": "ImageObject",
-        "url": `https://tohu-sand.com/blog/${slug}/`,
+        "url": `https://tohu-sand.com/blog/${post.id}/`,
         "contentUrl": post.data.thumbnail,
         "license": "https://tohu-sand.com/policy/",
         "acquireLicensePage": "https://tohu-sand.com/contact/",
-        "creator": {
-          "@type": "Person",
-          "@id": "https://tohu-sand.com/#person",
-          "name": "豆腐さんど",
-          "url": "https://tohu-sand.com/"
-        },
+        "creator": person,
         "creditText": "豆腐さんど",
         "copyrightNotice": `© ${post.data.date.getFullYear()} 豆腐さんど`
       }
@@ -55,10 +41,7 @@ const blogPostsStructuredData = {
 ---
 <BaseLayout 
   title="hasamiyacco | ブログ"
-  description="豆腐さんどのブログです。"
-  ogTitle="hasamiyacco | ブログ"
-  ogDescription="豆腐さんどのブログです。"
-  ogUrl="https://tohu-sand.com/blog/"
+  description={pageDescription}
 >
   <script type="application/ld+json" set:html={serializeJsonLd(blogPostsStructuredData)}></script>
   

@@ -1,43 +1,34 @@
 ---
 import { getCollection, type CollectionEntry, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { entryToSlug } from "../../utils/slug";
 import { formatDateJP } from "../../utils/date";
-import { serializeJsonLd } from "../../utils/jsonLd";
+import { person, serializeJsonLd } from "../../utils/jsonLd";
 
 type PostEntry = CollectionEntry<"posts">;
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
   return posts.map((post: PostEntry) => ({
-    params: { slug: entryToSlug(post) },
+    params: { slug: post.id },
     props: { entry: post },
   }));
 }
-export const prerender = true;
 
 const { entry } = Astro.props as { entry: PostEntry };
 const { Content } = await render(entry);
 const { data } = entry;
-const slug = entryToSlug(entry);
 const dateStr = formatDateJP(data.date);
-const description = data.excerpt || `豆腐さんどのブログ「${data.title}」`;
-const postUrl = `https://tohu-sand.com/blog/${slug}/`;
+const description = data.excerpt ?? "";
+const postUrl = `https://tohu-sand.com/blog/${entry.id}/`;
 
 // 構造化データの準備
-// contentUrl = 画像ファイル、url = その画像を掲載しているページ (schema.org / Google の定義)
 const imageStructuredData = {
   "@type": "ImageObject",
   "url": postUrl,
   "contentUrl": data.thumbnail,
   "license": "https://tohu-sand.com/policy/",
   "acquireLicensePage": "https://tohu-sand.com/contact/",
-  "creator": {
-    "@type": "Person",
-    "@id": "https://tohu-sand.com/#person",
-    "name": "豆腐さんど",
-    "url": "https://tohu-sand.com/"
-  },
+  "creator": person,
   "creditText": "豆腐さんど",
   "copyrightNotice": `© ${data.date.getFullYear()} 豆腐さんど`
 };
@@ -46,22 +37,10 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": data.title,
-  "description": description,
+  "description": data.excerpt,
   "image": imageStructuredData,
   "datePublished": data.date.toISOString().split('T')[0],
-  "dateModified": data.date.toISOString().split('T')[0],
-  "author": {
-    "@type": "Person",
-    "@id": "https://tohu-sand.com/#person",
-    "name": "豆腐さんど",
-    "url": "https://tohu-sand.com/"
-  },
-  "publisher": {
-    "@type": "Person",
-    "@id": "https://tohu-sand.com/#person",
-    "name": "豆腐さんど",
-    "url": "https://tohu-sand.com/"
-  },
+  "author": person,
   "url": postUrl,
   "mainEntityOfPage": postUrl
 };
@@ -70,18 +49,15 @@ const structuredData = {
   title={`hasamiyacco | ${data.title}`}
   description={description}
   ogTitle={data.title}
-  ogDescription={description}
-  ogUrl={postUrl}
   ogImage={data.thumbnail}
   twitterCard="summary_large_image"
-  twitterTitle={`hasamiyacco | ${data.title}`}
-  twitterImageAlt={`${data.title} - 豆腐さんどのブログ記事のサムネイル画像`}
+  twitterImageAlt={data.title}
 >
   <script type="application/ld+json" set:html={serializeJsonLd(structuredData)}></script>
   
   <article class="prose prose-invert mx-auto prose-a:text-(--accent) hover:prose-a:text-(--accent)">
     <h1>{data.title}</h1>
-  <p class="text-sm text-stone-400">{dateStr}</p>
+    <p class="text-sm text-stone-400">{dateStr}</p>
 
     <img
       src={data.thumbnail}

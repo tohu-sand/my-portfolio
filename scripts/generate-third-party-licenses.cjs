@@ -16,7 +16,7 @@ function stripCopyrightLines(text) {
   const lines = text.split(/\r?\n/).filter((line) => {
     const trimmed = line.trim();
     if (!trimmed) return true;
-    if (/^copyright\b/i.test(trimmed)) return false;
+    if (isLikelyCopyrightLine(trimmed)) return false;
     if (/^all rights reserved\.?$/i.test(trimmed)) return false;
     return true;
   });
@@ -166,7 +166,7 @@ const licenseTextSources = {
     { type: 'file', path: path.join(repoRoot, 'LICENSE'), stripCopyright: true }
   ],
   'ISC': [
-    { type: 'package', name: 'once', stripCopyright: true }
+    { type: 'package', name: 'semver', stripCopyright: true }
   ],
   'Apache-2.0': [
     { type: 'package', name: '@swc/helpers', stripCopyright: false }
@@ -198,13 +198,12 @@ const licenseTextSources = {
   'MPL-2.0': [
     { type: 'package', name: 'lightningcss', stripCopyright: false }
   ],
-  // サイトで実際に配信しているフォント (Noto Sans JP) のライセンス
   'OFL-1.1': [
     { type: 'package', name: '@fontsource-variable/noto-sans-jp', stripCopyright: false }
   ]
 };
 
-// よく使うライセンスはこの順に並べ、それ以外のライセンスも漏らさず末尾に ID 順で続ける
+// この順に並べ、残りは末尾にID順
 const preferredLicenseOrder = [
   'MIT',
   'Apache-2.0',
@@ -226,7 +225,7 @@ const licenseOrder = [
   ...Object.keys(licenseData).filter((licenseId) => !preferredLicenseOrder.includes(licenseId)).sort()
 ];
 
-// ライセンスごとの本文。「License Texts」節に出すほか、同じ本文を Additional Package Notices に重複掲載しないための照合にも使う
+// ライセンスごとの本文
 const licenseTexts = new Map();
 for (const licenseId of licenseOrder) {
   if (licenseId === '(MIT OR CC0-1.0)') continue;
@@ -253,7 +252,7 @@ function collectExtraNotices(pkg, pkgPath, licenseId) {
     } catch (error) {
       continue;
     }
-    // ライセンス本文そのもの (MPL-2.0 など「third party」を含むもの) は License Texts 節に出すので除外する
+    // ライセンス本文そのものは除外
     if (normalizeText(content) === licenseTexts.get(licenseId)) {
       continue;
     }
@@ -332,7 +331,6 @@ for (const licenseId of licenseOrder) {
     continue;
   }
 
-  // 出典を決めていないライセンスも、そのライセンスのパッケージに同梱された LICENSE ファイルから本文を出す
   const text = licenseTexts.get(licenseId);
   if (text === undefined) {
     continue;

@@ -1,35 +1,32 @@
 ---
 import { getCollection, type CollectionEntry, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { entryToSlug } from "../../utils/slug";
 import { compareByDateAsc, formatDateJP } from "../../utils/date";
-import { serializeJsonLd } from "../../utils/jsonLd";
+import { getGalleryKind } from "../../utils/gallery";
+import { person, serializeJsonLd } from "../../utils/jsonLd";
 
 type ArtworkEntry = CollectionEntry<"gallery">;
 
 export async function getStaticPaths() {
   const artworks = await getCollection("gallery");
   return artworks.map((art: ArtworkEntry) => ({
-    params: { slug: entryToSlug(art) },
+    params: { slug: art.id },
     props: { entry: art },
   }));
 }
-export const prerender = true;
 
 const { entry } = Astro.props as { entry: ArtworkEntry };
 const { Content } = await render(entry);
 const { data } = entry;
-const slug = entryToSlug(entry);
-const kind = data.kind ?? "illustration";
+const kind = getGalleryKind(data);
 const imageUrl = data.image || data.thumbnail;
 const mediumImageUrl = data.mediumImage || imageUrl;
-// 寸法は mediumImage のものなので、mediumImage を表示するときだけ付ける
+// 実寸はmediumImageのもの
 const mediumSize = data.mediumImage
   ? { width: data.mediumWidth, height: data.mediumHeight }
   : {};
 const ogImage = data.mediumImage || data.image || data.thumbnail;
 const dateStr = formatDateJP(data.date);
-// reader.src にクエリが付いていても壊れないよう、layout は URL API で上書きする
 const readerUrl = (layout: "single" | "spread") => {
   if (!data.reader?.src) return "";
   const url = new URL(data.reader.src);
@@ -38,55 +35,46 @@ const readerUrl = (layout: "single" | "spread") => {
 };
 
 const allArtworks = await getCollection("gallery");
-const sortedArtworks = allArtworks.slice().sort(compareByDateAsc);
+const sortedArtworks = allArtworks.sort(compareByDateAsc);
 
 const currentIndex = sortedArtworks.findIndex(art => art.id === entry.id);
 const prevArtwork = currentIndex < sortedArtworks.length - 1 ? sortedArtworks[currentIndex + 1] : null;
 const nextArtwork = currentIndex > 0 ? sortedArtworks[currentIndex - 1] : null;
 
-const defaultDescription = kind === "comic"
-  ? `豆腐さんどの漫画「${data.title}」`
-  : `豆腐さんどのイラスト作品「${data.title}」`;
-const description = data.description || defaultDescription;
-const artworkUrl = `https://tohu-sand.com/gallery/${slug}/`;
+// コメントのない作品は説明文を出さない
+const description = data.description ?? "";
+const artworkUrl = `https://tohu-sand.com/gallery/${entry.id}/`;
 
-// 構造化データの準備。creator は BaseLayout の @graph にある Person を @id で参照する
-const creator = {
-  "@type": "Person",
-  "@id": "https://tohu-sand.com/#person",
-  "name": "豆腐さんど",
-  "url": "https://tohu-sand.com/"
-};
+// 構造化データの準備
 const structuredData = kind === "comic"
   ? {
       "@context": "https://schema.org",
       "@type": "CreativeWork",
       "name": data.title,
-      "description": description,
+      "description": data.description,
       "url": artworkUrl,
       "thumbnailUrl": data.thumbnail,
-      "dateCreated": data.date.toISOString().split("T")[0],
+      "datePublished": data.date.toISOString().split("T")[0],
       "creditText": "豆腐さんど",
       "copyrightNotice": `© ${data.date.getFullYear()} 豆腐さんど`,
-      "creator": creator,
+      "creator": person,
       "license": "https://tohu-sand.com/policy/",
       "acquireLicensePage": "https://tohu-sand.com/contact/",
       "keywords": data.tags?.join(", ") || ""
     }
   : {
-      // contentUrl = ページに表示している画像ファイル (medium)、url = 作品ページ。原寸 URL は載せない
       "@context": "https://schema.org",
       "@type": "ImageObject",
       "name": data.title,
-      "description": description,
+      "description": data.description,
       "url": artworkUrl,
       "contentUrl": data.mediumImage || data.thumbnail,
       "thumbnailUrl": data.thumbnail,
       "mainEntityOfPage": artworkUrl,
-      "dateCreated": data.date.toISOString().split("T")[0],
+      "datePublished": data.date.toISOString().split("T")[0],
       "creditText": "豆腐さんど",
       "copyrightNotice": `© ${data.date.getFullYear()} 豆腐さんど`,
-      "creator": creator,
+      "creator": person,
       "license": "https://tohu-sand.com/policy/",
       "acquireLicensePage": "https://tohu-sand.com/contact/",
       "keywords": data.tags?.join(", ") || ""
@@ -96,11 +84,9 @@ const structuredData = kind === "comic"
   title={`hasamiyacco | ${data.title}`}
   description={description}
   ogTitle={data.title}
-  ogDescription={description}
-  ogUrl={artworkUrl}
   ogImage={ogImage}
   twitterCard="summary_large_image"
-  twitterImageAlt={`${data.title} - 豆腐さんどの${kind === "comic" ? "漫画" : "イラスト"}作品`}
+  twitterImageAlt={data.title}
 >
   <script type="application/ld+json" set:html={serializeJsonLd(structuredData)}></script>
   
@@ -111,7 +97,7 @@ const structuredData = kind === "comic"
         <div class="mb-6 not-prose md:hidden">
           <iframe
             src={readerUrl("single")}
-            title={data.reader?.title ?? "SkyBind reader"}
+            title={data.title}
             loading="lazy"
             style="width: 100%; height: 70vh; min-height: 420px; border: 0;"
             allowfullscreen
@@ -121,7 +107,7 @@ const structuredData = kind === "comic"
           <div class="mx-auto w-full max-w-200">
             <iframe
               src={readerUrl("spread")}
-              title={data.reader?.title ?? "SkyBind reader"}
+              title={data.title}
               loading="lazy"
               style="width: 100%; height: 70vh; min-height: 420px; border: 0;"
               allowfullscreen
@@ -144,13 +130,13 @@ const structuredData = kind === "comic"
       </div>
     )}
     {data.description && (
-    <p class="mb-4 text-stone-300">{data.description}</p>
+      <p class="mb-4 text-stone-300">{data.description}</p>
     )}
     <Content />
 
     <p class="mt-8 text-sm text-stone-400">
       公開日:
-  <time datetime={data.date.toISOString()}>{dateStr}</time>
+      <time datetime={data.date.toISOString()}>{dateStr}</time>
       {data.tags && (
         <>
           &nbsp;|&nbsp;タグ:
@@ -164,14 +150,14 @@ const structuredData = kind === "comic"
       )}
     </p>
 
-        <nav class="mt-12 pt-8 mb-5 border-t border-stone-700">
+    <nav class="mt-12 pt-8 mb-5 border-t border-stone-700">
       <div class="flex justify-between items-center">
-    {prevArtwork ? (
+        {prevArtwork ? (
           <a 
-      href={`/gallery/${entryToSlug(prevArtwork)}/`}
+            href={`/gallery/${prevArtwork.id}/`}
             class="group flex items-center space-x-3 text-stone-400 hover:text-(--accent) transition-colors"
           >
-            <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
             <span class="text-sm">前の作品</span>
@@ -180,13 +166,13 @@ const structuredData = kind === "comic"
           <div></div>
         )}
 
-    {nextArtwork ? (
+        {nextArtwork ? (
           <a 
-      href={`/gallery/${entryToSlug(nextArtwork)}/`}
+            href={`/gallery/${nextArtwork.id}/`}
             class="group flex items-center space-x-3 text-stone-400 hover:text-(--accent) transition-colors"
           >
             <span class="text-sm">次の作品</span>
-            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
           </a>

@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="hasamiyacco | コンタクト" turnstile>
+<BaseLayout title="hasamiyacco | コンタクト" description="豆腐さんどのコンタクトページです。" turnstile>
   <div class="max-w-2xl mx-auto">
     <h1 class="text-3xl font-bold text-center mb-8">Contact</h1>
 
@@ -69,7 +69,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="text-center">
           <button 
             type="submit"
-            class="bg-(--accent) hover:bg-(--accent-hover) text-(--accent-contrast) font-medium py-3 px-8 rounded-md transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-(--accent) focus:ring-offset-2 focus:ring-offset-stone-800"
+            class="bg-(--accent) hover:bg-(--accent-hover) text-(--accent-contrast) font-medium py-3 px-8 rounded-md transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-(--accent) focus:ring-offset-2 focus:ring-offset-stone-800 cursor-pointer"
           >
             送信する
           </button>
@@ -83,17 +83,16 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     const emailInput = document.getElementById("email") as HTMLInputElement | null;
     const form = emailInput?.form;
     if (emailInput && form) {
-      // メールアドレスの厳格な形式チェック（ドメインに必ずドット付きTLDを要求）
+      // メールアドレスの形式チェック（ドット付きTLD必須）
       const emailPattern =
         /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9](?:[A-Za-z0-9\-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9\-]*[A-Za-z0-9])?)*\.[A-Za-z]{2,}$/;
       form.addEventListener("submit", (event) => {
-        // IME がオンのまま入力された全角の英数・＠・．・。を半角に直し、前後の空白を除去する
-        // （type="text" のため PC の IME が無効化されず、全角のまま入力されることがある）
+        // 全角を半角に直し、前後の空白を除去
         emailInput.value = emailInput.value.normalize("NFKC").replace(/[。｡]/g, ".").trim();
-        // 形式に合わない場合は、実際には送信せず、本物と同じサンクスページへ遷移させる（いたずら防止）
+        // 形式が違えば送信せず完了ページへ飛ばす（いたずら防止）
         if (!emailPattern.test(emailInput.value)) {
           event.preventDefault();
-          window.location.href = "/contact/thank-you";
+          window.location.href = "/contact/thank-you/";
         }
       });
     }

@@ -1,18 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-/**
- * Bluesky埋め込み（blockquote.bluesky-embed + embed.js）をビルド時に
- * 静的なスナップショットHTMLへ置換するremarkプラグイン。
- *
- * - 投稿データは初回のみ公開APIから取得し、src/data/bluesky/ にJSONキャッシュする
- * - アバター・添付画像は public/images/bluesky/ へダウンロードして自サイトから配信する
- * - キャッシュがある限りネットワークにもBluesky本体にも依存しないため、
- *   元の投稿が削除されても記事は壊れない
- * - キャッシュがなくAPI取得にも失敗した場合は、元の埋め込みHTMLをそのまま残す
- * - 置換するのは埋め込み（blockquote + embed.js）の部分だけ。同じHTMLブロックに
- *   複数の埋め込みや他のHTML・テキストが続いていても、それらは残す
- */
+// Bluesky埋め込みをビルド時に静的なHTMLへ置換
 
 const API_ENDPOINT = "https://public.api.bsky.app/xrpc/app.bsky.feed.getPosts";
 const CACHE_DIR = "src/data/bluesky";
@@ -27,8 +16,7 @@ const EXT_BY_MIME = {
   "image/avif": ".avif",
 };
 
-// devサーバー等でファイルごとに並行実行されても、同じ投稿・画像を
-// 二重に取得しないようにするためのインフライトマップ
+// 同じ投稿・画像を二重に取得しない
 const inflight = new Map();
 
 function dedupe(key, fn) {
@@ -69,8 +57,7 @@ function formatDateJST(iso) {
 
 async function downloadImage(url, fileBase, cwd) {
   return dedupe(`img:${fileBase}`, async () => {
-    // 既にダウンロード済み（コミット済み）のファイルはそのまま使う。
-    // アバターは DID ごとに1ファイルなので、新しい投稿を追加しても縮小済みの画像が上書きされない
+    // 既にあるファイルは使い回す（縮小済みのアバターを上書きしない）
     const imageDir = path.join(cwd, IMAGE_DIR);
     const existing = (await fs.readdir(imageDir).catch(() => [])).find((name) =>
       name.startsWith(`${fileBase}.`),
@@ -192,7 +179,7 @@ function collectEmbedNodes(node, found) {
   }
 }
 
-// Blueskyの埋め込みコード1件分（blockquote と、直後にあれば embed.js の script）
+// 埋め込みコード1件分（blockquoteと直後のscript）
 const EMBED_RE =
   /<blockquote\b[^>]*\bdata-bluesky-uri="([^"]+)"[^>]*>[\s\S]*?<\/blockquote>(?:\s*<script\b[^>]*embed\.bsky\.app[^>]*><\/script>)?/g;
 
@@ -204,8 +191,7 @@ export function remarkBlueskySnapshot() {
     const fileName = file.path ? path.relative(cwd, file.path) : "(unknown file)";
 
     for (const node of nodes) {
-      // Markdown では空行を挟まずに続く HTML 行が1つの html ノードになるため、
-      // ノード全体ではなく埋め込みに一致した範囲だけを置換し、残りはそのまま出力する
+      // 埋め込みに一致した範囲だけ置換
       let output = "";
       let leftover = "";
       let lastIndex = 0;

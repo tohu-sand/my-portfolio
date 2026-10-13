@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { entryToSlug } from "../utils/slug";
 import { formatDateJP } from "../utils/date";
 
 interface Props {
@@ -9,16 +8,14 @@ interface Props {
 
 const { entry } = Astro.props;
 const { data } = entry;
-const resolvedSlug = entryToSlug(entry);
 const dateStr = formatDateJP(data.date);
 
 // コレクションの種類を判定
 const isGallery = entry.collection === "gallery";
-const typeLabel = isGallery ? "ギャラリー" : "ブログ";
 const baseUrl = isGallery ? "/gallery/" : "/blog/";
 ---
 <article class="group h-full rounded-xl border border-stone-700 overflow-hidden bg-stone-800 shadow-sm transition-shadow hover:shadow-lg shadow-stone-900/50 hover:shadow-stone-900/70">
-  <a href={`${baseUrl}${resolvedSlug}/`} class="flex h-full flex-col">
+  <a href={`${baseUrl}${entry.id}/`} class="flex h-full flex-col">
     <div class="relative h-40 overflow-hidden">
       <img
         src={data.thumbnail}
@@ -26,12 +23,12 @@ const baseUrl = isGallery ? "/gallery/" : "/blog/";
         class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         loading="lazy"
       />
-      <span class="absolute inset-0 bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true"></span>
+      <span class="absolute inset-0 bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
     </div>
     <div class="flex flex-1 flex-col p-4">
       <h3 class="text-lg font-semibold line-clamp-2 text-stone-100">{data.title}</h3>
       <p class="mt-1 text-sm text-stone-400">
-        {dateStr}{isGallery ? ` · ${typeLabel}` : ""}
+        {dateStr}{isGallery ? "・ギャラリー" : ""}
       </p>
       {"excerpt" in data && data.excerpt && <p class="mt-2 text-sm line-clamp-2 text-stone-300">{data.excerpt}</p>}
     </div>

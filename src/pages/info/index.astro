@@ -4,9 +4,8 @@ import InfoTimelineItem from "../../components/InfoTimelineItem.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { groupByYearDesc } from "../../utils/date";
 import { getTodayUTC, isPublishedInfo } from "../../utils/info";
-import { entryToSlug } from "../../utils/slug";
 
-const pageDescription = "豆腐さんどのお知らせページです。イベント参加や掲載などの情報を掲載しています。";
+const pageDescription = "イベント参加・掲載などのお知らせです。";
 
 const infos = await getCollection("info", isPublishedInfo);
 const infosByYear = groupByYearDesc(infos);
@@ -15,14 +14,11 @@ const today = getTodayUTC();
 <BaseLayout
   title="hasamiyacco | お知らせ"
   description={pageDescription}
-  ogTitle="hasamiyacco | お知らせ"
-  ogDescription={pageDescription}
-  ogUrl="https://tohu-sand.com/info/"
 >
   <div class="mx-auto max-w-3xl">
     <div class="mb-8">
       <h1 class="text-2xl font-bold text-stone-100">Information</h1>
-      <p class="mt-1 text-sm text-stone-400">イベント参加・掲載などのお知らせです。</p>
+      <p class="mt-1 text-sm text-stone-400">{pageDescription}</p>
     </div>
 
     <div class="space-y-12">
@@ -33,11 +29,11 @@ const today = getTodayUTC();
             class="mb-6 flex items-center gap-4 text-sm font-semibold tracking-widest text-stone-400"
           >
             <span>{year}</span>
-            <span class="h-px flex-1 bg-stone-700" aria-hidden="true"></span>
+            <span class="h-px flex-1 bg-stone-700"></span>
           </h3>
           <ol class="list-none">
             {entries.map((e: CollectionEntry<"info">) => (
-              <InfoTimelineItem entry={e} id={entryToSlug(e)} today={today} />
+              <InfoTimelineItem entry={e} id={e.id} today={today} />
             ))}
           </ol>
         </section>

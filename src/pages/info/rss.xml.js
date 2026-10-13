@@ -1,15 +1,13 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import { isPublishedInfo } from '../../utils/info';
-import { entryToSlug } from '../../utils/slug';
+import { compareByDateDesc } from '../../utils/date';
 
 export async function GET(context) {
   const infos = await getCollection('info', isPublishedInfo);
-  
+
   // 日付順にソート（新しい順）
-  const sortedInfos = infos.slice().sort((a, b) => 
-    b.data.date.valueOf() - a.data.date.valueOf()
-  );
+  const sortedInfos = infos.sort(compareByDateDesc);
 
   return rss({
     title: 'hasamiyacco: お知らせ',
@@ -18,8 +16,8 @@ export async function GET(context) {
     items: sortedInfos.map((info) => ({
       title: info.data.title,
       pubDate: info.data.date,
-      description: info.data.description || `${info.data.category}の情報です。${info.data.location ? `場所: ${info.data.location}` : ''}`,
-      link: new URL(`/info/#${entryToSlug(info)}`, context.site).toString(),
+      description: info.data.description,
+      link: new URL(`/info/#${info.id}`, context.site).toString(),
       categories: [info.data.category],
     })),
     customData: `<language>ja</language>`,

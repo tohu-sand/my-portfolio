@@ -15,14 +15,12 @@ server-side code.
 | Blog | `src/content/posts/` | `/blog/` | `/rss.xml` |
 | Info | `src/content/info/` | `/info/` | `/info/rss.xml` |
 
-Images are not stored in this repository. Front matter references them by URL
-on `cdn.tohu-sand.com`.
+Artwork and blog images are not stored in this repository. Front matter
+references them by URL on `cdn.tohu-sand.com`.
 
 ## Requirements
 
 - Node.js 22.23.2, pinned in `.node-version`
-- pnpm 10.13
-- Tested on Linux
 
 ## Installation
 
@@ -37,16 +35,6 @@ Start the development server:
 ```bash
 pnpm dev
 ```
-
-```text
-Dev server running at http://localhost:4321 (pid 6789)
-  Stop:   astro dev stop
-  Status: astro dev status
-  Logs:   astro dev logs
-```
-
-The server keeps running after the command returns. Stop it with
-`pnpm astro dev stop`.
 
 ### Adding content
 
@@ -90,11 +78,7 @@ pnpm preview   # serve dist/ at http://localhost:4321
 ```
 
 `pnpm build` first regenerates `THIRD_PARTY_LICENSES.md` from the installed
-dependencies. Run `pnpm run licenses` to regenerate it on its own (`pnpm
-licenses` without `run` is pnpm's own subcommand and does not run the
-script). Like the
-development server, `pnpm preview` keeps running in the background; stop it
-with `pnpm astro preview stop`.
+dependencies. Run `pnpm run licenses` to regenerate it on its own.
 
 ## Deployment
 

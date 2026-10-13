@@ -4,17 +4,16 @@ import { getLinkMeta } from "../utils/info";
 
 interface Props {
   url: string;
-  class?: string;
 }
 
-const { url, class: className = "" } = Astro.props;
+const { url } = Astro.props;
 const { label, icon } = getLinkMeta(url);
 ---
 <a
   href={url}
   target="_blank"
   rel="noopener noreferrer"
-  class={`inline-flex items-center gap-1.5 rounded-lg border border-stone-700 bg-stone-800 px-3 py-1.5 text-sm font-medium text-(--accent) transition-colors hover:border-(--accent) hover:bg-stone-700 ${className}`}
+  class="inline-flex items-center gap-1.5 rounded-lg border border-stone-700 bg-stone-800 px-3 py-1.5 text-sm font-medium text-(--accent) transition-colors hover:border-(--accent) hover:bg-stone-700"
 >
   <Icon name={icon} class="h-4 w-4" aria-hidden="true" />
   {label}

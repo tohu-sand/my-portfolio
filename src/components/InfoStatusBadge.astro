@@ -4,10 +4,9 @@ import { getStatusLabel, type EventStatus } from "../utils/info";
 interface Props {
   status: EventStatus;
   category: string;
-  class?: string;
 }
 
-const { status, category, class: className = "" } = Astro.props;
+const { status, category } = Astro.props;
 
 const label = getStatusLabel(category, status);
 
@@ -22,7 +21,7 @@ const classes =
     : (activeClasses[category] ?? activeClasses.Event);
 ---
 {label && (
-  <span class={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${classes} ${className}`}>
+  <span class={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${classes}`}>
     {label}
   </span>
 )}

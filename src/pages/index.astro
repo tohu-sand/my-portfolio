@@ -5,13 +5,11 @@ import PostCard from "../components/PostCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import type { CollectionEntry } from "astro:content";
 import { compareByDateDesc } from "../utils/date";
-import { isPublishedInfo } from "../utils/info";
-import { serializeJsonLd } from "../utils/jsonLd";
+import { getTodayUTC, isPublishedInfo } from "../utils/info";
+import { person, serializeJsonLd } from "../utils/jsonLd";
 
-const today = new Date();
-today.setUTCHours(0, 0, 0, 0);
-const thirtyDaysAgo = new Date();
-thirtyDaysAgo.setUTCHours(0, 0, 0, 0);
+const today = getTodayUTC();
+const thirtyDaysAgo = getTodayUTC();
 thirtyDaysAgo.setUTCDate(thirtyDaysAgo.getUTCDate() - 30);
 
 const infos = await getCollection("info", (entry: CollectionEntry<"info">) => {
@@ -24,34 +22,29 @@ const infos = await getCollection("info", (entry: CollectionEntry<"info">) => {
   }
   return data.date >= thirtyDaysAgo;
 });
-const sortedInfos = infos.slice().sort(compareByDateDesc);
+const sortedInfos = infos.sort(compareByDateDesc);
 
-const posts = await getCollection("posts", () => true);
-const gallery = await getCollection("gallery", () => true);
+const posts = await getCollection("posts");
+const gallery = await getCollection("gallery");
 const allPosts = [...posts, ...gallery];
-const latestPost = allPosts.slice().sort(compareByDateDesc)[0];
-
-type InfoEntry = typeof sortedInfos[0];
+const latestPost = allPosts.sort(compareByDateDesc)[0];
 
 const heroImageUrl = "https://cdn.tohu-sand.com/illust/web/shijohikyaku_medium.webp";
-// contentUrl = 画像ファイル、url = 掲載ページ。creator は BaseLayout の @graph の Person を参照する
+const heroImageAlt = "漫画「試場飛脚」表紙イラスト";
+const heroImageYear = 2026;
+
+// 構造化データの準備
 const heroImageStructuredData = {
   "@context": "https://schema.org",
   "@type": "ImageObject",
-  "name": "トップ画像",
-  "description": "hasamiyaccoのトップ画像",
+  "name": heroImageAlt,
   "url": "https://tohu-sand.com/",
   "contentUrl": heroImageUrl,
   "license": "https://tohu-sand.com/policy/",
   "acquireLicensePage": "https://tohu-sand.com/contact/",
   "creditText": "豆腐さんど",
-  "copyrightNotice": "© 2025 豆腐さんど",
-  "creator": {
-    "@type": "Person",
-    "@id": "https://tohu-sand.com/#person",
-    "name": "豆腐さんど",
-    "url": "https://tohu-sand.com/"
-  }
+  "copyrightNotice": `© ${heroImageYear} 豆腐さんど`,
+  "creator": person
 };
 ---
 
@@ -65,11 +58,10 @@ const heroImageStructuredData = {
   <div class="flex justify-center mb-8">
     <img
       src={heroImageUrl}
-      alt="トップ画像"
+      alt={heroImageAlt}
       width="1425"
       height="1998"
       class="w-full max-w-xl h-auto rounded-lg shadow-lg object-cover"
-      loading="eager"
       fetchpriority="high"
       decoding="async"
     />
@@ -84,7 +76,7 @@ const heroImageStructuredData = {
   <h2 class="text-2xl font-bold mt-10 mb-4 text-stone-100">Upcoming Info</h2>
   <div class="space-y-4">
     {sortedInfos.length
-      ? sortedInfos.map((e: InfoEntry) => <InfoCard entry={e} />)
+      ? sortedInfos.map((e) => <InfoCard entry={e} />)
       : <p class="text-stone-400">現在お知らせはありません。</p>}
   </div>
 

@@ -13,10 +13,10 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  // Astro 7 のデフォルト('jsx')は inline 要素間の空白を落とすため、従来どおりの挙動を維持する
+  // デフォルトの'jsx'だとインライン要素間の空白が落ちる
   compressHTML: true,
   markdown: {
-    // Astro 7 の既定は Sätteri。remark プラグインを使うため unified パイプラインを明示する
+    // remarkプラグインを使うのでunified
     processor: unified({
       remarkPlugins: [remarkBlueskySnapshot],
       rehypePlugins: [rehypeLazyImages],

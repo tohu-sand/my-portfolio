@@ -1,24 +1,22 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
-import { entryToSlug } from '../utils/slug';
+import { compareByDateDesc } from '../utils/date';
 
 export async function GET(context) {
   const posts = await getCollection('posts');
-  
+
   // 日付順にソート（新しい順）
-  const sortedPosts = posts.slice().sort((a, b) => 
-    b.data.date.valueOf() - a.data.date.valueOf()
-  );
+  const sortedPosts = posts.sort(compareByDateDesc);
 
   return rss({
     title: 'hasamiyacco: ブログ',
-    description: '豆腐さんどのブログです。イラストや創作に関する記事、日常の出来事などを投稿しています。',
+    description: '豆腐さんどのブログです。',
     site: context.site,
     items: sortedPosts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.date,
-      description: post.data.excerpt || post.data.title,
-      link: `/blog/${entryToSlug(post)}/`,
+      description: post.data.excerpt,
+      link: `/blog/${post.id}/`,
       categories: post.data.tags || [],
     })),
     customData: `<language>ja</language>`,

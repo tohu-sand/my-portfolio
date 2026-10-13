@@ -5,7 +5,6 @@ import GalleryItem from "./GalleryItem.astro";
 import { GALLERY_KINDS, getGalleryKind, getGalleryKindLabel } from "../utils/gallery";
 
 interface Props {
-  /** 表示順どおりに並べ替え済みの作品 */
   artworks: CollectionEntry<"gallery">[];
 }
 
@@ -21,36 +20,32 @@ for (const art of artworks) {
   }
 }
 
-// 1種類しかないときは切り替える意味がないので、種類の切り替え自体を出さない
 const kinds = GALLERY_KINDS.filter((kind) => (kindCounts.get(kind) ?? 0) > 0);
 const showKindFilter = kinds.length > 1;
 
-// 作品数の多い順。同数なら五十音順
+// 作品数の多い順、同数なら名前順
 const tags = [...tagCounts.keys()].sort(
   (a, b) => tagCounts.get(b)! - tagCounts.get(a)! || a.localeCompare(b, "ja")
 );
 
 const hasFilters = showKindFilter || tags.length > 0;
 
-// 種類はセグメント（面）、タグはチップ（枠線）と形を変えて、2 つの軸を見分けやすくする。
-// 選択中はどちらも白背景に反転。該当 0 件で押しても意味がない選択肢は薄くして押せなくする。
-// ホバー色は未選択のときだけ効かせ、選択中（白背景）の文字が白く溶けないようにする。
+// 選択中は白背景なのでホバー色は未選択だけ
 const segmentClass =
-  "rounded-md px-3 py-1 text-sm text-stone-400 transition-colors not-aria-pressed:hover:text-stone-100 aria-pressed:bg-stone-100 aria-pressed:text-stone-900 disabled:pointer-events-none disabled:opacity-40";
+  "cursor-pointer rounded-md px-3 py-1 text-sm text-stone-400 transition-colors not-aria-pressed:hover:text-stone-100 aria-pressed:bg-stone-100 aria-pressed:text-stone-900 disabled:pointer-events-none disabled:opacity-40";
 const chipClass =
-  "group inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full border border-stone-700 px-3 py-1 text-sm text-stone-300 transition-colors not-aria-pressed:hover:border-stone-500 not-aria-pressed:hover:text-stone-100 aria-pressed:border-stone-100 aria-pressed:bg-stone-100 aria-pressed:text-stone-900 disabled:pointer-events-none disabled:opacity-40";
-const resetClass = "underline underline-offset-2 transition-colors hover:text-stone-100";
+  "group inline-flex shrink-0 cursor-pointer items-center gap-1 whitespace-nowrap rounded-full border border-stone-700 px-3 py-1 text-sm text-stone-300 transition-colors not-aria-pressed:hover:border-stone-500 not-aria-pressed:hover:text-stone-100 aria-pressed:border-stone-100 aria-pressed:bg-stone-100 aria-pressed:text-stone-900 disabled:pointer-events-none disabled:opacity-40";
+const resetClass = "cursor-pointer underline underline-offset-2 transition-colors hover:text-stone-100";
 ---
 <div data-gallery>
   {hasFilters && (
     <div class="mb-6">
-      {/* 折りたたみが既定。件数は画面には出さず、読み上げ用にだけ更新する */}
       <button
         type="button"
         data-gallery-toggle
         aria-expanded="false"
         aria-controls="gallery-filter-panel"
-        class="flex items-center gap-1.5 text-sm text-stone-400 transition-colors hover:text-stone-100"
+        class="flex cursor-pointer items-center gap-1.5 text-sm text-stone-400 transition-colors hover:text-stone-100"
       >
         <Icon name="lucide:sliders-horizontal" class="h-4 w-4" aria-hidden="true" />
         絞り込み
@@ -69,7 +64,7 @@ const resetClass = "underline underline-offset-2 transition-colors hover:text-st
             ))}
           </div>
         )}
-        {/* スマホでは折り返さず 1 行の横スクロールにし、画面端まで伸ばしてチップが端で切れる＝スクロールできる合図にする */}
+        {/* スマホは1行で横スクロール */}
         {tags.length > 0 && (
           <div
             role="group"
@@ -132,17 +127,17 @@ const resetClass = "underline underline-offset-2 transition-colors hover:text-st
         tags: JSON.parse(el.dataset.tags ?? "[]"),
       })
     );
-    // 作品カードの wrapper も data-kind を持つので、ボタンだけを拾う
+    // data-kindは作品カードにもあるのでボタンだけ拾う
     const kindButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("button[data-kind]"));
     const tagButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("button[data-tag]"));
     const tagRow = root.querySelector<HTMLElement>("[data-gallery-tags]");
     const chevron = root.querySelector<HTMLElement>("[data-gallery-chevron]");
-    const resetButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-gallery-reset]"));
+    const resetButton = root.querySelector<HTMLButtonElement>("[data-gallery-reset]");
 
     const matchesKind = (item: Item, kind: string) => !kind || item.kind === kind;
     const matchesTag = (item: Item, tag: string) => !tag || item.tags.includes(tag);
 
-    // URL のクエリから初期状態を復元する（作品ページのタグリンクは ?tag= で飛んでくる）
+    // URLのクエリから初期状態を復元
     const params = new URLSearchParams(location.search);
     const pick = (value: string | null, allowed: string[]) =>
       value && allowed.includes(value) ? value : "";
@@ -151,17 +146,15 @@ const resetClass = "underline underline-offset-2 transition-colors hover:text-st
       tag: pick(params.get("tag"), tagButtons.map((b) => b.dataset.tag ?? "")),
     };
 
-    // 選択肢の見た目と件数を更新する。もう一方の軸の選択を反映した件数が 0 なら押せなくする。
-    // ただし選択中のものは、解除できるよう常に押せる状態を保つ。
     const updateOption = (button: HTMLButtonElement, count: number, pressed: boolean) => {
       button.setAttribute("aria-pressed", String(pressed));
+      // 0件の選択肢は押せなくする（選択中は除く）
       button.disabled = count === 0 && !pressed;
       const countEl = button.querySelector<HTMLElement>("[data-count]");
       if (countEl) countEl.textContent = String(count);
     };
 
-    // 横スクロールのタグ行で、選択中のチップが画面外なら見える位置まで横にだけ動かす
-    // （?tag= で開いてからパネルを開いたとき用。縦方向のページ位置は動かさない）
+    // 選択中のタグが見える位置まで横にスクロール
     const revealActiveTag = () => {
       const button = tagButtons.find((b) => b.dataset.tag === state.tag);
       if (!button || !tagRow || panel.hidden) return;
@@ -208,8 +201,6 @@ const resetClass = "underline underline-offset-2 transition-colors hover:text-st
         value ? url.searchParams.set(key, value) : url.searchParams.delete(key);
       setParam("kind", state.kind);
       setParam("tag", state.tag);
-      // 以前あった並び替えのパラメータは無視して消す
-      url.searchParams.delete("sort");
       history.replaceState(null, "", url);
     };
 
@@ -228,13 +219,11 @@ const resetClass = "underline underline-offset-2 transition-colors hover:text-st
         render();
       });
     }
-    for (const button of resetButtons) {
-      button.addEventListener("click", () => {
-        state.kind = "";
-        state.tag = "";
-        render();
-      });
-    }
+    resetButton?.addEventListener("click", () => {
+      state.kind = "";
+      state.tag = "";
+      render();
+    });
 
     render();
   }

@@ -7,18 +7,17 @@ import InfoLocation from "./InfoLocation.astro";
 
 interface Props {
   entry: CollectionEntry<"info">;
-  id?: string;
 }
 
-const { entry, id } = Astro.props;
+const { entry } = Astro.props;
 const { data } = entry;
 const dateStr = formatDateJP(data.date);
 const hasBody = (entry.body ?? "").trim().length > 0;
 const rendered = hasBody ? await render(entry) : null;
 const Content = rendered?.Content;
 ---
-{/* data-category: Publication のとき、この中の --accent が第2アクセント（緑）に切り替わる（BaseLayout 参照） */}
-<article id={id} data-category={data.category} class="scroll-mt-24 rounded-xl border border-stone-700 bg-stone-800 p-4 shadow-xs">
+{/* data-categoryでアクセント色が変わる */}
+<article data-category={data.category} class="rounded-xl border border-stone-700 bg-stone-800 p-4 shadow-xs">
   <div class="flex flex-wrap items-center gap-2">
     <InfoCategoryBadge category={data.category} />
     <time datetime={data.date.toISOString().slice(0, 10)} class="text-sm text-stone-400">{dateStr}</time>

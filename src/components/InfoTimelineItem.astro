@@ -23,7 +23,7 @@ const hasBody = (entry.body ?? "").trim().length > 0;
 const rendered = hasBody ? await render(entry) : null;
 const Content = rendered?.Content;
 ---
-{/* data-category: Publication のとき、この中の --accent が第2アクセント（緑）に切り替わる（BaseLayout 参照） */}
+{/* data-categoryでアクセント色が変わる */}
 <li id={id} data-category={data.category} class="group grid scroll-mt-24 grid-cols-[3.5rem_1fr] gap-x-3 sm:grid-cols-[4.5rem_1fr] sm:gap-x-4">
   <time datetime={parts.iso} class="flex flex-col items-center pt-1 leading-none text-stone-100">
     <span class="sr-only">{parts.year}年{parts.month}月{parts.day}日（{parts.weekday}）</span>
@@ -34,7 +34,6 @@ const Content = rendered?.Content;
 
   <div class="relative border-l border-stone-700 pb-8 pl-5 group-last:pb-0 sm:pl-7">
     <span
-      aria-hidden="true"
       class={`absolute left-[-5px] top-2.5 h-[9px] w-[9px] rounded-full ring-4 ring-stone-900 ${
         isActive ? "bg-(--accent)" : "bg-stone-600"
       }`}

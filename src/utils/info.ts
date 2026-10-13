@@ -1,10 +1,6 @@
 export type EventStatus = "upcoming" | "today" | "past";
 
-/**
- * ビルド時点の「今日」(UTC 0時)。
- * コンテンツの date も UTC 0時で解釈されるため、同じ基準で比較する。
- * 静的ビルドのため、状態はビルド時点のものになる（トップページの Upcoming Info と同じ制約）。
- */
+// ビルド時点の今日（UTCの0時）
 export function getTodayUTC(): Date {
   const today = new Date();
   today.setUTCHours(0, 0, 0, 0);
@@ -19,7 +15,7 @@ export function getEventStatus(date: Date, today: Date): EventStatus {
   return "past";
 }
 
-/** 日付から状態を表示するカテゴリ */
+// 日付から状態を出すカテゴリ
 const STATUS_CATEGORIES = new Set(["Event", "Publication"]);
 
 export function hasDateStatus(category: string): boolean {
@@ -28,28 +24,21 @@ export function hasDateStatus(category: string): boolean {
 
 const STATUS_LABELS: Record<string, Partial<Record<EventStatus, string>>> = {
   Event: { upcoming: "開催予定", today: "本日開催", past: "終了" },
-  // 過去の掲載物に「終了」は不自然なので、発売前のみ表示する
+  // Publicationに「終了」は出さない
   Publication: { upcoming: "発売予定", today: "本日発売" },
 };
 
-/** カテゴリと状態に応じたバッジ文言。表示しない場合は null */
 export function getStatusLabel(category: string, status: EventStatus): string | null {
   return STATUS_LABELS[category]?.[status] ?? null;
 }
 
-export interface LinkMeta {
+interface LinkMeta {
   label: string;
   icon: string;
 }
 
-/** リンク先のホストに応じてラベルとアイコンを決める */
 export function getLinkMeta(url: string): LinkMeta {
-  let host = "";
-  try {
-    host = new URL(url).hostname.replace(/^www\./, "");
-  } catch {
-    host = "";
-  }
+  const host = new URL(url).hostname.replace(/^www\./, "");
   if (host === "bsky.app") {
     return { label: "Blueskyで見る", icon: "simple-icons:bluesky" };
   }
@@ -59,18 +48,11 @@ export function getLinkMeta(url: string): LinkMeta {
   return { label: "詳細を見る", icon: "lucide:external-link" };
 }
 
-/**
- * `src/content/info/drafts/` 配下のエントリは未公開の下書き。
- * このディレクトリは .gitignore で除外しているため、コミット・デプロイされない。
- */
-export function isDraftInfo(entry: { id: string }): boolean {
+function isDraftInfo(entry: { id: string }): boolean {
   return entry.id.startsWith("drafts/");
 }
 
-/**
- * 公開対象のエントリかどうか。
- * 下書きは `astro dev` では確認用に表示し、本番ビルド（`astro build`）では除外する。
- */
+// 下書きはdevでだけ出す
 export function isPublishedInfo(entry: { id: string }): boolean {
   return import.meta.env.DEV || !isDraftInfo(entry);
 }
