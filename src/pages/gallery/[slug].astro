@@ -1,4 +1,5 @@
 ---
+import { inferRemoteSize } from "astro/assets/utils";
 import { getCollection, type CollectionEntry, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { compareByDateAsc, formatDateJP } from "../../utils/date";
@@ -21,9 +22,11 @@ const { data } = entry;
 const kind = getGalleryKind(data);
 const imageUrl = data.image || data.thumbnail;
 const mediumImageUrl = data.mediumImage || imageUrl;
-// 実寸はmediumImageのもの
+// 実寸はmediumImageのもの（未指定ならCDNの画像から読む）
 const mediumSize = data.mediumImage
-  ? { width: data.mediumWidth, height: data.mediumHeight }
+  ? data.mediumWidth
+    ? { width: data.mediumWidth, height: data.mediumHeight }
+    : await inferRemoteSize(data.mediumImage).then(({ width, height }) => ({ width, height }))
   : {};
 const ogImage = data.mediumImage || data.image || data.thumbnail;
 const dateStr = formatDateJP(data.date);
