@@ -20,7 +20,7 @@ references them by URL on `cdn.tohu-sand.com`.
 
 ## Requirements
 
-- Node.js 22.23.2, pinned in `.node-version`
+- Node.js 22.23.4, pinned in `.node-version`
 
 ## Installation
 
