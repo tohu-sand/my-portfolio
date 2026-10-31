@@ -12,7 +12,6 @@ The list is based on the currently installed dependency tree (pnpm).
 - @astrojs/compiler@2.13.1 — Copyright (c) 2009 The Go Authors. All rights reserved.; Copyright (c) 2021 [Astro contributors](https://github.com/withastro/compiler/graphs/contributors)
 - @astrojs/compiler-binding@0.5.2 — Copyright (c) 2026 [Astro contributors](https://github.com/withastro/compiler/graphs/contributors)
 - @astrojs/compiler-binding-linux-x64-gnu@0.5.2 — Copyright (c) Astro contributors
-- @astrojs/compiler-binding-linux-x64-musl@0.5.2 — Copyright (c) Astro contributors
 - @astrojs/compiler-rs@0.5.2 — Copyright (c) 2026 [Astro contributors](https://github.com/withastro/compiler/graphs/contributors)
 - @astrojs/internal-helpers@0.13.0 — Copyright (c) 2019-present, Yuxi (Evan) You and Vite contributors; Copyright (c) 2020 [these people](https://github.com/sveltejs/kit/graphs/contributors); Copyright (c) 2021 Fred K. Schott
 - @astrojs/language-server@2.16.15 — Copyright (c) 2020-Present [these people](https://github.com/sveltejs/language-tools/graphs/contributors); Copyright (c) 2023 The Astro Technology Company
@@ -28,7 +27,6 @@ The list is based on the currently installed dependency tree (pnpm).
 - @babel/parser@7.29.9 — Copyright (C) 2012-2014 by various contributors (see AUTHORS)
 - @babel/types@7.29.8 — Copyright (c) 2014-present Sebastian McKenzie and other contributors
 - @bruits/satteri-linux-x64-gnu@0.10.5
-- @bruits/satteri-linux-x64-musl@0.10.5
 - @capsizecss/unpack@4.0.1 — Copyright (c) 2021 SEEK
 - @clack/core@1.5.1 — Copyright (c) Nate Moore
 - @clack/prompts@1.8.1 — Copyright (c) Nate Moore
@@ -54,7 +52,6 @@ The list is based on the currently installed dependency tree (pnpm).
 - @oslojs/encoding@1.1.0 — Copyright (c) 2024 pilcrowOnPaper
 - @oxc-project/types@0.155.0 — Copyright (c) 2023 Boshen; Copyright (c) 2024-present VoidZero Inc. & Contributors
 - @rolldown/binding-linux-x64-gnu@1.2.15
-- @rolldown/binding-linux-x64-musl@1.2.15
 - @rolldown/pluginutils@1.0.1 — Copyright (c) 2026-present, rolldown/plugins repository contributors
 - @shikijs/core@4.5.0 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
 - @shikijs/engine-javascript@4.5.0 — Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu <https://github.com/antfu>
@@ -67,7 +64,6 @@ The list is based on the currently installed dependency tree (pnpm).
 - @tailwindcss/node@4.3.3 — Copyright (c) Tailwind Labs, Inc.
 - @tailwindcss/oxide@4.3.3 — Copyright (c) Tailwind Labs, Inc.
 - @tailwindcss/oxide-linux-x64-gnu@4.3.3 — Copyright (c) Tailwind Labs, Inc.
-- @tailwindcss/oxide-linux-x64-musl@4.3.3 — Copyright (c) Tailwind Labs, Inc.
 - @tailwindcss/typography@0.5.20 — Copyright (c) Tailwind Labs, Inc.
 - @tailwindcss/vite@4.3.3 — Copyright (c) Tailwind Labs, Inc.
 - @types/debug@4.1.13 — Copyright (c) Microsoft Corporation.
@@ -447,7 +443,6 @@ The list is based on the currently installed dependency tree (pnpm).
 
 - lightningcss@1.32.0, 1.33.0
 - lightningcss-linux-x64-gnu@1.32.0, 1.33.0
-- lightningcss-linux-x64-musl@1.32.0, 1.33.0
 
 ### OFL-1.1
 
