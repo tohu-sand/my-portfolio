@@ -327,7 +327,7 @@ The list is based on the currently installed dependency tree (pnpm).
 - ufo@1.6.4 — Copyright (c) Pooya Parsa <pooya@pi0.io>
 - ultrahtml@1.7.0 — Copyright (c) 2013 Jason Miller
 - uncrypto@0.1.3 — Copyright (c) Pooya Parsa <pooya@pi0.io>
-- undici@8.11.2 — Copyright (c) Matteo Collina and Undici contributors
+- undici@8.12.4 — Copyright (c) Matteo Collina and Undici contributors
 - undici-types@7.16.0 — Copyright (c) Matteo Collina and Undici contributors
 - unified@11.0.5 — Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
 - unifont@1.0.3 — Copyright (c) 2024 Daniel Roe
@@ -373,7 +373,7 @@ The list is based on the currently installed dependency tree (pnpm).
 - yaml-language-server@1.23.0 — Copyright (c) 2017 Red Hat Inc. and others.
 - yargs@18.1.0 — Copyright 2010 James Halliday (mail@substack.net); Modified work Copyright 2014 Contributors (ben@npmjs.com)
 - yocto-queue@1.2.1 — Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
-- zod@4.4.3, 4.6.7 — Copyright (c) 2025 Colin McDonnell
+- zod@4.6.7 — Copyright (c) 2025 Colin McDonnell
 - zwitch@2.0.4 — Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
 
 ### Apache-2.0
@@ -418,7 +418,7 @@ The list is based on the currently installed dependency tree (pnpm).
 ### BSD-3-Clause
 
 - diff@9.0.0 — Copyright (c) 2009-2015, Kevin Decker <kpdecker@gmail.com>
-- fast-uri@3.1.8 — Copyright (c) 2011-2021, Gary Court until https://github.com/garycourt/uri-js/commit/a1acf730b4bba3f1097c9f52e7d9d3aba8cdcaae; Copyright (c) 2021-present The Fastify team <https://github.com/fastify/fastify#team>
+- fast-uri@3.1.9 — Copyright (c) 2011-2021, Gary Court until https://github.com/garycourt/uri-js/commit/a1acf730b4bba3f1097c9f52e7d9d3aba8cdcaae; Copyright (c) 2021-present The Fastify team <https://github.com/fastify/fastify#team>
 - smol-toml@1.9.1 — Copyright (c) Squirrel Chat et al., All rights reserved.
 - source-map@0.7.6, 0.8.0 — Copyright (c) 2009-2011, Mozilla Foundation and contributors
 - source-map-js@1.2.2 — Copyright (c) 2009-2011, Mozilla Foundation and contributors
