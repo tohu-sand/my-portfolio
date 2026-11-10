@@ -70,6 +70,7 @@ User-agent: SemrushBot-OCOB
 User-agent: iaskspider
 User-agent: DeepSeekBot
 User-agent: QwenBot
+User-agent: KimiBot
 Disallow: /
 
 User-agent: *
