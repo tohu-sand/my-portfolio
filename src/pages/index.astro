@@ -29,7 +29,7 @@ const gallery = await getCollection("gallery");
 const allPosts = [...posts, ...gallery];
 const latestPost = allPosts.sort(compareByDateDesc)[0];
 
-const heroImageUrl = "https://cdn.tohu-sand.com/illust/2026-10-15_medium.webp";
+const heroImageUrl = "https://cdn.tohu-sand.com/illust/web/2026-10-15_hero.webp";
 const heroImageAlt = "イラスト「つり革ふたつ」";
 const heroImageYear = 2026;
 
@@ -59,8 +59,8 @@ const heroImageStructuredData = {
     <img
       src={heroImageUrl}
       alt={heroImageAlt}
-      width="1998"
-      height="1998"
+      width="1152"
+      height="1152"
       class="w-full max-w-xl h-auto rounded-lg shadow-lg object-cover"
       fetchpriority="high"
       decoding="async"
