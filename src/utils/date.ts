@@ -20,6 +20,13 @@ export function compareByDateAsc<T extends { data: { date: Date } }>(
   return a.data.date.getTime() - b.data.date.getTime();
 }
 
+// ビルド時点の日本時間での今日（dateと同じくUTCの0時で表す）
+export function getTodayJST(): Date {
+  const today = new Date(Date.now() + 9 * 60 * 60 * 1000);
+  today.setUTCHours(0, 0, 0, 0);
+  return today;
+}
+
 interface DatePartsUTC {
   year: number;
   month: number;

@@ -2,14 +2,14 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import InfoTimelineItem from "../../components/InfoTimelineItem.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { groupByYearDesc } from "../../utils/date";
-import { getTodayUTC, isPublishedInfo } from "../../utils/info";
+import { getTodayJST, groupByYearDesc } from "../../utils/date";
+import { isPublishedInfo } from "../../utils/info";
 
 const pageDescription = "イベント参加・掲載などのお知らせです。";
 
 const infos = await getCollection("info", isPublishedInfo);
 const infosByYear = groupByYearDesc(infos);
-const today = getTodayUTC();
+const today = getTodayJST();
 ---
 <BaseLayout
   title="hasamiyacco | お知らせ"

@@ -1,12 +1,5 @@
 export type EventStatus = "upcoming" | "today" | "past";
 
-// ビルド時点の今日（UTCの0時）
-export function getTodayUTC(): Date {
-  const today = new Date();
-  today.setUTCHours(0, 0, 0, 0);
-  return today;
-}
-
 export function getEventStatus(date: Date, today: Date): EventStatus {
   const d = date.getTime();
   const t = today.getTime();
